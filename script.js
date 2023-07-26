@@ -7,35 +7,37 @@ function getRandomItem(list) {
     return list[randomIndex];
 }
 
-function displayResult(result) {
+function displayResult(results) {
     const resultContainer = document.getElementById("result");
-    resultContainer.innerHTML = `<p>Random Number: ${result.number}</p><p>Random Word: ${result.word}</p>`;
+    let resultHtml = "<p>Random Words:</p><ul>";
+    for (const result of results) {
+        resultHtml += `<li>${result.number} - ${result.word}</li>`;
+    }
+    resultHtml += "</ul>";
+    resultContainer.innerHTML = resultHtml;
 }
 
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", () => {
     const wordLists = [
         [
-            { number: 1, word: "你" },
-            { number: 2, word: "我" },
-            { number: 3, word: "他" },
-            // Add more items for the first list
+            { number: 1, word: "一" },
+            { number: 2, word: "二" },
+            { number: 3, word: "三" }
         ],
         [
-            { number: 1, word: "你" },
-            { number: 2, word: "我" },
-            { number: 3, word: "他" },
-            // Second list items
+            { number: 4, word: "四" },
+            { number: 5, word: "五" },
+            { number: 6, word: "六" }
         ],
         [
-            { number: 1, word: "你" },
-            { number: 2, word: "我" },
-            { number: 3, word: "他" },            
-            // Third list items
+            { number: 7, word: "七" },
+            { number: 8, word: "八" },
+            { number: 9, word: "九" }
         ]
     ];
 
-    const randomNumbers = wordLists.map(list => getRandomItem(list));
-    displayResult(randomNumbers);
+    const randomResults = wordLists.map(list => getRandomItem(list));
+    displayResult(randomResults);
 });
 
