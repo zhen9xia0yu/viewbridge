@@ -20,6 +20,7 @@ h1 {
     justify-content: space-around;
     margin-bottom: 20px;
     overflow-x: auto; /* Allow horizontal scrolling for long lists */
+    overflow-y: hidden; /* Hide vertical scrollbar, as it will be handled by wordList */
 }
 
 .wordList {
