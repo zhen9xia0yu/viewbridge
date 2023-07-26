@@ -40,4 +40,4 @@ generateBtn.addEventListener("click", () => {
     const randomResults = wordLists.map(list => getRandomItem(list));
     displayResult(randomResults);
 });
-
+    
