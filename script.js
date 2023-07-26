@@ -2,37 +2,40 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function generateRandomNumbers(min, max) {
-    const numbers = [];
-    while (numbers.length < 3) {
-        const randomNumber = getRandomNumber(min, max);
-        if (!numbers.includes(randomNumber)) {
-            numbers.push(randomNumber);
-        }
-    }
-    return numbers;
+function getRandomItem(list) {
+    const randomIndex = getRandomNumber(0, list.length - 1);
+    return list[randomIndex];
 }
 
-function displayResult(numbers) {
+function displayResult(result) {
     const resultContainer = document.getElementById("result");
-    resultContainer.innerHTML = `<p>Random Numbers: ${numbers.join(", ")}</p>`;
+    resultContainer.innerHTML = `<p>Random Number: ${result.number}</p><p>Random Word: ${result.word}</p>`;
 }
 
-const generateBtn1 = document.getElementById("generateBtn1");
-generateBtn1.addEventListener("click", () => {
-    const randomNumbers = generateRandomNumbers(1, 10);
-    displayResult(randomNumbers);
-});
+const generateBtn = document.getElementById("generateBtn");
+generateBtn.addEventListener("click", () => {
+    const wordLists = [
+        [
+            { number: 1, word: "你" },
+            { number: 2, word: "我" },
+            { number: 3, word: "他" },
+            // Add more items for the first list
+        ],
+        [
+            { number: 1, word: "你" },
+            { number: 2, word: "我" },
+            { number: 3, word: "他" },
+            // Second list items
+        ],
+        [
+            { number: 1, word: "你" },
+            { number: 2, word: "我" },
+            { number: 3, word: "他" },            
+            // Third list items
+        ]
+    ];
 
-const generateBtn2 = document.getElementById("generateBtn2");
-generateBtn2.addEventListener("click", () => {
-    const randomNumbers = generateRandomNumbers(1, 100);
-    displayResult(randomNumbers);
-});
-
-const generateBtn3 = document.getElementById("generateBtn3");
-generateBtn3.addEventListener("click", () => {
-    const randomNumbers = generateRandomNumbers(1, 1000);
+    const randomNumbers = wordLists.map(list => getRandomItem(list));
     displayResult(randomNumbers);
 });
 

@@ -4,14 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Random Number Generator</title>
+    <title>Random Word Generator</title>
 </head>
 <body>
     <div class="container">
-        <h1>Random Number Generator</h1>
-        <button id="generateBtn1">Generate Random Numbers (1-10)</button>
-        <button id="generateBtn2">Generate Random Numbers (1-100)</button>
-        <button id="generateBtn3">Generate Random Numbers (1-1000)</button>
+        <h1>Random Word Generator</h1>
+        <div class="wordList" id="wordList1">
+            <ul>
+                <li><span class="number">1</span><span class="word">你</span></li>
+                <li><span class="number">2</span><span class="word">我</span></li>
+                <li><span class="number">3</span><span class="word">他</span></li>
+                <!-- Add more items here -->
+            </ul>
+        </div>
+        <div class="wordList" id="wordList2">
+            <ul>
+                <li><span class="number">1</span><span class="word">你</span></li>
+                <li><span class="number">2</span><span class="word">我</span></li>
+                <li><span class="number">3</span><span class="word">他</span></li>
+                <!-- Second list items -->
+            </ul>
+        </div>
+        <div class="wordList" id="wordList3">
+            <ul>
+                <li><span class="number">1</span><span class="word">你</span></li>
+                <li><span class="number">2</span><span class="word">我</span></li>
+                <li><span class="number">3</span><span class="word">他</span></li>
+                <!-- Third list items -->
+            </ul>
+        </div>
+        <button id="generateBtn">Generate Random Words</button>
         <div id="result"></div>
     </div>
     <script src="script.js"></script>
