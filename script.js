@@ -207,7 +207,7 @@ generateBtn.addEventListener("click", () => {
             { number: 59, word: "呼吸                " },
             { number: 60, word: "翘起了二郎腿        " },
             { number: 61, word: "扮演别人            " },
-            { number: 62, word: "站立                
+            { number: 62, word: "站立                " },
             { number: 63, word: "喝咖啡（大杯冰 标准 3泵橙罗勒风味调味糖浆 原萃浓缩标准 2浓缩份数 巴旦木奶）" },
             { number: 64, word: "播放春晚            " }, 
             { number: 65, word: "跳着舞睡着了        " }, 
