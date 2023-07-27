@@ -232,3 +232,17 @@ generateBtn.addEventListener("click", () => {
     displayResult(randomResults);
 });
     
+function displayCalendar() {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.toLocaleString("default", { month: "long" });
+    const currentDay = now.getDate();
+
+    const monthYearElement = document.getElementById("monthYear");
+    monthYearElement.textContent = `${currentMonth} ${currentYear}`;
+
+    const dayNumberElement = document.getElementById("dayNumber");
+    dayNumberElement.textContent = currentDay;
+}
+
+displayCalendar(); // Call the function to display the calendar when the page loads
