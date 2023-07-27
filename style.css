@@ -16,6 +16,7 @@ h1 {
 }
 
 .lists-container {
+/* .word-lists-container{ */
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;

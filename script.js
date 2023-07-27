@@ -232,6 +232,64 @@ generateBtn.addEventListener("click", () => {
     displayResult(randomResults);
 });
     
+// function displayCalendar() {
+//     const now = new Date();
+//     const currentYear = now.getFullYear();
+//     const currentMonth = now.toLocaleString("default", { month: "long" });
+//     const currentDay = now.getDate();
+
+//     const monthYearElement = document.getElementById("monthYear");
+//     monthYearElement.textContent = `${currentMonth} ${currentYear}`;
+
+//     const dayNumberElement = document.getElementById("dayNumber");
+//     dayNumberElement.textContent = currentDay;
+// }
+
+// displayCalendar(); // Call the function to display the calendar when the page loads
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getRandomItem(list) {
+    const randomIndex = getRandomNumber(0, list.length - 1);
+    return list[randomIndex];
+}
+function displayWords() {
+    const wordLists = [
+        document.getElementById("wordList1").querySelectorAll("li"),
+        document.getElementById("wordList2").querySelectorAll("li"),
+        document.getElementById("wordList3").querySelectorAll("li")
+    ];
+
+    let selectedIndices = JSON.parse(localStorage.getItem("selectedIndices"));
+    if (!selectedIndices) {
+        selectedIndices = [getRandomNumber(0, wordLists[0].length - 1), getRandomNumber(0, wordLists[1].length - 1), getRandomNumber(0, wordLists[2].length - 1)];
+        localStorage.setItem("selectedIndices", JSON.stringify(selectedIndices));
+    }
+
+    const dayNumberElement = document.getElementById("dayNumber");
+    const today = new Date().getDate();
+    if (today !== parseInt(dayNumberElement.textContent)) {
+        selectedIndices = [getRandomNumber(0, wordLists[0].length - 1), getRandomNumber(0, wordLists[1].length - 1), getRandomNumber(0, wordLists[2].length - 1)];
+        localStorage.setItem("selectedIndices", JSON.stringify(selectedIndices));
+    }
+
+    const wordListsContainer = document.getElementById("wordListsContainer");
+    // wordListsContainer.innerHTML = "";
+    // for (let i = 0; i < wordLists.length; i++) {
+    //     const selectedWord = wordLists[i][selectedIndices[i]].textContent;
+    //     const wordListElement = document.createElement("div");
+    //     wordListElement.classList.add("wordList");
+    //     wordListElement.innerHTML = `<p>Word List ${i + 1}: ${selectedWord}</p>`;
+    //     wordListsContainer.appendChild(wordListElement);
+    // }
+
+    const sentenceElement = document.getElementById("sentence");
+    const sentence = `${wordLists[0][selectedIndices[0]].textContent} ${wordLists[1][selectedIndices[1]].textContent} ${wordLists[2][selectedIndices[2]].textContent}`;
+    sentenceElement.textContent = sentence;
+}
+
 function displayCalendar() {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -246,3 +304,4 @@ function displayCalendar() {
 }
 
 displayCalendar(); // Call the function to display the calendar when the page loads
+displayWords(); // Call the function to display the selected words when the page loads
