@@ -232,7 +232,7 @@ function displayResultWithCats(results) {
     let finalSentence = "<p>";
     for (const result of results) {
         if(result.who === 0)
-            resultHtml += `<li><img src="src/cat1@2x.png" style="width:48px;height:48px;"> ：${result.word}</li>`;
+            resultHtml += `<li>${result.word}：<img src="src/cat1@2x.png" style="width:48px;height:48px;"></li>`;
             else
             resultHtml += `<li><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"> ：${result.word}</li>`;
             finalSentence += `${result.word}`;

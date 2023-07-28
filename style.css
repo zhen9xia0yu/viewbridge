@@ -221,3 +221,6 @@ button {
     align-items: center;
     /* flex-direction: column; */
 }
+.random-result li{
+    list-style: none;
+}
