@@ -11,6 +11,7 @@ body {
 }
 
 .container {
+    /* display: flex; */
     /* text-align: center; */
 }
 
@@ -32,6 +33,16 @@ h1 {
     margin-right: 20px;
     max-height: 200px; /* Set a maximum height for each list */
     overflow-y: auto; /* Enable vertical scrolling for long lists */
+    width: 90px;
+    height: 216px;
+    background: rgba(20,20,20,0.3);
+    border-radius: 8px 8px 8px 8px;
+    opacity: 1;
+
+    font-size: 14px;
+    font-family: Poppins-Medium, Poppins;
+    font-weight: 500;
+    color: #FFFFFF;
 }
 
 button {
@@ -165,4 +176,16 @@ button {
     line-height: 22px;
     /* -webkit-background-clip: text; */
     /* -webkit-text-fill-color: transparent; */
+}
+
+.btn-pumpkin {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Optional: Center text horizontally within the button */
+  }
+
+.button-image {
+    margin: 0 auto;
+    cursor: pointer;
 }
