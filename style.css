@@ -241,6 +241,9 @@ button {
     /* height: 200px; */
     background: rgba(19, 21, 23, 0.8);
     border-radius: 16px 16px 16px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #FFFFFF;
 }
 
 .result-chat li {
