@@ -24,7 +24,7 @@ h1 {
     /* .word-lists-container{ */
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     justify-content: center;
     overflow-x: auto;
     /* Allow horizontal scrolling for long lists */
@@ -246,17 +246,6 @@ button {
     color: #FFFFFF;
 }
 
-.result-chat li {
-    list-style: none;
-}
-
-.result-sentence {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* flex-direction: column; */
-}
 
 .chat-cat1 {
     text-align: right;
@@ -270,4 +259,35 @@ button {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.result-sentence {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* flex-wrap: wrap; */
+    /* flex-direction: column; */
+    position: relative;
+    display: inline-block;
+}
+
+.result-sentence img {
+    max-width: 343px;
+    height: auto;
+}
+
+.result-sentence p {
+    margin: 10px;
+    text-align: center;
+}
+
+.rlt-sentce-text{
+    /* text-align: center; */
+    font-size: 16px;
+    color: azure;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
 }

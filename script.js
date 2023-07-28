@@ -230,7 +230,7 @@ function displayResultWithCats(results) {
     const resultContainer = document.getElementById("resultchat");
     const sentenceContainer = document.getElementById("resultsentence");
     let resultHtml = "<ul>";
-    let finalSentence = "<p>";
+    let finalSentence = `<img src="src/group99764@2x.png" alt="sentence bg"><div class="rlt-sentce-text">`;
     for (const result of results) {
         if(result.who === 0)
             resultHtml += `<div class="chat-cat1"><p>${result.word}。：</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
@@ -239,7 +239,7 @@ function displayResultWithCats(results) {
             finalSentence += `${result.word}`;
     }
     resultHtml += "</ul>";
-    finalSentence += "</p>";
+    finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
     sentenceContainer.innerHTML = finalSentence;
 }
