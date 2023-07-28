@@ -237,6 +237,10 @@ button {
     /* justify-content: center; */
     /* align-items: center; */
     /* flex-direction: column; */
+    width: 343px;
+    /* height: 200px; */
+    background: rgba(19, 21, 23, 0.8);
+    border-radius: 16px 16px 16px 16px;
 }
 
 .result-chat li {
