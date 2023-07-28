@@ -50,7 +50,9 @@ h1 {
     font-weight: 500;
     color: #FFFFFF;
 }
-
+.wordList li{
+    white-space: nowrap;
+}
 button {
     padding: 10px 20px;
     font-size: 16px;
