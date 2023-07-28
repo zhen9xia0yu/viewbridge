@@ -1,5 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
+    font-family: PingFangSC-Regular, sans-serif;
     display: flex;
     justify-content: center;
     /* align-items: center; */
@@ -40,7 +41,7 @@ h1 {
     opacity: 1;
 
     font-size: 14px;
-    font-family: Poppins-Medium, Poppins;
+    /* font-family: Poppins-Medium, Poppins; */
     font-weight: 500;
     color: #FFFFFF;
 }
@@ -159,7 +160,7 @@ button {
     width: 111px;
     height: 16px;
     font-size: 14px;
-    font-family: Poppins-Medium, Poppins;
+    /* font-family: Poppins-Medium, Poppins; */
     font-weight: 500;
     color: #EDEDFD;
     line-height: 16px;
@@ -170,7 +171,7 @@ button {
     width: 141px;
     height: 22px;
     font-size: 16px;
-    font-family: Poppins-Medium, Poppins;
+    /* font-family: Poppins-Medium, Poppins; */
     font-weight: 500;
     color: #EDEDFD;
     line-height: 22px;
