@@ -31,7 +31,7 @@ h1 {
     overflow-y: hidden;
     /* Hide vertical scrollbar, as it will be handled by wordList */
     width: 343px;
-    height: 200px;
+    height: 170px;
     background: rgba(19, 21, 23, 0.8);
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
@@ -150,7 +150,7 @@ button {
 }
 
 .welcomepart {
-    padding-top: 52px;
+    padding-top: 20px;
     display: flex;
     /* justify-content: center; */
     align-items: flex-start;
