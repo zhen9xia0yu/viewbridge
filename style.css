@@ -29,7 +29,7 @@ h1 {
     overflow-x: auto; /* Allow horizontal scrolling for long lists */
     overflow-y: hidden; /* Hide vertical scrollbar, as it will be handled by wordList */
     width: 343px;
-    height: 130px;
+    height: 200px;
     background: rgba(19,21,23,0.8);
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
