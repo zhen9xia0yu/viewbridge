@@ -233,9 +233,9 @@ function displayResultWithCats(results) {
     let finalSentence = "<p>";
     for (const result of results) {
         if(result.who === 0)
-            resultHtml += `<div class="chat-cat1">${result.word}。：<img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
+            resultHtml += `<div class="chat-cat1"><p>${result.word}。：</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
             else
-            resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"> ：${result.word}</div>`;
+            resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"><p> ：${result.word}</p></div>`;
             finalSentence += `${result.word}`;
     }
     resultHtml += "</ul>";

@@ -257,8 +257,14 @@ button {
 
 .chat-cat1 {
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .chat-cat2 {
     text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
