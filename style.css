@@ -239,7 +239,7 @@ button {
     /* flex-direction: column; */
     width: 343px;
     /* height: 200px; */
-    background: rgba(19, 21, 23, 0.8);
+    /* background: rgba(19, 21, 23, 0.8); */
     border-radius: 16px 16px 16px 16px;
     font-size: 14px;
     font-weight: 500;
@@ -258,7 +258,7 @@ button {
     border-radius: 10px;  
     padding: 10px;  
     margin: 10px;  
-    border: 2px solid #000;  
+    /* border: 2px solid #000;   */
     color: #000;  
     font-size: 14px; 
 }
@@ -273,7 +273,7 @@ button {
     border-radius: 10px;  
     padding: 10px;  
     margin: 10px;  
-    border: 2px solid #000;  
+    /* border: 2px solid #000;   */
     color: #000;  
     font-size: 14px; 
 }
