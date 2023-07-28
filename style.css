@@ -290,4 +290,7 @@ button {
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center;
+    white-space: pre-wrap;
+    max-width: 230px;
+    width: 100%;
 }
