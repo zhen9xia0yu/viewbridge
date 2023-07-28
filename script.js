@@ -227,21 +227,22 @@ function displayResult(results) {
 }
 
 function displayResultWithCats(results) {
-    const resultContainer = document.getElementById("result");
+    const resultContainer = document.getElementById("resultchat");
+    const sentenceContainer = document.getElementById("resultsentence");
     let resultHtml = "<ul>";
     let finalSentence = "<p>";
     for (const result of results) {
         if(result.who === 0)
-            resultHtml += `<li>${result.word}：<img src="src/cat1@2x.png" style="width:48px;height:48px;"></li>`;
+            resultHtml += `<div class="chat-cat1">${result.word}：<img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
             else
-            resultHtml += `<li><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"> ：${result.word}</li>`;
+            resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"> ：${result.word}</div>`;
             finalSentence += `${result.word}`;
     }
     resultHtml += "</ul>";
     finalSentence += "</p>";
-    resultContainer.innerHTML = resultHtml + finalSentence;
+    resultContainer.innerHTML = resultHtml;
+    sentenceContainer.innerHTML = finalSentence;
 }
-
 
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", () => {
