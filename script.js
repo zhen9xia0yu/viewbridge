@@ -228,7 +228,7 @@ function displayResult(results) {
 
 function displayResultWithCats(results) {
     const resultContainer = document.getElementById("result");
-    let resultHtml = "<p>Random Words:</p><ul>";
+    let resultHtml = "<ul>";
     for (const result of results) {
         if(result.who === 0)
             resultHtml += `<li><img src="src/cat1@2x.png" style="width:48px;height:48px;"> ：${result.word}</li>`;

@@ -215,6 +215,9 @@ button {
     height: 50px;
 }
 .random-result {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* flex-direction: column; */
 }
