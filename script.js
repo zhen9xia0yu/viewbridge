@@ -18,7 +18,7 @@ const wordLists = [
         { who:0, number: 16, word: "心脏" },
         { who:0, number: 17, word: "我们的玫瑰" },
         { who:0, number: 18, word: "墙壁" },
-        { who:0, number: 19, word: "冰淇淋 " }, 
+        { who:0, number: 19, word: "冰淇淋" }, 
         { who:0, number: 20, word: "风扇" },  
         { who:0, number: 21, word: "记忆的教室" }, 
         { who:0, number: 22, word: "面前的礁石" }, 
