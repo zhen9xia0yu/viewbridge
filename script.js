@@ -240,6 +240,28 @@ async function processFiles() {
 
     // Now, wordLists contains three separate subarrays, each from a different file
     console.log(wordLists);
+    // Get the div elements where we will display the lists
+    const div1 = document.getElementById('wordList1');
+    const div2 = document.getElementById('wordList2');
+    const div3 = document.getElementById('wordList3');
+
+    // Function to create an ordered list for the given data array and append it to the specified div
+    function createOrderedList(dataArray, targetDiv) {
+        const ol = document.createElement('ol');
+
+        for (const item of dataArray) {
+            const li = document.createElement('li');
+            li.textContent = item.word;
+            ol.appendChild(li);
+        }
+
+        targetDiv.appendChild(ol);
+    }
+
+    // Create ordered lists for each subarray and append them to the corresponding divs
+    createOrderedList(wordLists[0], div1);
+    createOrderedList(wordLists[1], div2);
+    createOrderedList(wordLists[2], div3);
 }
 
 processFiles();
