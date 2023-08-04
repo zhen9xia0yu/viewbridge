@@ -248,6 +248,7 @@ async function processFiles() {
     // Function to create an ordered list for the given data array and append it to the specified div
     function createOrderedList(dataArray, targetDiv) {
         const ol = document.createElement('ol');
+        ol.start = 0;
 
         for (const item of dataArray) {
             const li = document.createElement('li');
@@ -383,5 +384,55 @@ function displayCalendar() {
 }
 
 // displayCalendar(); // Call the function to display the calendar when the page loads
-// displayWords(); // Call the function to display the selected words when the page loads
+// displayWords(); // Call the function to display the selected words when the page load
 
+// Function to show the popup
+function showPopup() {
+    const popupContainer = document.getElementById('popupContainer');
+    popupContainer.style.display = 'block';
+  }
+  
+  // Function to hide the popup
+  function hidePopup() {
+    const popupContainer = document.getElementById('popupContainer');
+    popupContainer.style.display = 'none';
+  }
+  
+  // Function to get today's date in numeric format
+  function getNumericDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    return `${year}年${month}月${day}日：`;
+  }
+  function getCalendarSentence() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate(); 
+    const intdate = Number(`${year}${month}${day}`);
+    const whoindex = intdate % wordLists[0].length;
+    const whereindex = intdate % wordLists[1].length ;
+    const whatindex = intdate % wordLists[2].length;
+    return `${wordLists[0][whoindex].word}${wordLists[1][whereindex].word}${wordLists[2][whatindex].word}`;
+  }
+  // Attach the click event to the calendar image
+  const calendarImage = document.getElementById('calendarImage');
+  calendarImage.addEventListener('click', () => {
+    // Get the calendar content and display it in the popup
+    const calendarContent = getNumericDate();
+    const popupContent = document.getElementById('calendarContent');
+    popupContent.textContent = calendarContent;
+    const calendarSentnceContent = getCalendarSentence();
+    const popupSentence = document.getElementById('calendarSentence')
+    popupSentence.textContent = calendarSentnceContent;
+    
+    // Show the popup
+    showPopup();
+  });
+  
+  // Attach the click event to the close button
+  const closeBtn = document.getElementById('popupCloseBtn');
+  closeBtn.addEventListener('click', hidePopup);
+  
