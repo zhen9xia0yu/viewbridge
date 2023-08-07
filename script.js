@@ -423,11 +423,20 @@ function showPopup() {
     // Get the calendar content and display it in the popup
     const calendarContent = getNumericDate();
     const popupContent = document.getElementById('calendarContent');
-    popupContent.textContent = calendarContent;
+    // popupContent.textContent = calendarContent;
     const calendarSentnceContent = getCalendarSentence();
     const popupSentence = document.getElementById('calendarSentence')
     popupSentence.textContent = calendarSentnceContent;
+
+
+    const datePicker = document.getElementById("datePicker"); 
+    const today = new Date(); // Get the current date and time
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // Months are zero-based
+    const day = today.getDate();
+    const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
     
+    datePicker.value = formattedToday; // Set the default date value
     // Show the popup
     showPopup();
   });
