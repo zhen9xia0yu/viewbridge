@@ -343,3 +343,13 @@ button {
   #calendarSentence {
     color: #333;
   }
+  .flatpickr {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+}
+.calendarPickerImg{
+    width: 39px;
+    height: 39px;
+}

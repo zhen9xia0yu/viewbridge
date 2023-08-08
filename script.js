@@ -211,15 +211,15 @@ calendarImage.addEventListener('click', () => {
     const popupSentence = document.getElementById('calendarSentence')
     popupSentence.textContent = sentencecontent;
 
-    const datePicker = document.getElementById("datePicker");
-    const today = new Date(); // Get the current date and time
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1; // Months are zero-based
-    const day = today.getDate();
-    const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+    // const datePicker = document.getElementById("datePicker");
+    // const today = new Date(); // Get the current date and time
+    // const year = today.getFullYear();
+    // const month = today.getMonth() + 1; // Months are zero-based
+    // const day = today.getDate();
+    // const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
-    datePicker.value = formattedToday; // Set the default date value
-    // Show the popup
+    // datePicker.value = formattedToday; // Set the default date value
+    // // Show the popup
     showPopup();
 });
 
@@ -227,21 +227,46 @@ calendarImage.addEventListener('click', () => {
 // const closeBtn = document.getElementById('popupCloseBtn');
 // closeBtn.addEventListener('click', hidePopup);
 
-const datePicker = document.getElementById("datePicker");
-datePicker.addEventListener("change", () => {
-    const selectedDate = new Date(datePicker.value);
-    const year = selectedDate.getFullYear();
-    const month = selectedDate.getMonth() + 1; // Month is 0-based, so we add 1
-    const day = selectedDate.getDate();
-    const intdate = Number(`${year}${month}${day}`);
-    const sentencecontent = Date2Sentence(intdate);
-    const popupSentence = document.getElementById('calendarSentence')
-    popupSentence.textContent = sentencecontent;
-});
+// const datePicker = document.getElementById("datePicker");
+// datePicker.addEventListener("change", () => {
+//     const selectedDate = new Date(datePicker.value);
+//     const year = selectedDate.getFullYear();
+//     const month = selectedDate.getMonth() + 1; // Month is 0-based, so we add 1
+//     const day = selectedDate.getDate();
+//     const intdate = Number(`${year}${month}${day}`);
+//     const sentencecontent = Date2Sentence(intdate);
+//     const popupSentence = document.getElementById('calendarSentence')
+//     popupSentence.textContent = sentencecontent;
+// });
 
 document.addEventListener("click", function (event) {
     const popupContainer = document.getElementById('popupContainer');
     if (!popupContainer.contains(event.target) && event.target !== calendarImage) {
         hidePopup();
+    }
+});
+
+// script.js
+const calendarImage1 = document.getElementById('calendarImage1');
+// const selectedDate = document.getElementById('selectedDate');
+
+// 初始化 Flatpickr 时间选择器
+flatpickr(calendarImage1, {
+    maxDate: 'today',
+    dateFormat: 'Y-m-d', // 日期格式
+    defaultDate: 'today', // 默认显示今天的日期
+    onChange: function(selectedDates, dateStr, instance) {
+        // 将选定的日期显示在页面上
+        const selectedDate = selectedDates[0];
+        const year = selectedDate.getFullYear();
+        const month = selectedDate.getMonth() + 1; // 月份从 0 开始
+        const day = selectedDate.getDate();
+        const intdate = Number(`${year}${month}${day}`);
+        console.log(intdate);
+        const sentencecontent = Date2Sentence(intdate);
+        console.log(sentencecontent);
+        const popupSentence = document.getElementById('calendarSentence')
+        popupSentence.textContent = sentencecontent;
+        // selectedDate.textContent = 'Selected Date: ' + sentencecontent;
     }
 });
