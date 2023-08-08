@@ -384,7 +384,7 @@ button {
     right: 0;
     /* Start off-screen on the right */
     white-space: nowrap;
-    animation: scrollAnimation 10s linear 2;
+    animation: scrollAnimation 10s linear infinite;
     background-color: red;
     color: yellow;
 }
