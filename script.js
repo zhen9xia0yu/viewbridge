@@ -224,10 +224,10 @@ calendarImage.addEventListener('click', () => {
 });
 
 // Attach the click event to the close button
-const closeBtn = document.getElementById('popupCloseBtn');
-closeBtn.addEventListener('click', hidePopup);
+// const closeBtn = document.getElementById('popupCloseBtn');
+// closeBtn.addEventListener('click', hidePopup);
 
-
+const datePicker = document.getElementById("datePicker");
 datePicker.addEventListener("change", () => {
     const selectedDate = new Date(datePicker.value);
     const year = selectedDate.getFullYear();
@@ -237,4 +237,11 @@ datePicker.addEventListener("change", () => {
     const sentencecontent = Date2Sentence(intdate);
     const popupSentence = document.getElementById('calendarSentence')
     popupSentence.textContent = sentencecontent;
+});
+
+document.addEventListener("click", function (event) {
+    const popupContainer = document.getElementById('popupContainer');
+    if (!popupContainer.contains(event.target) && event.target !== calendarImage) {
+        hidePopup();
+    }
 });
