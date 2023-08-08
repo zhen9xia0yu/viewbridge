@@ -255,6 +255,7 @@ flatpickr(calendarImage1, {
     maxDate: 'today',
     dateFormat: 'Y-m-d', // 日期格式
     defaultDate: 'today', // 默认显示今天的日期
+    // noCalendar: true,
     onChange: function(selectedDates, dateStr, instance) {
         // 将选定的日期显示在页面上
         const selectedDate = selectedDates[0];
