@@ -247,27 +247,47 @@ document.addEventListener("click", function (event) {
 });
 
 // script.js
-const calendarImage1 = document.getElementById('calendarImage1');
+// const calendarImage1 = document.getElementById('calendarImage1');
 // const selectedDate = document.getElementById('selectedDate');
 
 // 初始化 Flatpickr 时间选择器
-flatpickr(calendarImage1, {
-    maxDate: 'today',
-    dateFormat: 'Y-m-d', // 日期格式
-    defaultDate: 'today', // 默认显示今天的日期
-    // noCalendar: true,
-    onChange: function(selectedDates, dateStr, instance) {
-        // 将选定的日期显示在页面上
-        const selectedDate = selectedDates[0];
-        const year = selectedDate.getFullYear();
-        const month = selectedDate.getMonth() + 1; // 月份从 0 开始
-        const day = selectedDate.getDate();
-        const intdate = Number(`${year}${month}${day}`);
-        console.log(intdate);
-        const sentencecontent = Date2Sentence(intdate);
-        console.log(sentencecontent);
+// flatpickr(calendarImage1, {
+//     maxDate: 'today',
+//     dateFormat: 'Y-m-d', // 日期格式
+//     defaultDate: 'today', // 默认显示今天的日期
+//     // noCalendar: true,
+//     onChange: function(selectedDates, dateStr, instance) {
+//         // 将选定的日期显示在页面上
+//         const selectedDate = selectedDates[0];
+//         const year = selectedDate.getFullYear();
+//         const month = selectedDate.getMonth() + 1; // 月份从 0 开始
+//         const day = selectedDate.getDate();
+//         const intdate = Number(`${year}${month}${day}`);
+//         console.log(intdate);
+//         const sentencecontent = Date2Sentence(intdate);
+//         console.log(sentencecontent);
+//         const popupSentence = document.getElementById('calendarSentence')
+//         popupSentence.textContent = sentencecontent;
+//         // selectedDate.textContent = 'Selected Date: ' + sentencecontent;
+//     }
+// });
+const datePickerTrigger = document.getElementById('datepickerTrigger');
+
+const datePicker = new datepicker(datePickerTrigger, {
+    autohide: true,
+    maxDate: new Date(),
+    dateSelected: new Date(),
+    // maxDate: 'today',
+    // defaultDate: 'today',
+    // todayButton: true,
+    // dateFormat:'yyyy-mm-dd',
+    onSelect: (formattedDate, date) => {
         const popupSentence = document.getElementById('calendarSentence')
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // 月份从 0 开始
+        const day = date.getDate();
+        const intdate = Number(`${year}${month}${day}`);
+        const sentencecontent = Date2Sentence(intdate)
         popupSentence.textContent = sentencecontent;
-        // selectedDate.textContent = 'Selected Date: ' + sentencecontent;
     }
 });
