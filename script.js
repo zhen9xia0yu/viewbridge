@@ -40,7 +40,7 @@ async function processFiles() {
     // Function to create an ordered list for the given data array and append it to the specified div
     function createOrderedList(dataArray, targetDiv) {
         const ol = document.createElement('ol');
-        ol.start = 0;
+        // ol.start = 0;
 
         for (const item of dataArray) {
             const li = document.createElement('li');
