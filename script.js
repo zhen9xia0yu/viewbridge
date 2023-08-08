@@ -280,6 +280,7 @@ const datePicker = new datepicker(datePickerTrigger, {
     autohide: true,
     maxDate: new Date(),
     dateSelected: new Date(),
+    position: 'c',
     // maxDate: 'today',
     // defaultDate: 'today',
     // todayButton: true,
