@@ -218,7 +218,7 @@ calendarImage.addEventListener('click', () => {
     const month = today.getMonth() + 1; // Months are zero-based
     const day = today.getDate();
     yearSentence.textContent = year;
-    MDSetnrence.textContent = `${month}/${day}`;
+    MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
     // const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     // datePicker.value = formattedToday; // Set the default date value
@@ -293,7 +293,7 @@ const datePicker = new datepicker(datePickerTrigger, {
         const month = date.getMonth() + 1; // 月份从 0 开始
         const day = date.getDate();
         yearSentence.textContent = year;
-        MDSetnrence.textContent = `${month}/${day}`;
+        MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
         const intdate = Number(`${year}${month}${day}`);
         const sentencecontent = Date2Sentence(intdate)
         popupSentence.textContent = sentencecontent;
