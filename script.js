@@ -212,6 +212,7 @@ calendarImage.addEventListener('click', () => {
     popupSentence.textContent = sentencecontent;
     const yearSentence = document.getElementById('calendarUpLineContent');
     const MDSetnrence = document.getElementById('calendarDownLineContent');
+    const DaySentence = document.getElementById('calendarday');
     // const datePicker = document.getElementById("datePicker");
     const today = new Date(); // Get the current date and time
     const year = today.getFullYear();
@@ -219,6 +220,7 @@ calendarImage.addEventListener('click', () => {
     const day = today.getDate();
     yearSentence.textContent = year;
     MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+    DaySentence.textContent = day.toString().padStart(2, '0');
     // const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     // datePicker.value = formattedToday; // Set the default date value
@@ -289,6 +291,7 @@ const datePicker = new datepicker(datePickerTrigger, {
         const popupSentence = document.getElementById('calendarSentence');
         const yearSentence = document.getElementById('calendarUpLineContent');
         const MDSetnrence = document.getElementById('calendarDownLineContent');
+        const DaySentence = document.getElementById('calendarday');
         const year = date.getFullYear();
         const month = date.getMonth() + 1; // 月份从 0 开始
         const day = date.getDate();
@@ -296,6 +299,7 @@ const datePicker = new datepicker(datePickerTrigger, {
         MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
         const intdate = Number(`${year}${month}${day}`);
         const sentencecontent = Date2Sentence(intdate)
+        DaySentence.textContent = day.toString().padStart(2, '0');
         popupSentence.textContent = sentencecontent;
     }
 });

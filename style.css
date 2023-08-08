@@ -372,6 +372,11 @@ button {
     height: 39px;
 }
 
+.calendarsentenceImg {
+    width: 37px;
+    height: 36px;
+}
+
 .scrolling-text {
     position: fixed;
     top: 20%;
@@ -379,7 +384,7 @@ button {
     right: 0;
     /* Start off-screen on the right */
     white-space: nowrap;
-    animation: scrollAnimation 10s linear infinite;
+    animation: scrollAnimation 10s linear 2;
     background-color: red;
     color: yellow;
 }
@@ -394,4 +399,19 @@ button {
         transform: translateX(-100%);
         /* Move off-screen on the left */
     }
+}
+
+.calendarDayContent {
+    /* width: 105px; */
+    height: 32px;
+    font-size: 80px;
+    font-family: Aoboshi One-Regular, Aoboshi One;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 32px;
+    text-shadow: 0px 4px 4px rgba(90, 73, 73, 0.25), -1px 2px 0px rgba(255, 255, 255, 0.25);
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
