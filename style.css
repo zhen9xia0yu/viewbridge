@@ -254,29 +254,32 @@ button {
     justify-content: flex-end;
     align-items: center;
 }
-.chat-cat1 p{
-    background-color: #f2f2f2;  
-    border-radius: 10px;  
-    padding: 10px;  
-    margin: 10px;  
+
+.chat-cat1 p {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
     /* border: 2px solid #000;   */
-    color: #000;  
-    font-size: 14px; 
+    color: #000;
+    font-size: 14px;
 }
+
 .chat-cat2 {
     text-align: left;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.chat-cat2 p{
-    background-color: #f2f2f2;  
-    border-radius: 10px;  
-    padding: 10px;  
-    margin: 10px;  
+
+.chat-cat2 p {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
     /* border: 2px solid #000;   */
-    color: #000;  
-    font-size: 14px; 
+    color: #000;
+    font-size: 14px;
 }
 
 .result-sentence {
@@ -299,20 +302,22 @@ button {
     text-align: center;
 }
 
-.rlt-sentce-text{
+.rlt-sentce-text {
     /* text-align: center; */
     font-size: 16px;
     color: azure;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
     white-space: pre-wrap;
     max-width: 230px;
     width: 100%;
 }
+
 #popupContainer {
+    text-align: center;
     display: none;
     position: fixed;
     top: 50%;
@@ -322,42 +327,57 @@ button {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
-  }
 
-  /* Style for the close button */
-  #popupCloseBtn {
+    width: 243px;
+    height: 223px;
+    background: #191B1E;
+    box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 8px 8px 8px;
+    opacity: 1;
+}
+
+/* Style for the close button */
+#popupCloseBtn {
     /* position: absolute; */
     top: 0px;
     right: 0px;
     cursor: pointer;
-    padding: 0px 5px; /* Add padding to make the button wider */
+    padding: 0px 5px;
+    /* Add padding to make the button wider */
     border: 1px solid #ccc;
     /* border-radius: 5px; */
     background-color: #f0f0f0;
-  }
+}
 
-  /* Style for the calendar content */
-  #calendarContent {
-    padding-right: 50px; /* Add extra padding to the right of the calendar content */
+/* Style for the calendar content */
+#calendarContent {
+    padding-right: 50px;
+    /* Add extra padding to the right of the calendar content */
     color: #333;
-  }
-  #calendarSentence {
-    color: #333;
-  }
-  .flatpickr {
+}
+
+#calendarSentence {
+    color: #FFB487;
+}
+
+.flatpickr {
     padding: 10px;
     font-size: 16px;
     border: 2px solid #007bff;
     border-radius: 5px;
 }
-.calendarPickerImg{
+
+.calendarPickerImg {
     width: 39px;
     height: 39px;
 }
+
 .scrolling-text {
     position: fixed;
-    top: 20%; /* Vertically center the text */
-    right: 0; /* Start off-screen on the right */
+    top: 20%;
+    /* Vertically center the text */
+    right: 0;
+    /* Start off-screen on the right */
     white-space: nowrap;
     animation: scrollAnimation 10s linear infinite;
     background-color: red;
@@ -366,9 +386,12 @@ button {
 
 @keyframes scrollAnimation {
     0% {
-        transform: translateX(100%); /* Move off-screen on the right */
+        transform: translateX(100%);
+        /* Move off-screen on the right */
     }
+
     100% {
-        transform: translateX(-100%); /* Move off-screen on the left */
+        transform: translateX(-100%);
+        /* Move off-screen on the left */
     }
 }

@@ -210,12 +210,15 @@ calendarImage.addEventListener('click', () => {
     const sentencecontent = Date2Sentence(getTodayDate());
     const popupSentence = document.getElementById('calendarSentence')
     popupSentence.textContent = sentencecontent;
-
+    const yearSentence = document.getElementById('calendarUpLineContent');
+    const MDSetnrence = document.getElementById('calendarDownLineContent');
     // const datePicker = document.getElementById("datePicker");
-    // const today = new Date(); // Get the current date and time
-    // const year = today.getFullYear();
-    // const month = today.getMonth() + 1; // Months are zero-based
-    // const day = today.getDate();
+    const today = new Date(); // Get the current date and time
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // Months are zero-based
+    const day = today.getDate();
+    yearSentence.textContent = year;
+    MDSetnrence.textContent = `${month}/${day}`;
     // const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     // datePicker.value = formattedToday; // Set the default date value
@@ -282,10 +285,14 @@ const datePicker = new datepicker(datePickerTrigger, {
     // todayButton: true,
     // dateFormat:'yyyy-mm-dd',
     onSelect: (formattedDate, date) => {
-        const popupSentence = document.getElementById('calendarSentence')
+        const popupSentence = document.getElementById('calendarSentence');
+        const yearSentence = document.getElementById('calendarUpLineContent');
+        const MDSetnrence = document.getElementById('calendarDownLineContent');
         const year = date.getFullYear();
         const month = date.getMonth() + 1; // 月份从 0 开始
         const day = date.getDate();
+        yearSentence.textContent = year;
+        MDSetnrence.textContent = `${month}/${day}`;
         const intdate = Number(`${year}${month}${day}`);
         const sentencecontent = Date2Sentence(intdate)
         popupSentence.textContent = sentencecontent;
