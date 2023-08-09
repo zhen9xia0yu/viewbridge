@@ -210,7 +210,7 @@ calendarImage.addEventListener('click', () => {
     const sentencecontent = Date2Sentence(getTodayDate());
     const popupSentence = document.getElementById('calendarSentence')
     popupSentence.textContent = sentencecontent;
-    const yearSentence = document.getElementById('calendarUpLineContent');
+    const yearSentence = document.getElementById('calendarUpLineContent_year');
     const MDSetnrence = document.getElementById('calendarDownLineContent');
     const DaySentence = document.getElementById('calendarday');
     const WeekSentence = document.getElementById('calendarweek');
@@ -285,8 +285,35 @@ function getDayOfWeek(date) {
   }
 
 const datePickerTrigger = document.getElementById('datepickerTrigger');
-
 const datePicker = new datepicker(datePickerTrigger, {
+    autohide: true,
+    maxDate: new Date(),
+    dateSelected: new Date(),
+    position: 'c',
+    // maxDate: 'today',
+    // defaultDate: 'today',
+    // todayButton: true,
+    // dateFormat:'yyyy-mm-dd',
+    onSelect: (formattedDate, date) => {
+        const popupSentence = document.getElementById('calendarSentence');
+        const yearSentence = document.getElementById('calendarUpLineContent');
+        const MDSetnrence = document.getElementById('calendarDownLineContent');
+        const DaySentence = document.getElementById('calendarday');
+        const WeekSentence = document.getElementById('calendarweek');
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // 月份从 0 开始
+        const day = date.getDate();
+        yearSentence.textContent = year;
+        MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+        WeekSentence.textContent = getDayOfWeek(date);
+        const intdate = Number(`${year}${month}${day}`);
+        const sentencecontent = Date2Sentence(intdate)
+        DaySentence.textContent = day.toString().padStart(2, '0');
+        popupSentence.textContent = sentencecontent;
+    }
+});
+const datePickerTrigger1 = document.getElementById('calendarday');
+const datePicker1 = new datepicker(datePickerTrigger1, {
     autohide: true,
     maxDate: new Date(),
     dateSelected: new Date(),

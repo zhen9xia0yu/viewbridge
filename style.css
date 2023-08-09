@@ -423,3 +423,40 @@ button {
 .calendarWeekContent p{
     margin: 9px;
 }
+/* .class_calendarUpLineContent_year{
+    margin: 0px;
+} */
+
+.class_calendarUpLineContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .class_calendarUpLineContent_year {
+    position: relative;
+    text-align: center;
+    margin: 0px;
+
+  }
+  
+  /* .class_calendarUpLineContent_year::before,
+  .class_calendarUpLineContent_year::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    height: 0.5px;
+    background-color: #FEB78D;
+  }
+  
+  .class_calendarUpLineContent_year::before {
+    left: -107px;
+    transform: translateY(-50%);
+  }
+  
+  .class_calendarUpLineContent_year::after {
+    right: -107px;
+    transform: translateY(-50%);
+  } */
+  
