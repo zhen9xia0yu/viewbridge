@@ -329,7 +329,7 @@ button {
     z-index: 9999;
 
     width: 233px;
-    height: 217px;
+    height: 255px;
     background: #191B1E;
     box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
     border-radius: 8px 8px 8px 8px;
@@ -419,16 +419,17 @@ button {
     text-shadow: 0px 4px 4px rgba(90, 73, 73, 0.25), -1px 2px 0px rgba(255, 255, 255, 0.25);
     /* -webkit-background-clip: text; */
     /* -webkit-text-fill-color: transparent; */
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 36px;
 }
 .calendarWeekContent{
     display: flex;
     justify-content: center;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
 }
 .calendarWeekContent p{
     margin: 9px;
+    font-size: 15px;
 }
 /* .class_calendarUpLineContent_year{
     margin: 0px;
@@ -446,7 +447,10 @@ button {
     margin: 0px;
 
   }
-  
+  .calendarLunarContent {
+    font-size: 12px;
+    padding: 5px;
+  }
   /* .class_calendarUpLineContent_year::before,
   .class_calendarUpLineContent_year::after {
     content: '';
