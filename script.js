@@ -213,6 +213,7 @@ calendarImage.addEventListener('click', () => {
     const yearSentence = document.getElementById('calendarUpLineContent');
     const MDSetnrence = document.getElementById('calendarDownLineContent');
     const DaySentence = document.getElementById('calendarday');
+    const WeekSentence = document.getElementById('calendarweek');
     // const datePicker = document.getElementById("datePicker");
     const today = new Date(); // Get the current date and time
     const year = today.getFullYear();
@@ -221,6 +222,7 @@ calendarImage.addEventListener('click', () => {
     yearSentence.textContent = year;
     MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
     DaySentence.textContent = day.toString().padStart(2, '0');
+    WeekSentence.textContent = getDayOfWeek(today);
     // const formattedToday = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
     // datePicker.value = formattedToday; // Set the default date value
@@ -276,6 +278,12 @@ document.addEventListener("click", function (event) {
 //         // selectedDate.textContent = 'Selected Date: ' + sentencecontent;
 //     }
 // });
+
+function getDayOfWeek(date) {
+    const daysOfWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    return daysOfWeek[date.getDay()];
+  }
+
 const datePickerTrigger = document.getElementById('datepickerTrigger');
 
 const datePicker = new datepicker(datePickerTrigger, {
@@ -292,11 +300,13 @@ const datePicker = new datepicker(datePickerTrigger, {
         const yearSentence = document.getElementById('calendarUpLineContent');
         const MDSetnrence = document.getElementById('calendarDownLineContent');
         const DaySentence = document.getElementById('calendarday');
+        const WeekSentence = document.getElementById('calendarweek');
         const year = date.getFullYear();
         const month = date.getMonth() + 1; // 月份从 0 开始
         const day = date.getDate();
         yearSentence.textContent = year;
         MDSetnrence.textContent = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}`;
+        WeekSentence.textContent = getDayOfWeek(date);
         const intdate = Number(`${year}${month}${day}`);
         const sentencecontent = Date2Sentence(intdate)
         DaySentence.textContent = day.toString().padStart(2, '0');
