@@ -530,11 +530,12 @@ button {
 }
 
 .img_Ellipse_container {
-    position: absolute;
-    bottom: 430px;
-    left: 50px;
-    /*     width: 203.44px; */
-    /*     height: 203.59px; */
+    /*     position:absolute; */
+    /*     bottom: 430px; */
+    /*     left: 50px; */
+    /*         width: 103.44px; */
+    height: 0px;
     z-index: -1;
-    /*     transform: rotate(deg); /* Rotate the image 40 degrees clockwise */
+    /*     display:flex; */
+    transform: rotate(290deg);
 }
