@@ -43,6 +43,7 @@ h1 {
     max-height: 200px;
     /* Set a maximum height for each list */
     overflow-y: auto;
+    overflow-x: hidden;
     /* Enable vertical scrolling for long lists */
     width: 90px;
     height: 216px;
@@ -320,7 +321,7 @@ button {
     text-align: center;
     display: none;
     position: fixed;
-    top: 35%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 10px;
@@ -328,8 +329,8 @@ button {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
 
-    width: 233px;
-    height: 255px;
+    width: 303px;
+    height: 283px;
     background: #191B1E;
     box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
     border-radius: 8px 8px 8px 8px;
@@ -337,7 +338,7 @@ button {
 
     border-width: 10px;
     /* border-image-source: linear-gradient(135deg, #f06, #3c9); */
-    border-image-source: linear-gradient(135deg,#ffd000fa, #cc3395);
+    /* border-image-source: linear-gradient(135deg,#ffd000fa, #cc3395); */
     border-image-slice: 1;
     border-image-width: 1px;
     border-image-repeat: round;
@@ -375,8 +376,8 @@ button {
 }
 
 .calendarPickerImg {
-    width: 39px;
-    height: 39px;
+    width: 36px;
+    height: 36px;
 }
 
 .calendarsentenceImg {
@@ -417,57 +418,113 @@ button {
     color: #FFFFFF;
     line-height: 32px;
     text-shadow: 0px 4px 4px rgba(90, 73, 73, 0.25), -1px 2px 0px rgba(255, 255, 255, 0.25);
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
-    margin-top: 20px;
-    margin-bottom: 36px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
-.calendarWeekContent{
+
+.calendarWeekContent {
     display: flex;
     justify-content: center;
     /* padding-bottom: 5px; */
 }
-.calendarWeekContent p{
+
+.calendarWeekContent p {
     margin: 9px;
-    font-size: 15px;
+    font-size: 13px;
 }
+
 /* .class_calendarUpLineContent_year{
     margin: 0px;
 } */
 
+
+
+.calendarLunarContent {
+    font-size: 12px;
+    /* padding: 5px; */
+}
+
 .class_calendarUpLineContent {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-  }
-  
-  .class_calendarUpLineContent_year {
+    padding-top: 5px;
+}
+
+.class_calendarUpLineContent_year {
     position: relative;
     text-align: center;
     margin: 0px;
+    font-size: 14px;
+    padding-left: 11px;
 
-  }
-  .calendarLunarContent {
-    font-size: 12px;
-    padding: 5px;
-  }
-  /* .class_calendarUpLineContent_year::before,
-  .class_calendarUpLineContent_year::after {
+}
+
+/* .class_calendarUpLineContent_year::before, */
+.class_calendarUpLineContent_year::after {
     content: '';
     position: absolute;
     top: 50%;
-    width: 100px;
-    height: 0.5px;
-    background-color: #FEB78D;
-  }
-  
-  .class_calendarUpLineContent_year::before {
+    width: 230px;
+    /* width: 190px; */
+    height: 1px;
+    background: rgba(254, 183, 141, 0.5);
+    /* background-color:linear-gradient(135deg,#ffd000fa, #cc3395) ; */
+}
+
+/* .class_calendarUpLineContent_year::before {
     left: -107px;
     transform: translateY(-50%);
-  }
-  
-  .class_calendarUpLineContent_year::after {
-    right: -107px;
-    transform: translateY(-50%);
   } */
-  
+
+.class_calendarUpLineContent_year::after {
+    right: -237px;
+    /* right: -197px; */
+    transform: translateY(-50%);
+}
+
+.class_calendarDownLineContent {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.class_calendarDownLineContent_md {
+    position: relative;
+    text-align: center;
+    margin: 0px;
+    font-size: 14px;
+    padding-right: 15px;
+
+}
+
+.class_calendarDownLineContent_md::before {
+    /* .class_calendarDownLineContent_md::after { */
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 230px;
+    /* width: 190px; */
+    height: 1px;
+    background: rgba(254, 183, 141, 0.5);
+    /* background-color: #FEB78D; */
+    /* background-color:linear-gradient(135deg,#ffd000fa, #cc3395) ; */
+}
+
+.class_calendarDownLineContent_md::before {
+    left: -237px;
+    transform: translateY(-50%);
+}
+
+/* .class_calendarDownLineContent_md::after {
+    right: -107px;
+    right: -197px;
+    transform: translateY(-50%);
+} */
+
+.calendarSentenceContent {
+    /* display: flex; */
+    justify-content: center;
+}

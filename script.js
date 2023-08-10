@@ -138,7 +138,7 @@ function Date2Sentence(date) {
 
 function ShowCanlder(date) {
     const yearSentence = document.getElementById('calendarUpLineContent_year');
-    const MDSetnrence = document.getElementById('calendarDownLineContent');
+    const MDSetnrence = document.getElementById('calendarDownLineContent_md');
     const DaySentence = document.getElementById('calendarday');
     const WeekSentence = document.getElementById('calendarweek');
     const popupSentence = document.getElementById('calendarSentence')
