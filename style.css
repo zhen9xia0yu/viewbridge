@@ -418,8 +418,8 @@ button {
     color: #FFFFFF;
     line-height: 32px;
     text-shadow: 0px 4px 4px rgba(90, 73, 73, 0.25), -1px 2px 0px rgba(255, 255, 255, 0.25);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* -webkit-text-fill-color: transparent; */
     margin-top: 40px;
     margin-bottom: 40px;
 }
