@@ -528,12 +528,13 @@ button {
     /* display: flex; */
     justify-content: center;
 }
-.img_Ellipse_container{
+
+.img_Ellipse_container {
     position: absolute;
-    bottom: 242.05px;
-    right: 47px;
-    width: 203.44px;
-    height: 203.59px;
+    bottom: 430px;
+    left: 50px;
+    /*     width: 203.44px; */
+    /*     height: 203.59px; */
     z-index: -1;
-    transform: rotate(40deg); /* Rotate the image 40 degrees clockwise */ 
+    /*     transform: rotate(deg); /* Rotate the image 40 degrees clockwise */
 }
