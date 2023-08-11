@@ -197,3 +197,10 @@ const datePicker1 = new datepicker(datePickerTrigger1, {
         ShowCanlder(date);
     }
 });
+// 获取需要滚动和隐藏的 div 元素
+const scrollingText = document.getElementById('scrollText');
+
+// 设置一个定时器，在10秒后隐藏 div 元素
+setTimeout(() => {
+  scrollingText.style.display = 'none';
+}, 24000); // 10000 毫秒 = 10 秒
