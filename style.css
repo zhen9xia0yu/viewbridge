@@ -67,10 +67,6 @@ button {
     cursor: pointer;
 }
 
-#result {
-    /* margin-top: 20px; */
-}
-
 /* 滚动槽 */
 ::-webkit-scrollbar {
     width: 6px;
@@ -90,67 +86,6 @@ button {
     -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.calendar-container {
-    display: flex;
-    justify-content: center;
-}
-
-.calendar {
-    background-color: #f2f2f2;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    width: 300px;
-    padding: 20px;
-}
-
-.calendar-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.month-year {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.day-number {
-    font-size: 48px;
-    font-weight: bold;
-    color: #007bff;
-}
-
-.day-number::before {
-    content: "Day ";
-}
-
-.day-number::after {
-    content: ", ";
-}
-
-#monthYear::before {
-    content: "Today's Date: ";
-    font-size: 16px;
-    color: #333;
-}
-
-#monthYear {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-#dayNumber::after {
-    content: " ";
-}
-
-#dayNumber {
-    font-size: 32px;
-    font-weight: bold;
-    color: #007bff;
-}
-
 .welcomepart {
     padding-top: 20px;
     display: flex;
@@ -158,10 +93,6 @@ button {
     align-items: flex-start;
     /* margin-bottom: 20px; */
 }
-
-/* .welcomepart-pic {
-    
-} */
 
 .welcomepart-pic img {
     width: 61px;
@@ -368,13 +299,6 @@ button {
     color: #FFB487;
 }
 
-.flatpickr {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #007bff;
-    border-radius: 5px;
-}
-
 .calendarPickerImg {
     width: 36px;
     height: 36px;
@@ -434,12 +358,6 @@ button {
     margin: 9px;
     font-size: 13px;
 }
-
-/* .class_calendarUpLineContent_year{
-    margin: 0px;
-} */
-
-
 
 .calendarLunarContent {
     font-size: 12px;
@@ -530,12 +448,20 @@ button {
 }
 
 .img_Ellipse_container {
-    /*     position:absolute; */
-    /*     bottom: 430px; */
-    /*     left: 50px; */
-    /*         width: 103.44px; */
-    height: 0px;
+    position: absolute;
+    /* bottom: 430px; */
+    /* left: 50px; */
+    /* width: 103.44px; */
+    /*     height: 50%; */
+    top: -3%;
+    left: 43%;
     z-index: -1;
     /*     display:flex; */
-    transform: rotate(290deg);
+    transform: rotate(0deg);
+}
+
+.class_ellipse {
+    width: 280.44px;
+    height: 283.59px;
+    /*     transform: rotate(40deg); */
 }
