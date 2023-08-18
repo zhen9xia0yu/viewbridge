@@ -1,9 +1,26 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 var theRandomSentence = "";
+const accessToken1 = "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";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
-const accessToken = "env.MY_ACCESS_TOKEN";
+var accessToken = "";
 console.log(accessToken); // 这里将打印出您的 Token
 
+window.addEventListener('load', async () =>{
+    try {
+        const response = await fetch('https://server-less-api-seven.vercel.app/api/token');
+        const data = await response.json();
+        
+        if (data && data.msg) {
+            console.log(`${data.msg}`);
+            accessToken = data.msg;
+        } else {
+            console.log('No data or msg found in the response');
+        }
+    } catch (error) {
+        console.log('Error fetching data from the API');
+    }
+    
+});
 
 
 
@@ -125,6 +142,7 @@ recordbtn.addEventListener("click", function () {
             body: theRandomSentence
         };
         console.log("push"+commentData);
+        console.log("token is"+accessToken);
         fetch(issueURL, {
             method: "POST",
             headers: {
@@ -153,19 +171,6 @@ generateBtn.addEventListener("click", async() => {
     displayResultWithCats(randomResults);
     console.log("test"+ theRandomSentence);
 
-
-    try {
-        const response = await fetch('https://server-less-api-seven.vercel.app/api/token');
-        const data = await response.json();
-        
-        if (data && data.msg) {
-            console.log(`Response: ${data.msg}`);
-        } else {
-            console.log('No data or msg found in the response');
-        }
-    } catch (error) {
-        console.log('Error fetching data from the API');
-    }
 });
 
 function getRandomNumber(min, max) {
