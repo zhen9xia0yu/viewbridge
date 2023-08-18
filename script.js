@@ -1,5 +1,5 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
-const accessToken = "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"; 
+const accessToken = "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"; 
 var theRandomSentence = "";
 
 
