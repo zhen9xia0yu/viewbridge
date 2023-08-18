@@ -1,6 +1,5 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 var theRandomSentence = "";
-const accessToken1 = "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";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
 var accessToken = "";
 console.log(accessToken); // 这里将打印出您的 Token
