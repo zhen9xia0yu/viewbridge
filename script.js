@@ -1,6 +1,7 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 var theRandomSentence = "";
-const accessToken = process.env.MY_ACCESS_TOKEN;
+// const accessToken = process.env.MY_ACCESS_TOKEN;
+const accessToken = "env.MY_ACCESS_TOKEN";
 console.log(accessToken); // 这里将打印出您的 Token
 
 
@@ -111,6 +112,8 @@ function displayResultWithCats(results) {
     successMessage.style.display = "none";
 
 
+    
+
 }
 
 const recordbtn = document.getElementById("record_btn");
@@ -144,11 +147,25 @@ recordbtn.addEventListener("click", function () {
 
 
 const generateBtn = document.getElementById("generateBtn");
-generateBtn.addEventListener("click", () => {
+generateBtn.addEventListener("click", async() => {
     const randomResults = wordLists.map(list => getRandomItem(list));
     // displayResult(randomResults);
     displayResultWithCats(randomResults);
     console.log("test"+ theRandomSentence);
+
+
+    try {
+        const response = await fetch('https://server-less-api-seven.vercel.app/api/token');
+        const data = await response.json();
+        
+        if (data && data.msg) {
+            console.log(`Response: ${data.msg}`);
+        } else {
+            console.log('No data or msg found in the response');
+        }
+    } catch (error) {
+        console.log('Error fetching data from the API');
+    }
 });
 
 function getRandomNumber(min, max) {
