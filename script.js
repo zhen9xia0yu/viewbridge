@@ -82,6 +82,7 @@ function displayResult(results) {
 function displayResultWithCats(results) {
     const resultContainer = document.getElementById("resultchat");
     const sentenceContainer = document.getElementById("resultsentence");
+    const recordbtnContainer = document.getElementById("recordbtnContainer");
     let resultHtml = "<ul>";
     let finalSentence = `<img src="src/group99764@2x.png" alt="sentence bg"><div class="rlt-sentce-text">`;
     for (const result of results) {
@@ -95,6 +96,7 @@ function displayResultWithCats(results) {
     finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
     sentenceContainer.innerHTML = finalSentence;
+    recordbtnContainer.style.display = "flex";
 }
 
 const generateBtn = document.getElementById("generateBtn");

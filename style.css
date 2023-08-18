@@ -473,4 +473,10 @@ button {
     background-color: #FEAF81;
     border-radius: 50%; /* 让元素变成圆形 */
   }
-  
+.class_record_btn_container{
+    display: flex;
+    justify-content: center;
+}  
+.class_record_btn {
+    padding: 5px 5px;
+}
