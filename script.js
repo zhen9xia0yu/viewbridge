@@ -1,3 +1,9 @@
+const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+const accessToken = "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"; 
+var theRandomSentence = "";
+
+
+
 const LuckyNumber = 102;
 // Global array to store the combined data from three files
 // Function to fetch the data from a file
@@ -83,27 +89,64 @@ function displayResultWithCats(results) {
     const resultContainer = document.getElementById("resultchat");
     const sentenceContainer = document.getElementById("resultsentence");
     const recordbtnContainer = document.getElementById("recordbtnContainer");
+    const successMessage = document.getElementById("successMessage");
     let resultHtml = "<ul>";
     let finalSentence = `<img src="src/group99764@2x.png" alt="sentence bg"><div class="rlt-sentce-text">`;
+    theRandomSentence = "";
     for (const result of results) {
         if (result.who === 0)
             resultHtml += `<div class="chat-cat1"><p>${result.word}。</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
         else
             resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"><p> ${result.word}</p></div>`;
         finalSentence += `${result.word}`;
+        theRandomSentence += `${result.word}`;
     }
     resultHtml += "</ul>";
     finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
     sentenceContainer.innerHTML = finalSentence;
     recordbtnContainer.style.display = "flex";
+    successMessage.style.display = "none";
+
+
 }
+
+const recordbtn = document.getElementById("record_btn");
+recordbtn.addEventListener("click", function () {
+    // const commentContent = commentInput.value;
+    if (theRandomSentence) {
+        console.log(theRandomSentence);
+        const commentData = {
+            body: theRandomSentence
+        };
+        console.log("push"+commentData);
+        fetch(issueURL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(commentData)
+        })
+        .then(response => {
+            if (response.status === 201) {
+                // inputContainer.style.display = "none";
+                successMessage.style.display = "flex";
+                successMessage.style.justifyContent = "center";
+            }
+        })
+        .catch(error => console.error(error));
+    }
+});
+
+
 
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", () => {
     const randomResults = wordLists.map(list => getRandomItem(list));
     // displayResult(randomResults);
     displayResultWithCats(randomResults);
+    console.log("test"+ theRandomSentence);
 });
 
 function getRandomNumber(min, max) {
@@ -206,3 +249,5 @@ const scrollingText = document.getElementById('scrollText');
 setTimeout(() => {
   scrollingText.style.display = 'none';
 }, 24000); // 10000 毫秒 = 10 秒
+
+
