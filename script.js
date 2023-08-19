@@ -1,5 +1,7 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
+var theCalenderSentence = "";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
 var accessToken = "";
 console.log(accessToken); // 这里将打印出您的 Token
@@ -126,10 +128,6 @@ function displayResultWithCats(results) {
     sentenceContainer.innerHTML = finalSentence;
     recordbtnContainer.style.display = "flex";
     successMessage.style.display = "none";
-
-
-    
-
 }
 
 const recordbtn = document.getElementById("record_btn");
@@ -229,6 +227,8 @@ function ShowCanlder(date) {
     WeekSentence.textContent = getDayOfWeek(date);
     luarcontent.textContent = `${lunarmonth}${lunarday}${gzyear}年${gzmonth}月${gzday}日`;
     popupSentence.textContent = sentencecontent;
+    theCalenderSentence = sentencecontent;
+    successMessageCalendar.style.display = 'none';
 }
 
 // Attach the click event to the calendar image
@@ -273,4 +273,31 @@ setTimeout(() => {
   scrollingText.style.display = 'none';
 }, 24000); // 10000 毫秒 = 10 秒
 
-
+const recordbtncalender = document.getElementById("record_btn_calander");
+recordbtncalender.addEventListener("click", function () {
+    // const commentContent = commentInput.value;
+    if (theCalenderSentence) {
+        console.log(theCalenderSentence);
+        const commentData = {
+            body: theCalenderSentence
+        };
+        console.log("push"+commentData);
+        console.log("token is"+accessToken);
+        fetch(issueURL, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(commentData)
+        })
+        .then(response => {
+            if (response.status === 201) {
+                // inputContainer.style.display = "none";
+                successMessageCalendar.style.display = "flex";
+                successMessageCalendar.style.justifyContent = "center";
+            }
+        })
+        .catch(error => console.error(error));
+    }
+});
