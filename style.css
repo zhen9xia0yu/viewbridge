@@ -454,11 +454,11 @@ button {
     /* left: 50px; */
     /* width: 103.44px; */
     /*     height: 50%; */
-    top: -3%;
-    left: 43%;
+    top: -10%;
+    left: 30%;
     z-index: -1;
     /*     display:flex; */
-    transform: rotate(0deg);
+    transform: rotate(90deg);
 }
 
 .class_ellipse {
