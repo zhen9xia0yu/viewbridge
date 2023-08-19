@@ -6,7 +6,7 @@ console.log(accessToken); // 这里将打印出您的 Token
 
 window.addEventListener('load', async () =>{
     try {
-        const response = await fetch('https://server-less-api-seven.vercel.app/api/token');
+        const response = await fetch('https://api.viewbridge.top/api/token');
         const data = await response.json();
         
         if (data && data.msg) {
