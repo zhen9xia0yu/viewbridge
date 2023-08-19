@@ -130,7 +130,7 @@ function displayResultWithCats(results) {
     successMessage.style.display = "none";
 }
 
-const recordbtn = document.getElementById("record_btn");
+const recordbtn = document.getElementById("resultsentence");
 recordbtn.addEventListener("click", function () {
     // const commentContent = commentInput.value;
     if (theRandomSentence) {
