@@ -191,6 +191,19 @@ function hidePopup() {
     popupContainer.style.display = 'none';
 }
 
+// Function to show the popup-Favorite
+function showPopup_Favorite() {
+    const popupContainer = document.getElementById('FavoriteContainer');
+    popupContainer.style.display = 'block';
+}
+
+// Function to hide the popup-favorite
+function hidePopup_Favorite() {
+    const popupContainer = document.getElementById('FavoriteContainer');
+    popupContainer.style.display = 'none';
+}
+
+
 function getDayOfWeek(date) {
     const daysOfWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     return daysOfWeek[date.getDay()];
@@ -244,6 +257,15 @@ document.addEventListener("click", function (event) {
         hidePopup();
     }
 });
+
+//hide favorite
+document.addEventListener("click", function (event) {
+    const popupContainer = document.getElementById('FavoriteContainer');
+    if (!popupContainer.contains(event.target) && event.target !== calendarImage) {
+        hidePopup_Favorite();
+    }
+});
+
 
 const datePickerTrigger = document.getElementById('datepickerTrigger');
 const datePicker = new datepicker(datePickerTrigger, {
@@ -301,3 +323,32 @@ recordbtncalender.addEventListener("click", function () {
         .catch(error => console.error(error));
     }
 });
+
+document.getElementById("showFavorite").addEventListener("click", async () => {
+    const response = await fetch("https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments");
+    const comments = await response.json();
+  
+    const commentContainer = document.getElementById("FavoriteContainer");
+    commentContainer.innerHTML = ""; // 清空之前的内容
+  
+    comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
+  
+    comments.forEach(comment => {
+      const commentElement = document.createElement("div");
+      commentElement.className = "comment";
+  
+      const commentTime = new Date(comment.created_at).toLocaleString();
+      const commentTimeElement = document.createElement("p");
+      commentTimeElement.className = "comment-time";
+      commentTimeElement.textContent = commentTime;
+  
+      const commentBody = document.createElement("p");
+      commentBody.textContent = comment.body;
+  
+      commentElement.appendChild(commentTimeElement);
+      commentElement.appendChild(commentBody);
+  
+      commentContainer.appendChild(commentElement);
+    });
+    showPopup_Favorite();
+  });

@@ -275,19 +275,6 @@ button {
     border-image-repeat: round;
 }
 
-/* Style for the close button */
-#popupCloseBtn {
-    /* position: absolute; */
-    top: 0px;
-    right: 0px;
-    cursor: pointer;
-    padding: 0px 5px;
-    /* Add padding to make the button wider */
-    border: 1px solid #ccc;
-    /* border-radius: 5px; */
-    background-color: #f0f0f0;
-}
-
 /* Style for the calendar content */
 #calendarContent {
     padding-right: 50px;
@@ -477,6 +464,48 @@ button {
     display: flex;
     justify-content: center;
 }  
-.class_record_btn {
-    /* padding: 5px 10px; */
+
+.class_favoriteContainer{
+    display: none;
+    /* width: 300px;
+    height: 300px; */
+    overflow-y: scroll;
+    /* border: 1px solid #ccc; */
+    padding: 10px;
+
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+
+    width: 303px;
+    height: 283px;
+    background: #191B1E;
+    box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 8px 8px 8px;
+    opacity: 1;
+
+    border-width: 10px;
+    border-image-slice: 1;
+    border-image-width: 1px;
+    border-image-repeat: round;
+
 }
+
+.comment {
+    margin-bottom: 10px;
+    /* border-bottom: 1p
+    x solid #ccc; */
+    /* padding-bottom: 10px; */
+  }
+
+  .comment-time {
+    color: #888;
+    font-size:10px;
+  }
