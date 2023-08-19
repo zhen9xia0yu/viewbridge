@@ -110,7 +110,7 @@ function displayResultWithCats(results) {
     const recordbtnContainer = document.getElementById("recordbtnContainer");
     const successMessage = document.getElementById("successMessage");
     let resultHtml = "<ul>";
-    let finalSentence = `<img src="src/group99764@2x.png" alt="sentence bg"><div class="rlt-sentce-text">`;
+    let finalSentence = `<img src="src/group99764@2x_cut.png" alt="sentence bg"><div class="rlt-sentce-text">`;
     theRandomSentence = "";
     for (const result of results) {
         if (result.who === 0)
