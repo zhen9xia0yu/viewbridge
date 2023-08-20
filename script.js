@@ -5,6 +5,9 @@ var theCalenderSentence = "";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
 var accessToken = "";
 console.log(accessToken); // 这里将打印出您的 Token
+var BackwordSentence = "";
+var CurrentSentence = "";
+var ForwardSentence = "";
 
 window.addEventListener('load', async () => {
     try {
@@ -160,16 +163,36 @@ recordbtn.addEventListener("click", function () {
 });
 
 
-
+const StceBackBtn = document.getElementById("SentenceBackBtn")
+const StceForwardBtn = document.getElementById("SentenceForwardBtn")
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", async () => {
     const randomResults = wordLists.map(list => getRandomItem(list));
+    BackwordSentence = CurrentSentence;
+    CurrentSentence = randomResults;
+    // console.log("forward:"+ForwardSentence[0].word);
+    // console.log("Current:"+CurrentSentence[0].word);
     // displayResult(randomResults);
-    displayResultWithCats(randomResults);
-    console.log("test" + theRandomSentence);
+    displayResultWithCats(CurrentSentence);
+    StceBackBtn.style.display = "block";
+    // console.log("test" + theRandomSentence);
 
 });
-
+StceBackBtn.addEventListener("click", async () => {
+    ForwardSentence = CurrentSentence;
+    CurrentSentence = BackwordSentence;
+    BackwordSentence = "";
+    displayResultWithCats(CurrentSentence);
+    StceBackBtn.style.display = "none";
+    StceForwardBtn.style.display = "block";
+});
+StceForwardBtn.addEventListener("click", async () => {
+    BackwordSentence = CurrentSentence;
+    CurrentSentence = ForwardSentence;
+    displayResultWithCats(CurrentSentence);
+    StceBackBtn.style.display = "block";
+    StceForwardBtn.style.display = "none";
+});
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -381,37 +404,36 @@ function renderComments(comments) {
           <p>${comment.body}</p>
           <div class="deleteBtn">❌</div>
         `;
-    
+
         const deleteBtn = commentDiv.querySelector('.deleteBtn');
         deleteBtn.addEventListener('click', () => {
-          const confirmDelete = confirm(`确定要删除这个句子吗? \n"${comment.body}"`);
-          if (confirmDelete) {
-            deleteComment(comment.id)
-              .then(() => {
-                commentsContainer.removeChild(commentDiv);
-              })
-              .catch(error => {
-                console.error(error);
-              });
-          }
+            const confirmDelete = confirm(`确定要删除这个句子吗? \n"${comment.body}"`);
+            if (confirmDelete) {
+                deleteComment(comment.id)
+                    .then(() => {
+                        commentsContainer.removeChild(commentDiv);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
         });
 
-      commentsContainer.appendChild(commentDiv);
+        commentsContainer.appendChild(commentDiv);
     });
     showPopup_Favorite();
 }
 
 async function deleteComment(commentId) {
     const response = await fetch(`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`, {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      },
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+        },
     });
-  
+
     if (!response.ok) {
-      throw new Error('Failed to delete comment');
+        throw new Error('Failed to delete comment');
     }
-  }
-  
+}

@@ -517,3 +517,19 @@ button {
   .class_function{
     padding-right: 5px;
   }
+
+  .class_BackForward_Container{
+    display: flex;
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
+    text-align: center;
+    /* Optional: Center text horizontally within the button */ 
+  }
+.class_SentenceBackBtn{
+    display: none;
+}
+.class_SentenceForwardBtn{
+    display: none;
+}
