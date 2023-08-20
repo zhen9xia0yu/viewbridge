@@ -174,7 +174,10 @@ generateBtn.addEventListener("click", async () => {
     // console.log("Current:"+CurrentSentence[0].word);
     // displayResult(randomResults);
     displayResultWithCats(CurrentSentence);
-    StceBackBtn.style.display = "block";
+    if (BackwordSentence !== ""){
+        StceBackBtn.style.display = "block";
+    }
+    else StceBackBtn.style.display = "none";
     StceForwardBtn.style.display = "none";
     // console.log("test" + theRandomSentence);
 
