@@ -510,12 +510,13 @@ button {
     font-size:10px;
   }
 .class_functionContainer{
-    padding-top: 10px;
-    padding-left: 10px;
+    padding-top: 30px;
+    padding-left: 35px;
     display: flex;
+    font-size: 25px;
 }
   .class_function{
-    padding-right: 5px;
+    padding-right: 15px;
   }
 
   .class_BackForward_Container{
@@ -529,7 +530,11 @@ button {
   }
 .class_SentenceBackBtn{
     display: none;
+    font-size: 25px;
+    cursor: pointer;
 }
 .class_SentenceForwardBtn{
     display: none;
+    font-size: 25px;
+    cursor: pointer;
 }
