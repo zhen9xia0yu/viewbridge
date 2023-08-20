@@ -1,4 +1,4 @@
-const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/3/comments";
+const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
 var theCalenderSentence = "";
