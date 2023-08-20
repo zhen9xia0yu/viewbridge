@@ -1,4 +1,4 @@
-const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/3/comments";
 const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
 var theCalenderSentence = "";
@@ -6,11 +6,11 @@ var theCalenderSentence = "";
 var accessToken = "";
 console.log(accessToken); // 这里将打印出您的 Token
 
-window.addEventListener('load', async () =>{
+window.addEventListener('load', async () => {
     try {
         const response = await fetch('https://api.viewbridge.top/api/token');
         const data = await response.json();
-        
+
         if (data && data.msg) {
             console.log(`${data.msg}`);
             accessToken = data.msg;
@@ -20,7 +20,7 @@ window.addEventListener('load', async () =>{
     } catch (error) {
         console.log('Error fetching data from the API');
     }
-    
+
 });
 
 
@@ -138,8 +138,8 @@ recordbtn.addEventListener("click", function () {
         const commentData = {
             body: theRandomSentence
         };
-        console.log("push"+commentData);
-        console.log("token is"+accessToken);
+        console.log("push" + commentData);
+        console.log("token is" + accessToken);
         fetch(issueURL, {
             method: "POST",
             headers: {
@@ -148,25 +148,25 @@ recordbtn.addEventListener("click", function () {
             },
             body: JSON.stringify(commentData)
         })
-        .then(response => {
-            if (response.status === 201) {
-                // inputContainer.style.display = "none";
-                successMessage.style.display = "flex";
-                successMessage.style.justifyContent = "center";
-            }
-        })
-        .catch(error => console.error(error));
+            .then(response => {
+                if (response.status === 201) {
+                    // inputContainer.style.display = "none";
+                    successMessage.style.display = "flex";
+                    successMessage.style.justifyContent = "center";
+                }
+            })
+            .catch(error => console.error(error));
     }
 });
 
 
 
 const generateBtn = document.getElementById("generateBtn");
-generateBtn.addEventListener("click", async() => {
+generateBtn.addEventListener("click", async () => {
     const randomResults = wordLists.map(list => getRandomItem(list));
     // displayResult(randomResults);
     displayResultWithCats(randomResults);
-    console.log("test"+ theRandomSentence);
+    console.log("test" + theRandomSentence);
 
 });
 
@@ -292,7 +292,7 @@ const scrollingText = document.getElementById('scrollText');
 
 // 设置一个定时器，在10秒后隐藏 div 元素
 setTimeout(() => {
-  scrollingText.style.display = 'none';
+    scrollingText.style.display = 'none';
 }, 24000); // 10000 毫秒 = 10 秒
 
 const recordbtncalender = document.getElementById("record_btn_calander");
@@ -303,8 +303,8 @@ recordbtncalender.addEventListener("click", function () {
         const commentData = {
             body: theCalenderSentence
         };
-        console.log("push"+commentData);
-        console.log("token is"+accessToken);
+        console.log("push" + commentData);
+        console.log("token is" + accessToken);
         fetch(issueURL, {
             method: "POST",
             headers: {
@@ -313,42 +313,105 @@ recordbtncalender.addEventListener("click", function () {
             },
             body: JSON.stringify(commentData)
         })
-        .then(response => {
-            if (response.status === 201) {
-                // inputContainer.style.display = "none";
-                successMessageCalendar.style.display = "flex";
-                successMessageCalendar.style.justifyContent = "center";
-            }
-        })
-        .catch(error => console.error(error));
+            .then(response => {
+                if (response.status === 201) {
+                    // inputContainer.style.display = "none";
+                    successMessageCalendar.style.display = "flex";
+                    successMessageCalendar.style.justifyContent = "center";
+                }
+            })
+            .catch(error => console.error(error));
     }
 });
 
-document.getElementById("showFavorite").addEventListener("click", async () => {
-    const response = await fetch("https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments");
+// document.getElementById("showFavorite").addEventListener("click", async () => {
+//     const response = await fetch("https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments");
+//     const comments = await response.json();
+
+//     const commentContainer = document.getElementById("FavoriteContainer");
+//     commentContainer.innerHTML = ""; // 清空之前的内容
+
+//     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
+
+//     comments.forEach(comment => {
+//       const commentElement = document.createElement("div");
+//       commentElement.className = "comment";
+
+//       const commentTime = new Date(comment.created_at).toLocaleString();
+//       const commentTimeElement = document.createElement("p");
+//       commentTimeElement.className = "comment-time";
+//       commentTimeElement.textContent = commentTime;
+
+//       const commentBody = document.createElement("p");
+//       commentBody.textContent = comment.body;
+
+//       commentElement.appendChild(commentTimeElement);
+//       commentElement.appendChild(commentBody);
+
+//       commentContainer.appendChild(commentElement);
+//     });
+//     showPopup_Favorite();
+//   });
+
+
+const showCommentsBtn = document.getElementById('showFavorite');
+const commentsContainer = document.getElementById('FavoriteContainer');
+showCommentsBtn.addEventListener('click', async () => {
+    try {
+        const comments = await getComments();
+        renderComments(comments);
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+async function getComments() {
+    const response = await fetch(issueURL);
     const comments = await response.json();
-  
-    const commentContainer = document.getElementById("FavoriteContainer");
-    commentContainer.innerHTML = ""; // 清空之前的内容
-  
+    return comments;
+}
+function renderComments(comments) {
+    commentsContainer.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
-  
+
     comments.forEach(comment => {
-      const commentElement = document.createElement("div");
-      commentElement.className = "comment";
-  
-      const commentTime = new Date(comment.created_at).toLocaleString();
-      const commentTimeElement = document.createElement("p");
-      commentTimeElement.className = "comment-time";
-      commentTimeElement.textContent = commentTime;
-  
-      const commentBody = document.createElement("p");
-      commentBody.textContent = comment.body;
-  
-      commentElement.appendChild(commentTimeElement);
-      commentElement.appendChild(commentBody);
-  
-      commentContainer.appendChild(commentElement);
+        const commentDiv = document.createElement('div');
+        commentDiv.innerHTML = `
+          <p>${new Date(comment.created_at).toLocaleString()}</p>
+          <p>${comment.body}</p>
+          <div class="deleteBtn">❌</div>
+        `;
+    
+        const deleteBtn = commentDiv.querySelector('.deleteBtn');
+        deleteBtn.addEventListener('click', () => {
+          const confirmDelete = confirm(`确定要删除这个句子吗? \n"${comment.body}"`);
+          if (confirmDelete) {
+            deleteComment(comment.id)
+              .then(() => {
+                commentsContainer.removeChild(commentDiv);
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          }
+        });
+
+      commentsContainer.appendChild(commentDiv);
     });
     showPopup_Favorite();
-  });
+}
+
+async function deleteComment(commentId) {
+    const response = await fetch(`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+  
+    if (!response.ok) {
+      throw new Error('Failed to delete comment');
+    }
+  }
+  
