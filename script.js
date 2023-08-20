@@ -175,6 +175,7 @@ generateBtn.addEventListener("click", async () => {
     // displayResult(randomResults);
     displayResultWithCats(CurrentSentence);
     StceBackBtn.style.display = "block";
+    StceForwardBtn.style.display = "none";
     // console.log("test" + theRandomSentence);
 
 });
