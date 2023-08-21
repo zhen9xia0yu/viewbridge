@@ -226,12 +226,14 @@ function hidePopup() {
 function showPopup_Favorite() {
     const popupContainer = document.getElementById('FavoriteContainer');
     popupContainer.style.display = 'block';
+    document.body.style.overflowY = 'hidden'; 
 }
 
 // Function to hide the popup-favorite
 function hidePopup_Favorite() {
     const popupContainer = document.getElementById('FavoriteContainer');
     popupContainer.style.display = 'none';
+    document.body.style.overflowY = 'auto'; 
 }
 
 
