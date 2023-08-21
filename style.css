@@ -4,17 +4,20 @@ body {
     display: flex;
     justify-content: center;
     /* align-items: center; */
-    height: 100vh;
+    /* height: 100vh; */
     margin: 0;
     background-color: #0C0C0C;
     color: #EDEDFD;
     border-radius: 24px 24px 24px 24px;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .container {
     /* display: flex; */
     /* text-align: center; */
+    height: 700px;
+    overflow: hidden;
 }
 
 h1 {
@@ -548,7 +551,7 @@ button {
 
 .class_popupContainer_bg {
     width: 500px;
-    height: 843px;
+    height: 700px;
     background: #000000;
     border-radius: 0px 0px 0px 0px;
     opacity: 0.7;
