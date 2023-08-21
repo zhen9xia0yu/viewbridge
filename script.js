@@ -209,13 +209,17 @@ function getRandomItem(list) {
 // Function to show the popup
 function showPopup() {
     const popupContainer = document.getElementById('popupContainer');
+    const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'block';
+    bg_popupContainer.style.display = 'flex';
 }
 
 // Function to hide the popup
 function hidePopup() {
     const popupContainer = document.getElementById('popupContainer');
+    const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'none';
+    bg_popupContainer.style.display = 'none';
 }
 
 // Function to show the popup-Favorite

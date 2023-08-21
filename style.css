@@ -453,19 +453,22 @@ button {
     height: 283.59px;
     /*     transform: rotate(40deg); */
 }
+
 .orange-dot {
     width: 3px;
     height: 3px;
     /* top: 50%; */
     background-color: #FEAF81;
-    border-radius: 50%; /* 让元素变成圆形 */
-  }
-.class_record_btn_container{
+    border-radius: 50%;
+    /* 让元素变成圆形 */
+}
+
+.class_record_btn_container {
     display: flex;
     justify-content: center;
-}  
+}
 
-.class_favoriteContainer{
+.class_favoriteContainer {
     display: none;
     /* width: 300px;
     height: 300px; */
@@ -503,38 +506,56 @@ button {
     /* border-bottom: 1p
     x solid #ccc; */
     /* padding-bottom: 10px; */
-  }
+}
 
-  .comment-time {
+.comment-time {
     color: #888;
-    font-size:10px;
-  }
-.class_functionContainer{
+    font-size: 10px;
+}
+
+.class_functionContainer {
     padding-top: 30px;
     padding-left: 35px;
     display: flex;
     font-size: 25px;
 }
-  .class_function{
-    padding-right: 15px;
-  }
 
-  .class_BackForward_Container{
+.class_function {
+    padding-right: 15px;
+}
+
+.class_BackForward_Container {
     display: flex;
     justify-content: center;
     /* Center content horizontally */
     align-items: center;
     /* Center content vertically */
     text-align: center;
-    /* Optional: Center text horizontally within the button */ 
-  }
-.class_SentenceBackBtn{
+    /* Optional: Center text horizontally within the button */
+}
+
+.class_SentenceBackBtn {
     display: none;
     font-size: 25px;
     cursor: pointer;
 }
-.class_SentenceForwardBtn{
+
+.class_SentenceForwardBtn {
     display: none;
     font-size: 25px;
     cursor: pointer;
+}
+
+.class_popupContainer_bg {
+    width: 375px;
+    height: 843px;
+    background: #000000;
+    border-radius: 0px 0px 0px 0px;
+    opacity: 0.7;
+    z-index: 9998;
+    display: none;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
