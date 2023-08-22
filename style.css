@@ -60,6 +60,10 @@ h1 {
     color: #FFFFFF;
 }
 
+.wordList ol{
+    flex-direction: column-reverse;
+}
+
 .wordList li {
     white-space: nowrap;
 }
