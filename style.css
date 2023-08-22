@@ -587,13 +587,23 @@ button {
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     background: #0C0C0C;
     height: 52px;
     border-bottom: 0.5px solid #272727;
+    align-items: center;
 
 }
 
+.class_clec_header_container img{
+    padding: 9px;
+    width: 24px;
+    height: 24px;
+}
+.class_clec_header_container p{
+    align-items: center;
+    /* margin-left: auto; */
+}
 .class_clec_bottom_container {
     display: flex;
     justify-content: center;
@@ -627,7 +637,7 @@ button {
     display: flex;
     flex-direction: row;
     width: 343px;
-    height: 56px;
+    height: auto;
     background: #191B1E;
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
@@ -647,3 +657,4 @@ button {
     padding: 15px 12px;
     margin-left: auto;
 }
+
