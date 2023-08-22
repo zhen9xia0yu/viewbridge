@@ -508,3 +508,8 @@ async function deleteComment(commentId) {
         throw new Error('Failed to delete comment');
     }
 }
+
+document.getElementById('FavoitePage').addEventListener('click', function() {
+    sessionStorage.setItem('dataFromPageA', 'Some data from Page A');
+    window.location.href = 'collection.html';
+  });

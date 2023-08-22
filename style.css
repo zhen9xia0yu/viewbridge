@@ -62,6 +62,7 @@ h1 {
 
 .wordList ol{
     flex-direction: column-reverse;
+    display: flex;
 }
 
 .wordList li {
@@ -521,14 +522,16 @@ button {
 }
 
 .class_functionContainer {
-    padding-top: 30px;
-    padding-left: 35px;
+    /* padding-top: 30px; */
+    /* padding-left: 35px; */
+    padding-left: 5px;
     display: flex;
     font-size: 25px;
 }
 
 .class_function {
-    padding-right: 15px;
+    /* padding-right: 15px; */
+    padding-right: 10px;
 }
 
 .class_BackForward_Container {
