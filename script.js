@@ -8,6 +8,8 @@ console.log(accessToken); // 这里将打印出您的 Token
 var BackwordSentence = "";
 var CurrentSentence = "";
 var ForwardSentence = "";
+let WordsLenHis = null;
+var WordsLenHisLines = "";
 
 window.addEventListener('load', async () => {
     try {
@@ -25,8 +27,6 @@ window.addEventListener('load', async () => {
     }
 
 });
-
-
 
 const LuckyNumber = 102;
 // Global array to store the combined data from three files
@@ -53,8 +53,12 @@ async function processFile(file) {
 }
 
 async function processFiles() {
-    const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
+    const fileContent = await loadFileData('words/WordsLenHistory.txt');
+    console.log(fileContent);
+    WordsLenHisLines = fileContent.trim().split('\n');    
+    console.log(WordsLenHisLines);
 
+    const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
     for (const file of files) {
         const dataArray = await processFile(file);
         wordLists.push(dataArray);
@@ -89,6 +93,30 @@ async function processFiles() {
 
 processFiles();
 
+async function readFile(fileUrl) {
+    try {
+        const response = await fetch(fileUrl);
+        const data = await response.text();
+        return data;
+    } catch (error) {
+        console.error('Error reading file:', error);
+        return '';
+    }
+}
+
+async function loadFileData(fileUrl) {
+    if (!WordsLenHis) {
+        WordsLenHis = await readFile(fileUrl);
+    }
+    return WordsLenHis;
+}
+
+function formatDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}${month}${day}`;
+}
 
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -174,7 +202,7 @@ generateBtn.addEventListener("click", async () => {
     // console.log("Current:"+CurrentSentence[0].word);
     // displayResult(randomResults);
     displayResultWithCats(CurrentSentence);
-    if (BackwordSentence !== ""){
+    if (BackwordSentence !== "") {
         StceBackBtn.style.display = "block";
     }
     else StceBackBtn.style.display = "none";
@@ -212,7 +240,7 @@ function showPopup() {
     const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'block';
     bg_popupContainer.style.display = 'flex';
-    document.body.style.overflowY = 'hidden'; 
+    document.body.style.overflowY = 'hidden';
 }
 
 // Function to hide the popup
@@ -221,7 +249,7 @@ function hidePopup() {
     const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'none';
     bg_popupContainer.style.display = 'none';
-    document.body.style.overflowY = 'auto'; 
+    document.body.style.overflowY = 'auto';
 }
 
 // Function to show the popup-Favorite
@@ -237,6 +265,25 @@ function hidePopup_Favorite() {
 }
 
 
+function getCalderStceCalLenth(date){
+    let found = false;
+    for (const line of WordsLenHisLines) {
+      const [dateStr, numA, numB, numC] = line.split(',');
+    //   const selectedDateStr = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${selectedDate.getDate().toString().padStart(2, '0')}`;
+        const selectedDateStr = formatDate(date);
+
+      console.log(selectedDateStr);
+      console.log(dateStr);
+
+      if (selectedDateStr <= dateStr) 
+        return [numA,numB,numC];
+    }
+
+    if (!found) 
+        return [0,0,0];
+
+}
+
 function getDayOfWeek(date) {
     const daysOfWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     return daysOfWeek[date.getDay()];
@@ -248,6 +295,13 @@ function Date2Sentence(date) {
     return `${wordLists[0][whoindex].word}${wordLists[1][whereindex].word}${wordLists[2][whatindex].word}`;
 }
 
+function Date2SentenceWithCalLenth(date,lengthWho,lengthWhere,lengthWhat) {
+    const whoindex = (date * LuckyNumber) % lengthWho;
+    const whereindex = (date * LuckyNumber) % lengthWhere;
+    const whatindex = (date * LuckyNumber) % lengthWhat;
+    return `${wordLists[0][whoindex].word}${wordLists[1][whereindex].word}${wordLists[2][whatindex].word}`;
+}
+
 function ShowCanlder(date) {
     const yearSentence = document.getElementById('calendarUpLineContent_year');
     const MDSetnrence = document.getElementById('calendarDownLineContent_md');
@@ -255,12 +309,26 @@ function ShowCanlder(date) {
     const WeekSentence = document.getElementById('calendarweek');
     const popupSentence = document.getElementById('calendarSentence')
     const luarcontent = document.getElementById('lunarcontent');
+    
+    var [lengthWho, lengthWhere, lengthWhat] = getCalderStceCalLenth(date);
+    console.log(lengthWho);
+    console.log(lengthWhere);
+    console.log(lengthWhat);
+    if(!lengthWho) lengthWho = wordLists[0].length;
+    if(!lengthWhere) lengthWhere = wordLists[1].length;
+    if(!lengthWhat) lengthWhat = wordLists[2].length;
+    console.log(lengthWho);
+    console.log(lengthWhere);
+    console.log(lengthWhat);
 
     const year = date.getFullYear();
     const month = date.getMonth() + 1; // 月份从 0 开始
     const day = date.getDate();
     const intdate = Number(`${year}${month}${day}`);
-    const sentencecontent = Date2Sentence(intdate);
+    // const sentencecontent = Date2Sentence(intdate);
+    console.log(intdate);
+    const sentencecontent = Date2SentenceWithCalLenth(intdate,lengthWho,lengthWhere,lengthWhat);
+
     const lunarmonth = calendar.solar2lunar(year, month, day).IMonthCn;
     const lunarday = calendar.solar2lunar(year, month, day).IDayCn;
     const gzyear = calendar.solar2lunar(year, month, day).gzYear;
@@ -356,36 +424,6 @@ recordbtncalender.addEventListener("click", function () {
             .catch(error => console.error(error));
     }
 });
-
-// document.getElementById("showFavorite").addEventListener("click", async () => {
-//     const response = await fetch("https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments");
-//     const comments = await response.json();
-
-//     const commentContainer = document.getElementById("FavoriteContainer");
-//     commentContainer.innerHTML = ""; // 清空之前的内容
-
-//     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
-
-//     comments.forEach(comment => {
-//       const commentElement = document.createElement("div");
-//       commentElement.className = "comment";
-
-//       const commentTime = new Date(comment.created_at).toLocaleString();
-//       const commentTimeElement = document.createElement("p");
-//       commentTimeElement.className = "comment-time";
-//       commentTimeElement.textContent = commentTime;
-
-//       const commentBody = document.createElement("p");
-//       commentBody.textContent = comment.body;
-
-//       commentElement.appendChild(commentTimeElement);
-//       commentElement.appendChild(commentBody);
-
-//       commentContainer.appendChild(commentElement);
-//     });
-//     showPopup_Favorite();
-//   });
-
 
 const showCommentsBtn = document.getElementById('showFavorite');
 const commentsContainer = document.getElementById('FavoriteContainer');
