@@ -545,8 +545,11 @@ document.getElementById('FavoitePage').addEventListener('click', function() {
         const commentDiv = document.createElement('div');
         commentDiv.innerHTML = `
           <p>${new Date(comment.created_at).toLocaleString()}</p>
-          <p>${comment.body}</p>
-          <div class="deleteBtn">❌</div>
+          <div class="class_clec_stce_container">
+            <div class="class_dot_orange_big"></div>
+            <p>${comment.body}</p>
+            <div class="deleteBtn">✖︎</div>
+          </div>
         `;
 
         const deleteBtn = commentDiv.querySelector('.deleteBtn');

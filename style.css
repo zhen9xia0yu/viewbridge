@@ -580,18 +580,20 @@ button {
     z-index: 9999;
     background: #0C0C0C;
 }
-.class_clec_header_container{
+
+.class_clec_header_container {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; 
+    width: 100%;
     display: flex;
     justify-content: center;
     background: #0C0C0C;
-    height:52px;
+    height: 52px;
     border-bottom: 0.5px solid #272727;
 
 }
+
 .class_clec_bottom_container {
     display: flex;
     justify-content: center;
@@ -610,7 +612,7 @@ button {
     height: 69px;
 }
 
-.class_clec_body_container{
+.class_clec_body_container {
     background: #0c0c0c;
     display: flex;
     justify-content: center;
@@ -618,4 +620,29 @@ button {
     padding-top: 52px;
     flex-direction: column;
     width: 375px;
+    padding-bottom: 75px;
+}
+
+.class_clec_stce_container {
+    display: flex;
+    flex-direction: row;
+    width: 343px;
+    height: auto;
+    background: #191B1E;
+    border-radius: 16px 16px 16px 16px;
+    opacity: 1;
+}
+
+.class_dot_orange_big{
+    padding: 10px;
+    width: 10px;
+    height: 10px;
+    /* top: 50%; */
+    background-color: #FEAF81;
+    border-radius: 50%;
+    /* 让元素变成圆形 */ 
+}
+.deleteBtn{
+    padding: 10px;
+    margin-left: auto;
 }
