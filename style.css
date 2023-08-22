@@ -629,8 +629,9 @@ button {
     align-items: center;
     padding-top: 52px;
     flex-direction: column;
-    width: 375px;
+    /* width: 375px; */
     padding-bottom: 85px;
+    overflow-x: hidden;
 }
 
 .class_clec_stce_container {
