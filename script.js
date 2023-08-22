@@ -425,17 +425,17 @@ recordbtncalender.addEventListener("click", function () {
     }
 });
 
-const showCommentsBtn = document.getElementById('showFavorite');
-const commentsContainer = document.getElementById('FavoriteContainer');
-showCommentsBtn.addEventListener('click', async () => {
-    try {
-        const comments = await getAllComments();
-        renderComments(comments,commentsContainer);
-    } catch (error) {
-        console.error(error);
-    }
-    showPopup_Favorite();
-});
+// const showCommentsBtn = document.getElementById('showFavorite');
+// const commentsContainer = document.getElementById('FavoriteContainer');
+// showCommentsBtn.addEventListener('click', async () => {
+//     try {
+//         const comments = await getAllComments();
+//         renderComments(comments,commentsContainer);
+//     } catch (error) {
+//         console.error(error);
+//     }
+//     showPopup_Favorite();
+// });
 
 async function getAllComments() {
     let allComments = [];
@@ -509,10 +509,10 @@ async function deleteComment(commentId) {
     }
 }
 
-document.getElementById('FavoitePage').addEventListener('click', function() {
-    sessionStorage.setItem('dataFromPageA', 'Some data from Page A');
-    window.location.href = 'collection.html';
-  });
+// document.getElementById('FavoitePage').addEventListener('click', function() {
+//     sessionStorage.setItem('dataFromPageA', 'Some data from Page A');
+//     window.location.href = 'collection.html';
+//   });
 
 
 
