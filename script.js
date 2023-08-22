@@ -212,6 +212,7 @@ function showPopup() {
     const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'block';
     bg_popupContainer.style.display = 'flex';
+    document.body.style.overflowY = 'hidden'; 
 }
 
 // Function to hide the popup
@@ -220,20 +221,19 @@ function hidePopup() {
     const bg_popupContainer = document.getElementById('popupContainer_bg');
     popupContainer.style.display = 'none';
     bg_popupContainer.style.display = 'none';
+    document.body.style.overflowY = 'auto'; 
 }
 
 // Function to show the popup-Favorite
 function showPopup_Favorite() {
     const popupContainer = document.getElementById('FavoriteContainer');
     popupContainer.style.display = 'block';
-    document.body.style.overflowY = 'hidden'; 
 }
 
 // Function to hide the popup-favorite
 function hidePopup_Favorite() {
     const popupContainer = document.getElementById('FavoriteContainer');
     popupContainer.style.display = 'none';
-    document.body.style.overflowY = 'auto'; 
 }
 
 
