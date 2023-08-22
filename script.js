@@ -536,6 +536,10 @@ document.getElementById('FavoitePage').addEventListener('click', function() {
     collection_container.style.display = 'none';
   });
 
+  document.getElementById('id_clec_goback_arrow').addEventListener('click', function() {
+    collection_container.style.display = 'none';
+  });
+
   function renderCollections(comments,container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
