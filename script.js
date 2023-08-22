@@ -429,19 +429,42 @@ const showCommentsBtn = document.getElementById('showFavorite');
 const commentsContainer = document.getElementById('FavoriteContainer');
 showCommentsBtn.addEventListener('click', async () => {
     try {
-        const comments = await getComments();
+        const comments = await getAllComments();
         renderComments(comments);
     } catch (error) {
         console.error(error);
     }
 });
 
-async function getComments() {
-    const response = await fetch(issueURL);
+async function getAllComments() {
+    let allComments = [];
+    let page = 1;
+
+    while (true) {
+        const comments = await getComments(page);
+        if (comments.length === 0) {
+            break; // 没有更多评论了，退出循环
+        }
+        allComments = allComments.concat(comments);
+        page++;
+    }
+
+    return allComments;
+}
+
+async function getComments(page) {
+    const response = await fetch(`${issueURL}?page=${page}`);
     const comments = await response.json();
     return comments;
 }
+
+// async function getComments() {
+//     const response = await fetch(issueURL);
+//     const comments = await response.json();
+//     return comments;
+// }
 function renderComments(comments) {
+    console.log(comments);
     commentsContainer.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
 
