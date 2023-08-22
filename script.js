@@ -430,10 +430,11 @@ const commentsContainer = document.getElementById('FavoriteContainer');
 showCommentsBtn.addEventListener('click', async () => {
     try {
         const comments = await getAllComments();
-        renderComments(comments);
+        renderComments(comments,commentsContainer);
     } catch (error) {
         console.error(error);
     }
+    showPopup_Favorite();
 });
 
 async function getAllComments() {
@@ -463,9 +464,9 @@ async function getComments(page) {
 //     const comments = await response.json();
 //     return comments;
 // }
-function renderComments(comments) {
+function renderComments(comments,container) {
     console.log(comments);
-    commentsContainer.innerHTML = ''; // 清空之前的内容
+    container.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
 
     comments.forEach(comment => {
@@ -482,7 +483,7 @@ function renderComments(comments) {
             if (confirmDelete) {
                 deleteComment(comment.id)
                     .then(() => {
-                        commentsContainer.removeChild(commentDiv);
+                        container.removeChild(commentDiv);
                     })
                     .catch(error => {
                         console.error(error);
@@ -490,9 +491,8 @@ function renderComments(comments) {
             }
         });
 
-        commentsContainer.appendChild(commentDiv);
+        container.appendChild(commentDiv);
     });
-    showPopup_Favorite();
 }
 
 async function deleteComment(commentId) {
@@ -513,3 +513,56 @@ document.getElementById('FavoitePage').addEventListener('click', function() {
     sessionStorage.setItem('dataFromPageA', 'Some data from Page A');
     window.location.href = 'collection.html';
   });
+
+
+
+
+  
+
+  const collection_container = document.getElementById('id_collection_container');
+  const collectionContent = document.getElementById('id_clec_body_container');
+  document.getElementById('CollectionDiv').addEventListener('click', async () => {
+
+    try {
+        const comments = await getAllComments();
+        renderCollections(comments,collectionContent);
+    } catch (error) {
+        console.error(error);
+    }
+
+    collection_container.style.display = 'flex';
+  });
+  document.getElementById('id_clec_goback_candle').addEventListener('click', function() {
+    collection_container.style.display = 'none';
+  });
+
+  function renderCollections(comments,container) {
+    console.log(comments);
+    container.innerHTML = ''; // 清空之前的内容
+    comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
+
+    comments.forEach(comment => {
+        const commentDiv = document.createElement('div');
+        commentDiv.innerHTML = `
+          <p>${new Date(comment.created_at).toLocaleString()}</p>
+          <p>${comment.body}</p>
+          <div class="deleteBtn">❌</div>
+        `;
+
+        const deleteBtn = commentDiv.querySelector('.deleteBtn');
+        deleteBtn.addEventListener('click', () => {
+            const confirmDelete = confirm(`确定要删除这个句子吗? \n"${comment.body}"`);
+            if (confirmDelete) {
+                deleteComment(comment.id)
+                    .then(() => {
+                        container.removeChild(commentDiv);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        });
+
+        container.appendChild(commentDiv);
+    });
+}

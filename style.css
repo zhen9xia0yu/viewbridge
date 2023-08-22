@@ -60,7 +60,7 @@ h1 {
     color: #FFFFFF;
 }
 
-.wordList ol{
+.wordList ol {
     flex-direction: column-reverse;
     display: flex;
 }
@@ -568,4 +568,54 @@ button {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.class_collection_container {
+    width: 375px;
+    display: none;
+    justify-content: center;
+    overflow-x: hidden;
+    align-items: center;
+    position: absolute;
+    z-index: 9999;
+    background: #0C0C0C;
+}
+.class_clec_header_container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    background: #0C0C0C;
+    height:52px;
+    border-bottom: 0.5px solid #272727;
+
+}
+.class_clec_bottom_container {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #121212;
+    height: 75px;
+    padding-top: 10px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.class_clec_bottom_container img {
+    width: 69px;
+    height: 69px;
+}
+
+.class_clec_body_container{
+    background: #0c0c0c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 52px;
+    flex-direction: column;
+    width: 375px;
 }
