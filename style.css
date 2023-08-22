@@ -620,7 +620,7 @@ button {
     padding-top: 52px;
     flex-direction: column;
     width: 375px;
-    padding-bottom: 75px;
+    padding-bottom: 85px;
 }
 
 .class_clec_stce_container {
@@ -634,7 +634,7 @@ button {
 }
 
 .class_dot_orange_big{
-    padding: 10px;
+    margin: 20px;
     width: 10px;
     height: 10px;
     /* top: 50%; */
@@ -645,4 +645,6 @@ button {
 .deleteBtn{
     padding: 10px;
     margin-left: auto;
+    padding-top:15px;
+
 }
