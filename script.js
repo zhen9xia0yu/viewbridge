@@ -554,6 +554,7 @@ function renderCollections(comments, container) {
 
         if(CurrentDate !== DateCom){
          commentDiv.innerHTML = `
+          <div class="class_clec_betweenDate_space"></div>
           <div class="class_clec_DateContent">${showDate}</div>
           <div class="class_clec_stce_container">
             <div class="class_dot_orange_big"></div>
