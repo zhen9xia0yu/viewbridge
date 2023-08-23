@@ -1,4 +1,6 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
+const VBServerProxyUrl = "https://api.viewbridge.top/api/proxyServer";
 const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
 var theCalenderSentence = "";
@@ -514,17 +516,27 @@ async function deleteComment(commentId) {
 //     window.location.href = 'collection.html';
 //   });
 
+async function getCollectionsFromVBServer() {
+    try {
+        const response = await fetch(VBServerGetColecUrl);
+        // const data = await fetch(VBServerGetColecUrl);
+        // const data = await response.text();
+        const data = await response.json();
+        // const data = await response;
+        return data;
+    } catch (error) {
+        console.error('Error Request VBServerGetCollections:', error);
+        return '';
+    }
+}
 
-
-
-  
 
   const collection_container = document.getElementById('id_collection_container');
   const collectionContent = document.getElementById('id_clec_body_container');
   document.getElementById('CollectionDiv').addEventListener('click', async () => {
 
     try {
-        const comments = await getAllComments();
+        const comments = await getCollectionsFromVBServer();
         renderCollections(comments,collectionContent);
     } catch (error) {
         console.error(error);
