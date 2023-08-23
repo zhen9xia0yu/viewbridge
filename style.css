@@ -693,3 +693,9 @@ button {
 .class_each_clec_date{
     padding-bottom: 14px;
 }
+.class_clec_DateContent{
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}

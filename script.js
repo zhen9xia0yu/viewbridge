@@ -293,6 +293,12 @@ function getDayOfWeek(date) {
     const daysOfWeek = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     return daysOfWeek[date.getDay()];
 }
+
+function getDayOfWeekEnglish(date) {
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+    return daysOfWeek[date.getDay()];
+}
+
 function Date2Sentence(date) {
     const whoindex = (date * LuckyNumber) % wordLists[0].length;
     const whereindex = (date * LuckyNumber) % wordLists[1].length;
@@ -520,6 +526,16 @@ document.getElementById('id_clec_goback_arrow').addEventListener('click', functi
     collecContainer_bg.style.display = 'none';
 });
 
+
+function DayAheadDate(date) {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const Weekday = getDayOfWeekEnglish(date);
+    return `${Weekday}, ${day}/${month}/${year}`;
+}
+
+
 function renderCollections(comments, container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
@@ -534,10 +550,11 @@ function renderCollections(comments, container) {
         const dateTimeString = comment.created_at;
         const datePart = dateTimeString.split("T")[0];
         const CurrentDate = formatDate(new Date(datePart));
+        const showDate = DayAheadDate(new Date(datePart));
 
         if(CurrentDate !== DateCom){
          commentDiv.innerHTML = `
-          <p>${CurrentDate}</p>
+          <div class="class_clec_DateContent">${showDate}</div>
           <div class="class_clec_stce_container">
             <div class="class_dot_orange_big"></div>
             <div class="class_clec_stce">
