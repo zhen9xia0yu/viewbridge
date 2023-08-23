@@ -196,8 +196,10 @@ recordbtn.addEventListener("click", function () {
 });
 
 
-const StceBackBtn = document.getElementById("SentenceBackBtn")
-const StceForwardBtn = document.getElementById("SentenceForwardBtn")
+// const StceBackBtn = document.getElementById("SentenceBackBtn")
+// const StceForwardBtn = document.getElementById("SentenceForwardBtn")
+var CanBack = false;
+var CanForward = false;
 const generateBtn = document.getElementById("generateBtn");
 generateBtn.addEventListener("click", async () => {
     const randomResults = wordLists.map(list => getRandomItem(list));
@@ -208,28 +210,74 @@ generateBtn.addEventListener("click", async () => {
     // displayResult(randomResults);
     displayResultWithCats(CurrentSentence);
     if (BackwordSentence !== "") {
-        StceBackBtn.style.display = "block";
+        // StceBackBtn.style.display = "block";
+        CanBack = true;
     }
-    else StceBackBtn.style.display = "none";
-    StceForwardBtn.style.display = "none";
+    else {
+        // StceBackBtn.style.display = "none";
+        CanBack = false;
+    }
+    // StceForwardBtn.style.display = "none";
+    CanForward = false;
     // console.log("test" + theRandomSentence);
 
 });
-StceBackBtn.addEventListener("click", async () => {
+
+const chatContainer = document.getElementById('resultchat');
+chatContainer.addEventListener('click', (event) => {
+    const rect = chatContainer.getBoundingClientRect();
+    const clickX = event.clientX - rect.left; // 相对于 div 左边的距离
+    const divWidth = rect.width;
+  
+    if (clickX <= divWidth / 2) {
+      console.log('点了左边');
+      if(CanBack){
+        console.log('可以后退');
+        sentenceBack();
+      }
+      else console.log('无法后退');
+    } else {
+      console.log('点了右边');
+      if(CanForward){
+        console.log('可以前进');
+        sentenceForward();
+      }
+      else console.log('无法前进');
+    }
+  });
+
+function sentenceBack(){
     ForwardSentence = CurrentSentence;
     CurrentSentence = BackwordSentence;
     BackwordSentence = "";
-    displayResultWithCats(CurrentSentence);
-    StceBackBtn.style.display = "none";
-    StceForwardBtn.style.display = "block";
-});
-StceForwardBtn.addEventListener("click", async () => {
+    displayResultWithCats(CurrentSentence); 
+    CanBack = false;
+    CanForward = true;
+}
+
+function sentenceForward(){
     BackwordSentence = CurrentSentence;
     CurrentSentence = ForwardSentence;
-    displayResultWithCats(CurrentSentence);
-    StceBackBtn.style.display = "block";
-    StceForwardBtn.style.display = "none";
-});
+    displayResultWithCats(CurrentSentence); 
+    CanBack = true;
+    CanForward = false;
+}
+
+// StceBackBtn.addEventListener("click", async () => {
+//     ForwardSentence = CurrentSentence;
+//     CurrentSentence = BackwordSentence;
+//     BackwordSentence = "";
+//     displayResultWithCats(CurrentSentence);
+//     StceBackBtn.style.display = "none";
+//     StceForwardBtn.style.display = "block";
+// });
+// StceForwardBtn.addEventListener("click", async () => {
+//     BackwordSentence = CurrentSentence;
+//     CurrentSentence = ForwardSentence;
+//     displayResultWithCats(CurrentSentence);
+//     StceBackBtn.style.display = "block";
+//     StceForwardBtn.style.display = "none";
+// });
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
