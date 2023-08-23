@@ -639,27 +639,32 @@ button {
 
 .class_clec_stce_container {
     display: flex;
-    flex-direction: row;
-    /* width: 343px; */
-    height: auto;
+    align-items: flex-start; /* Align items at the top */
     background: #191B1E;
-    border-radius: 16px 16px 16px 16px;
+    border-radius: 16px;
     opacity: 1;
     font-size: 16px;
     width: 100%;
-}
-
-.class_dot_orange_big {
-    margin: 23px 12px;
+  }
+  
+  .class_dot_orange_big {
+    margin: 23px 12px 0; /* Add margin-top to position at the top */
     width: 8px;
     height: 8px;
     background-color: #FEAF81;
     border-radius: 50%;
-    /* 让元素变成圆形 */
-}
-
-.deleteBtn {
+    flex-shrink: 0;
+  }
+  
+  .class_clec_stce {
+    flex-grow: 1;
+    overflow: hidden;
+    word-wrap: break-word;
+    /* padding-left: 12px; */
+  }
+  
+  .deleteBtn {
     padding: 15px 12px;
     margin-left: auto;
-}
-
+    margin-top: 0; /* Remove top margin */
+  }

@@ -579,7 +579,9 @@ async function getCollectionsFromVBServer() {
           <p>${new Date(comment.created_at).toLocaleString()}</p>
           <div class="class_clec_stce_container">
             <div class="class_dot_orange_big"></div>
-            <p>${comment.body}</p>
+            <div class="class_clec_stce">
+                <p>${comment.body}</p>
+            </div>
             <div class="deleteBtn">✖︎</div>
           </div>
         `;
