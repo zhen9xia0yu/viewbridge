@@ -571,11 +571,11 @@ button {
 }
 
 .class_collection_container {
-    width: 343px;
+    width: 100%;
     display: none;
-    justify-content: center;
+    /* justify-content: center; */
     overflow-x: hidden;
-    align-items: center;
+    /* align-items: center; */
     position: absolute;
     z-index: 9999;
     background: #0C0C0C;
@@ -625,24 +625,28 @@ button {
 .class_clec_body_container {
     background: #0c0c0c;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     padding-top: 52px;
     flex-direction: column;
     /* width: 375px; */
     padding-bottom: 85px;
     overflow-x: hidden;
+    width: 100%;
+    /* width: 100%; */
+    padding-right:16px;
 }
 
 .class_clec_stce_container {
     display: flex;
     flex-direction: row;
-    width: 343px;
+    /* width: 343px; */
     height: auto;
     background: #191B1E;
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
     font-size: 16px;
+    width: 100%;
 }
 
 .class_dot_orange_big {
