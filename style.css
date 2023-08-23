@@ -581,6 +581,16 @@ button {
     background: #0C0C0C;
 }
 
+.class_clec_title{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    z-index: 10000;
+    align-items: center;
+    width: 100%;
+    padding-top: 13px;
+}
+
 .class_clec_header_container {
     position: fixed;
     top: 0;
