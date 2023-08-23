@@ -1,4 +1,5 @@
 // const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+// const chinaTimeZone = "Asia/Shanghai"; // 中国时区
 const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
 const VBServerProxyPostUrl = "https://api.viewbridge.top/api/proxyPost";
 const VBServerProxyDesUrl = "https://api.viewbridge.top/api/proxyDes";
@@ -601,8 +602,9 @@ function renderCollections(comments, container) {
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
         commentDiv.setAttribute("class","class_each_clec_date");
-        const dateTimeString = comment.created_at;
-        const datePart = dateTimeString.split("T")[0];
+        // const dateTimeString = comment.created_at;
+        // const datePart = dateTimeString.split("T")[0];
+        const datePart = new Date(comment.created_at).toLocaleString();
         const CurrentDate = formatDate(new Date(datePart));
         const showDate = DayAheadDate(new Date(datePart));
         const DotSelect = DotColorSelectedbyWeedDay(new Date(datePart));
