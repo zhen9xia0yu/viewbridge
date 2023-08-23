@@ -525,10 +525,19 @@ function renderCollections(comments, container) {
     container.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
 
+    // const DateCom = new Date(null);
+    var DateCom = 0;
+
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
-        commentDiv.innerHTML = `
-          <p>${new Date(comment.created_at).toLocaleString()}</p>
+        commentDiv.setAttribute("class","class_each_clec_date");
+        const dateTimeString = comment.created_at;
+        const datePart = dateTimeString.split("T")[0];
+        const CurrentDate = formatDate(new Date(datePart));
+
+        if(CurrentDate !== DateCom){
+         commentDiv.innerHTML = `
+          <p>${CurrentDate}</p>
           <div class="class_clec_stce_container">
             <div class="class_dot_orange_big"></div>
             <div class="class_clec_stce">
@@ -537,6 +546,30 @@ function renderCollections(comments, container) {
             <div class="deleteBtn">✖︎</div>
           </div>
         `;
+        DateCom = CurrentDate;
+        }
+        else{
+         commentDiv.innerHTML = `
+          <div class="class_clec_stce_container">
+            <div class="class_dot_orange_big"></div>
+            <div class="class_clec_stce">
+                <p>${comment.body}</p>
+            </div>
+            <div class="deleteBtn">✖︎</div>
+          </div>
+        `;
+        }
+
+        // commentDiv.innerHTML = `
+        //   <p>${new Date(comment.created_at).toLocaleString()}</p>
+        //   <div class="class_clec_stce_container">
+        //     <div class="class_dot_orange_big"></div>
+        //     <div class="class_clec_stce">
+        //         <p>${comment.body}</p>
+        //     </div>
+        //     <div class="deleteBtn">✖︎</div>
+        //   </div>
+        // `;
 
         const deleteBtn = commentDiv.querySelector('.deleteBtn');
         deleteBtn.addEventListener('click', () => {
