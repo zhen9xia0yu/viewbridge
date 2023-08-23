@@ -605,10 +605,21 @@ button {
 
 }
 
-.class_clec_header_container img {
+.class_clec_arrow img {
     padding: 9px;
     width: 24px;
     height: 24px;
+}
+
+.class_clec_arrow{
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    /* justify-content: center; */
+    z-index: 10001;
+    /* align-items: center; */
+    width: 100%;
+    padding-top: 5px;
 }
 
 .class_clec_header_container p {
