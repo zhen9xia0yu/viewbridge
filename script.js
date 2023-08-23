@@ -1,6 +1,7 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
 const VBServerProxyUrl = "https://api.viewbridge.top/api/proxyServer";
+const VBServerProxyDesUrl = "https://api.viewbridge.top/api/proxyDes";
 const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
 var theCalenderSentence = "";
@@ -497,10 +498,25 @@ function renderComments(comments,container) {
     });
 }
 
+// async function deleteComment(commentId) {
+//     const response = await fetch(`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`, {
+//         method: 'DELETE',
+//         headers: {
+//             'Authorization': `Bearer ${accessToken}`,
+//             'Content-Type': 'application/json',
+//         },
+//     });
+
+//     if (!response.ok) {
+//         throw new Error('Failed to delete comment');
+//     }
+// }
+
 async function deleteComment(commentId) {
-    const response = await fetch(`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`, {
+    const response = await fetch(VBServerProxyDesUrl, {
         method: 'DELETE',
         headers: {
+            'desurl':`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`,
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
         },
