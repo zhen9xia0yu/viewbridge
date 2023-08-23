@@ -1,4 +1,4 @@
-const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+// const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
 const VBServerProxyPostUrl = "https://api.viewbridge.top/api/proxyPost";
 const VBServerProxyDesUrl = "https://api.viewbridge.top/api/proxyDes";
@@ -430,45 +430,6 @@ recordbtncalender.addEventListener("click", function () {
     }
 });
 
-// const showCommentsBtn = document.getElementById('showFavorite');
-// const commentsContainer = document.getElementById('FavoriteContainer');
-// showCommentsBtn.addEventListener('click', async () => {
-//     try {
-//         const comments = await getAllComments();
-//         renderComments(comments,commentsContainer);
-//     } catch (error) {
-//         console.error(error);
-//     }
-//     showPopup_Favorite();
-// });
-
-async function getAllComments() {
-    let allComments = [];
-    let page = 1;
-
-    while (true) {
-        const comments = await getComments(page);
-        if (comments.length === 0) {
-            break; // 没有更多评论了，退出循环
-        }
-        allComments = allComments.concat(comments);
-        page++;
-    }
-
-    return allComments;
-}
-
-async function getComments(page) {
-    const response = await fetch(`${issueURL}?page=${page}`);
-    const comments = await response.json();
-    return comments;
-}
-
-// async function getComments() {
-//     const response = await fetch(issueURL);
-//     const comments = await response.json();
-//     return comments;
-// }
 function renderComments(comments, container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
@@ -499,21 +460,6 @@ function renderComments(comments, container) {
         container.appendChild(commentDiv);
     });
 }
-
-// async function deleteComment(commentId) {
-//     const response = await fetch(`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`, {
-//         method: 'DELETE',
-//         headers: {
-//             'Authorization': `Bearer ${accessToken}`,
-//             'Content-Type': 'application/json',
-//         },
-//     });
-
-//     if (!response.ok) {
-//         throw new Error('Failed to delete comment');
-//     }
-// }
-
 async function deleteComment(commentId) {
     const response = await fetch(VBServerProxyDesUrl, {
         method: 'DELETE',
