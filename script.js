@@ -299,6 +299,12 @@ function getDayOfWeekEnglish(date) {
     return daysOfWeek[date.getDay()];
 }
 
+function DotColorSelectedbyWeedDay(date) {
+    const daysOfWeek = ["purple", "red", "orange", "yellow", "green", "qing", "blue"];
+    return daysOfWeek[date.getDay()];
+}
+
+
 function Date2Sentence(date) {
     const whoindex = (date * LuckyNumber) % wordLists[0].length;
     const whereindex = (date * LuckyNumber) % wordLists[1].length;
@@ -551,13 +557,14 @@ function renderCollections(comments, container) {
         const datePart = dateTimeString.split("T")[0];
         const CurrentDate = formatDate(new Date(datePart));
         const showDate = DayAheadDate(new Date(datePart));
+        const DotSelect = DotColorSelectedbyWeedDay(new Date(datePart));
 
         if(CurrentDate !== DateCom){
          commentDiv.innerHTML = `
           <div class="class_clec_betweenDate_space"></div>
           <div class="class_clec_DateContent">${showDate}</div>
           <div class="class_clec_stce_container">
-            <div class="class_dot_orange_big"></div>
+            <div class="class_dot_${DotSelect}_big"></div>
             <div class="class_clec_stce">
                 <p>${comment.body}</p>
             </div>
@@ -569,7 +576,7 @@ function renderCollections(comments, container) {
         else{
          commentDiv.innerHTML = `
           <div class="class_clec_stce_container">
-            <div class="class_dot_orange_big"></div>
+            <div class="class_dot_${DotSelect}_big"></div>
             <div class="class_clec_stce">
                 <p>${comment.body}</p>
             </div>

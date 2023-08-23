@@ -652,12 +652,69 @@ button {
     width: 100%;
 }
 
+.class_dot_red_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #FF6666;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
 .class_dot_orange_big {
     margin: 23px 12px 0;
     /* Add margin-top to position at the top */
     width: 8px;
     height: 8px;
     background-color: #FEAF81;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.class_dot_yellow_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #FFFF99;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.class_dot_green_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #66CC66;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.class_dot_qing_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #66CCCC;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.class_dot_blue_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #6699FF;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.class_dot_purple_big {
+    margin: 23px 12px 0;
+    /* Add margin-top to position at the top */
+    width: 8px;
+    height: 8px;
+    background-color: #CC99FF;
     border-radius: 50%;
     flex-shrink: 0;
 }
