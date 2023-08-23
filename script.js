@@ -1,6 +1,6 @@
 const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
-const VBServerProxyUrl = "https://api.viewbridge.top/api/proxyServer";
+const VBServerProxyPostUrl = "https://api.viewbridge.top/api/proxyPost";
 const VBServerProxyDesUrl = "https://api.viewbridge.top/api/proxyDes";
 const successMessageCalendar = document.getElementById("successMessage_calander");
 var theRandomSentence = "";
@@ -172,9 +172,11 @@ recordbtn.addEventListener("click", function () {
         const commentData = {
             body: theRandomSentence
         };
-        console.log("push" + commentData);
+        console.log("push" + commentData.body);
         console.log("token is" + accessToken);
-        fetch(issueURL, {
+        console.log(JSON.stringify(commentData));
+        // fetch(issueURL, {
+        fetch(VBServerProxyPostUrl, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
@@ -409,7 +411,7 @@ recordbtncalender.addEventListener("click", function () {
         };
         console.log("push" + commentData);
         console.log("token is" + accessToken);
-        fetch(issueURL, {
+        fetch(VBServerProxyPostUrl, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
