@@ -451,11 +451,11 @@ button {
     /* left: 50px; */
     /* width: 103.44px; */
     /*     height: 50%; */
-    top: -7%;
+    top: -12%;
     /* left: 20%; */
     z-index: -1;
     /*     display:flex; */
-    transform: rotate(60deg);
+    transform: rotate(90deg);
 }
 .class_ellipse_space{
     width: 100px;
