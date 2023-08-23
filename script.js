@@ -577,7 +577,9 @@ function renderCollections(comments, container) {
             if (confirmDelete) {
                 deleteComment(comment.id)
                     .then(() => {
-                        container.removeChild(commentDiv);
+                        // container.removeChild(commentDiv);
+                        commentDiv.removeChild(commentDiv.querySelector('.class_clec_stce_container'));
+                        commentDiv.style.paddingBottom = '0px';
                     })
                     .catch(error => {
                         console.error(error);
