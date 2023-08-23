@@ -58,7 +58,7 @@ async function processFile(file) {
 async function processFiles() {
     const fileContent = await loadFileData('words/WordsLenHistory.txt');
     console.log(fileContent);
-    WordsLenHisLines = fileContent.trim().split('\n');    
+    WordsLenHisLines = fileContent.trim().split('\n');
     console.log(WordsLenHisLines);
 
     const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
@@ -268,22 +268,22 @@ function hidePopup_Favorite() {
 }
 
 
-function getCalderStceCalLenth(date){
+function getCalderStceCalLenth(date) {
     let found = false;
     for (const line of WordsLenHisLines) {
-      const [dateStr, numA, numB, numC] = line.split(',');
-    //   const selectedDateStr = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${selectedDate.getDate().toString().padStart(2, '0')}`;
+        const [dateStr, numA, numB, numC] = line.split(',');
+        //   const selectedDateStr = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${selectedDate.getDate().toString().padStart(2, '0')}`;
         const selectedDateStr = formatDate(date);
 
-      console.log(selectedDateStr);
-      console.log(dateStr);
+        console.log(selectedDateStr);
+        console.log(dateStr);
 
-      if (selectedDateStr <= dateStr) 
-        return [numA,numB,numC];
+        if (selectedDateStr <= dateStr)
+            return [numA, numB, numC];
     }
 
-    if (!found) 
-        return [0,0,0];
+    if (!found)
+        return [0, 0, 0];
 
 }
 
@@ -298,7 +298,7 @@ function Date2Sentence(date) {
     return `${wordLists[0][whoindex].word}${wordLists[1][whereindex].word}${wordLists[2][whatindex].word}`;
 }
 
-function Date2SentenceWithCalLenth(date,lengthWho,lengthWhere,lengthWhat) {
+function Date2SentenceWithCalLenth(date, lengthWho, lengthWhere, lengthWhat) {
     const whoindex = (date * LuckyNumber) % lengthWho;
     const whereindex = (date * LuckyNumber) % lengthWhere;
     const whatindex = (date * LuckyNumber) % lengthWhat;
@@ -312,14 +312,14 @@ function ShowCanlder(date) {
     const WeekSentence = document.getElementById('calendarweek');
     const popupSentence = document.getElementById('calendarSentence')
     const luarcontent = document.getElementById('lunarcontent');
-    
+
     var [lengthWho, lengthWhere, lengthWhat] = getCalderStceCalLenth(date);
     console.log(lengthWho);
     console.log(lengthWhere);
     console.log(lengthWhat);
-    if(!lengthWho) lengthWho = wordLists[0].length;
-    if(!lengthWhere) lengthWhere = wordLists[1].length;
-    if(!lengthWhat) lengthWhat = wordLists[2].length;
+    if (!lengthWho) lengthWho = wordLists[0].length;
+    if (!lengthWhere) lengthWhere = wordLists[1].length;
+    if (!lengthWhat) lengthWhat = wordLists[2].length;
     console.log(lengthWho);
     console.log(lengthWhere);
     console.log(lengthWhat);
@@ -330,7 +330,7 @@ function ShowCanlder(date) {
     const intdate = Number(`${year}${month}${day}`);
     // const sentencecontent = Date2Sentence(intdate);
     console.log(intdate);
-    const sentencecontent = Date2SentenceWithCalLenth(intdate,lengthWho,lengthWhere,lengthWhat);
+    const sentencecontent = Date2SentenceWithCalLenth(intdate, lengthWho, lengthWhere, lengthWhat);
 
     const lunarmonth = calendar.solar2lunar(year, month, day).IMonthCn;
     const lunarday = calendar.solar2lunar(year, month, day).IDayCn;
@@ -467,7 +467,7 @@ async function getComments(page) {
 //     const comments = await response.json();
 //     return comments;
 // }
-function renderComments(comments,container) {
+function renderComments(comments, container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列
@@ -516,7 +516,7 @@ async function deleteComment(commentId) {
     const response = await fetch(VBServerProxyDesUrl, {
         method: 'DELETE',
         headers: {
-            'desurl':`https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`,
+            'desurl': `https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/comments/${commentId}`,
             'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
         },
@@ -547,28 +547,32 @@ async function getCollectionsFromVBServer() {
 }
 
 
-  const collection_container = document.getElementById('id_collection_container');
-  const collectionContent = document.getElementById('id_clec_body_container');
-  document.getElementById('CollectionDiv').addEventListener('click', async () => {
+const collecContainer_bg = document.getElementById('collecContainer_bg');
+const collection_container = document.getElementById('id_collection_container');
+const collectionContent = document.getElementById('id_clec_body_container');
+document.getElementById('CollectionDiv').addEventListener('click', async () => {
 
     try {
         const comments = await getCollectionsFromVBServer();
-        renderCollections(comments,collectionContent);
+        renderCollections(comments, collectionContent);
     } catch (error) {
         console.error(error);
     }
 
     collection_container.style.display = 'flex';
-  });
-  document.getElementById('id_clec_goback_candle').addEventListener('click', function() {
+    collecContainer_bg.style.display = 'flex';
+});
+document.getElementById('id_clec_goback_candle').addEventListener('click', function () {
     collection_container.style.display = 'none';
-  });
+    collecContainer_bg.style.display = 'none';
+});
 
-  document.getElementById('id_clec_goback_arrow').addEventListener('click', function() {
+document.getElementById('id_clec_goback_arrow').addEventListener('click', function () {
     collection_container.style.display = 'none';
-  });
+    collecContainer_bg.style.display = 'none';
+});
 
-  function renderCollections(comments,container) {
+function renderCollections(comments, container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
     comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 按时间倒序排列

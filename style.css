@@ -624,6 +624,7 @@ button {
 
 .class_clec_body_container {
     background: #0c0c0c;
+    /* background: #f2f2f2; */
     display: flex;
     /* justify-content: center; */
     /* align-items: center; */
@@ -634,7 +635,8 @@ button {
     overflow-x: hidden;
     width: 100%;
     /* width: 100%; */
-    padding-right:18px;
+    padding-right: 16px;
+    padding-left: 16px;
 }
 
 .class_clec_stce_container {
@@ -668,3 +670,17 @@ button {
     margin-left: auto;
     margin-top: 0; /* Remove top margin */
   }
+.class_collecContainer_bg{
+    width: 500px;
+    height: auto;
+    /* background: #f2f2f2; */
+    background: #0c0c0c;
+    border-radius: 0px 0px 0px 0px;
+    /* opacity: 0.7; */
+    z-index: 9998;
+    display: none;
+    justify-content: center;
+    /* position: absolute; */
+    /* left: 50%; */
+    /* transform: translateX(-50%);  */
+}
