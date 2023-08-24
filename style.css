@@ -660,7 +660,7 @@ button {
     background: #121212;
     height: 75px;
     padding-top: 10px;
-    border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .class_clec_bottom_container img {
