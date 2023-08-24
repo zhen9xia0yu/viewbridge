@@ -98,6 +98,12 @@ button {
     background: rgba(0, 0, 0, 0.12);
     -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
+.fixed_container_header{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    position: fixed;
+}
 
 .welcomepart {
     padding-top: 20px;
@@ -192,6 +198,7 @@ button {
     color: #FFFFFF;
     padding-left: 20px;
     padding-right: 10px;
+    padding-top: 390px;
 }
 
 
@@ -241,6 +248,7 @@ button {
     display: none;
     justify-content: center;
     width: 100%;
+    bottom: 35px;
 }
 
 .result-sentence img {

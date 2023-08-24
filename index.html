@@ -37,70 +37,74 @@
 
         <div class="class_collecContainer_bg" id="collecContainer_bg"></div>
         <div class="class_popupContainer_bg" id="popupContainer_bg"></div>
-        <div class="welcomepart">
-            <div class="welcomepart-pic">
-                <img src="src/WitchHat@2x.png" id="witchImage">
+        <div class="fixed_container_header">
+            <div class="welcomepart">
+                <div class="welcomepart-pic">
+                    <img src="src/WitchHat@2x.png" id="witchImage">
+                </div>
+                <div class="welcomepart-sentence">
+                    <p class="welcomepart-sentence-1">Welcome back!</p>
+                    <p class="welcomepart-sentence-2">宇宙躺在我们的枝叶</p>
+                </div>
+                <div class="class_functionContainer">
+                    <div class="class_function" id="calendarImage" alt="Calendar" style="cursor: pointer;">📆</div>
+                    <!-- <div class="class_function" id="showFavorite" alt="Favoite" style="cursor: pointer;">📜</div> -->
+                    <div class="class_function" id="CollectionDiv" alt="collectionDiv" style="cursor: pointer;">🐶</div>
+                    <!-- <div class="class_function" id="FavoitePage" alt="FavoitePage" style="cursor: pointer;">⛺️️</div> -->
+                </div>
             </div>
-            <div class="welcomepart-sentence">
-                <p class="welcomepart-sentence-1">Welcome back!</p>
-                <p class="welcomepart-sentence-2">宇宙躺在我们的枝叶</p>
+            <div class="class_favoriteContainer" id="FavoriteContainer"></div>
+            <div class="scrolling-text">
+                <span id="scrollText">🎉🎉恭迎彩虹至尊永久VIP至三点关日宝大驾光临❤️‍🔥🧡💛💚🩵💙💜</span>
             </div>
-            <div class="class_functionContainer">
-                <div class="class_function" id="calendarImage" alt="Calendar" style="cursor: pointer;">📆</div>
-                <!-- <div class="class_function" id="showFavorite" alt="Favoite" style="cursor: pointer;">📜</div> -->
-                <div class="class_function" id="CollectionDiv" alt="collectionDiv" style="cursor: pointer;">🐶</div>
-                <!-- <div class="class_function" id="FavoitePage" alt="FavoitePage" style="cursor: pointer;">⛺️️</div> -->
-            </div>  
-        </div>
-        <div class="class_favoriteContainer" id="FavoriteContainer"></div>  
-        <div class="scrolling-text">
-            <span id="scrollText">🎉🎉恭迎彩虹至尊永久VIP至三点关日宝大驾光临❤️‍🔥🧡💛💚🩵💙💜</span>
-        </div>
-        <div id="popupContainer">
-        <!-- <div id="calendarContent"></div> -->
-        <!-- <input type="date" id="datePicker" value=""> -->
-        <!-- <img src="src/Rainbow-1_1@2x.png" class="calendarPickerImg" id="calendarImage1" alt="Calendar"> -->
-        <div class="class_calendarUpLineContent" id="calendarUpLineContent">
-            <p class="class_calendarUpLineContent_year" id="calendarUpLineContent_year"></p>
-        </div>
-        <div class="calendarWeekContent">
-            <p id="calendarweek"></p>
-            <div class="orange-dot"></div>
-            <img src="src/Rainbow-1_1@2x.png" class="calendarPickerImg" id="datepickerTrigger" alt="Open Calendar" style="cursor: pointer;">
-        </div>
-        <div class="calendarLunarContent" id="lunarcontent"></div>
-        <div class="calendarDayContent" id="calendarday" style="cursor: pointer;"></div>
-        <div class="class_calendarDownLineContent" id="calendarDownLineContent">
-            <p class="class_calendarDownLineContent_md" id="calendarDownLineContent_md"></p>
-        </div>
-        <div class="calendarSentenceContent">
-            <img src="src/Tornado1@2x.png" class="calendarsentenceImg" id="record_btn_calander" alt="sentenceImg">
-            <div id="calendarSentence"></div>
-        </div>
-        <div class="class_record_btn_container" id="recordbtnContainer_calander">
-            <div id="successMessage_calander" style="display: none;">✅</div>
-        </div>
-        </div>
-        <div class="img_Ellipse_container">
-            <div class="class_ellipse_space"></div>
-            <img class="class_ellipse" src="src/Ellipse@2x.png" alt="Ellipse Image">
-        </div>
-        <div class="lists-container" id="wordListsContainer">
-            <div class="list-column">
-                <img src="src/collection@2x.png">
-                <div class="wordList" id="wordList1"></div>
+            <div id="popupContainer">
+                <!-- <div id="calendarContent"></div> -->
+                <!-- <input type="date" id="datePicker" value=""> -->
+                <!-- <img src="src/Rainbow-1_1@2x.png" class="calendarPickerImg" id="calendarImage1" alt="Calendar"> -->
+                <div class="class_calendarUpLineContent" id="calendarUpLineContent">
+                    <p class="class_calendarUpLineContent_year" id="calendarUpLineContent_year"></p>
+                </div>
+                <div class="calendarWeekContent">
+                    <p id="calendarweek"></p>
+                    <div class="orange-dot"></div>
+                    <img src="src/Rainbow-1_1@2x.png" class="calendarPickerImg" id="datepickerTrigger"
+                        alt="Open Calendar" style="cursor: pointer;">
+                </div>
+                <div class="calendarLunarContent" id="lunarcontent"></div>
+                <div class="calendarDayContent" id="calendarday" style="cursor: pointer;"></div>
+                <div class="class_calendarDownLineContent" id="calendarDownLineContent">
+                    <p class="class_calendarDownLineContent_md" id="calendarDownLineContent_md"></p>
+                </div>
+                <div class="calendarSentenceContent">
+                    <img src="src/Tornado1@2x.png" class="calendarsentenceImg" id="record_btn_calander"
+                        alt="sentenceImg">
+                    <div id="calendarSentence"></div>
+                </div>
+                <div class="class_record_btn_container" id="recordbtnContainer_calander">
+                    <div id="successMessage_calander" style="display: none;">✅</div>
+                </div>
             </div>
-            <div class="list-column">
-                <img src="src/ghost@2x.png">
-                <div class="wordList" id="wordList2"></div>
+            <div class="img_Ellipse_container">
+                <div class="class_ellipse_space"></div>
+                <img class="class_ellipse" src="src/Ellipse@2x.png" alt="Ellipse Image">
             </div>
-            <div class="list-column">
-                <img src="src/WitchBroom@2x.png">
-                <div class="wordList" id="wordList3"></div>
+            <div class="lists-container" id="wordListsContainer">
+                <div class="list-column">
+                    <img src="src/collection@2x.png">
+                    <div class="wordList" id="wordList1"></div>
+                </div>
+                <div class="list-column">
+                    <img src="src/ghost@2x.png">
+                    <div class="wordList" id="wordList2"></div>
+                </div>
+                <div class="list-column">
+                    <img src="src/WitchBroom@2x.png">
+                    <div class="wordList" id="wordList3"></div>
+                </div>
             </div>
-        </div>
-        <div class="btn-pumpkin">
-            <img src="src/Halloweenpumpkin@2x.png" class="button-image" id="generateBtn">
+            <div class="btn-pumpkin">
+                <img src="src/Halloweenpumpkin@2x.png" class="button-image" id="generateBtn">
+            </div>
         </div>
         <!-- <div class="class_BackForward_Container">
             <div class="class_SentenceBackBtn" id="SentenceBackBtn">☜</div>
