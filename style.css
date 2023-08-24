@@ -229,7 +229,8 @@ button {
     /* flex-wrap: wrap; */
     /* flex-direction: column; */
     position: relative;
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
 }
 
 .result-sentence img {

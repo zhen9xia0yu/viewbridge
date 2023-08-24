@@ -161,28 +161,35 @@ function displayResult(results) {
     resultHtml += "</ul>";
     resultContainer.innerHTML = resultHtml;
 }
-
+var finalSentence = document.createElement('div');
+finalSentence.setAttribute("class", "rlt-sentce-text");
 function displayResultWithCats(results) {
     const resultContainer = document.getElementById("resultchat");
     const sentenceContainer = document.getElementById("resultsentence");
-    const recordbtnContainer = document.getElementById("recordbtnContainer");
+    // const recordbtnContainer = document.getElementById("recordbtnContainer");
     const successMessage = document.getElementById("successMessage");
     let resultHtml = "<ul>";
-    let finalSentence = `<img src="src/group99764@2x_cut.png" alt="sentence bg"><div class="rlt-sentce-text">`;
+    // let finalSentence = `<div class="rlt-sentce-text">`;
     theRandomSentence = "";
+    finalSentence.innerHTML = "";
     for (const result of results) {
         if (result.who === 0)
             resultHtml += `<div class="chat-cat1"><p>${result.word}。</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
         else
             resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"><p> ${result.word}</p></div>`;
-        finalSentence += `${result.word}`;
+        finalSentence.innerHTML += `${result.word}`;
         theRandomSentence += `${result.word}`;
     }
     resultHtml += "</ul>";
-    finalSentence += "</div>";
+    // finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
-    sentenceContainer.innerHTML = finalSentence;
-    recordbtnContainer.style.display = "flex";
+    // sentenceContainer.innerHTML = finalSentence;
+    // console.log(finalSentence.innerHTML);
+    // console.log(sentenceContainer.innerHTML);
+    sentenceContainer.appendChild(finalSentence);
+    // console.log(sentenceContainer.innerHTML);
+    // recordbtnContainer.style.display = "flex";
+    sentenceContainer.style.display = "inline-block";
     successMessage.style.display = "none";
 }
 
