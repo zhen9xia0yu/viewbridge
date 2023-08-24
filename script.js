@@ -8,7 +8,7 @@ var theRandomSentence = "";
 var theCalenderSentence = "";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
 var accessToken = "";
-console.log(accessToken); // 这里将打印出您的 Token
+// console.log(accessToken); // 这里将打印出您的 Token
 var BackwordSentence = "";
 var CurrentSentence = "";
 var ForwardSentence = "";
@@ -26,7 +26,7 @@ window.addEventListener('load', async () => {
         const data = await response.json();
 
         if (data && data.msg) {
-            console.log(`${data.msg}`);
+            // console.log(`${data.msg}`);
             accessToken = data.msg;
         } else {
             console.log('No data or msg found in the tokenAPI response');
@@ -206,7 +206,7 @@ recordbtn.addEventListener("click", async ()=> {
             body: theRandomSentence
         };
         console.log("push" + commentData.body);
-        console.log("token is" + accessToken);
+        // console.log("token is" + accessToken);
         console.log(JSON.stringify(commentData));
         // fetch(issueURL, {
         fetch(VBServerProxyPostUrl, {
@@ -512,7 +512,7 @@ recordbtncalender.addEventListener("click", async () => {
             body: theCalenderSentence
         };
         console.log("push" + commentData);
-        console.log("token is" + accessToken);
+        // console.log("token is" + accessToken);
         fetch(VBServerProxyPostUrl, {
             method: "POST",
             headers: {
