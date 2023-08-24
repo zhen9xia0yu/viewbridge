@@ -168,7 +168,8 @@ function displayResultWithCats(results) {
     const sentenceContainer = document.getElementById("resultsentence");
     // const recordbtnContainer = document.getElementById("recordbtnContainer");
     const successMessage = document.getElementById("successMessage");
-    let resultHtml = "<ul>";
+    // let resultHtml = "<ul>";
+    let resultHtml = "<div>";
     // let finalSentence = `<div class="rlt-sentce-text">`;
     theRandomSentence = "";
     finalSentence.innerHTML = "";
@@ -180,7 +181,8 @@ function displayResultWithCats(results) {
         finalSentence.innerHTML += `${result.word}`;
         theRandomSentence += `${result.word}`;
     }
-    resultHtml += "</ul>";
+    // resultHtml += "</ul>";
+    resultHtml += "</div>";
     // finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
     // sentenceContainer.innerHTML = finalSentence;

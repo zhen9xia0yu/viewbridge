@@ -18,6 +18,7 @@ body {
     /* text-align: center; */
     height: 750px;
     overflow: hidden;
+    width: 100%;
 }
 
 h1 {
@@ -29,20 +30,25 @@ h1 {
     display: flex;
     justify-content: space-around;
     /* margin-bottom: 20px; */
-    justify-content: center;
-    overflow-x: auto;
+    /* justify-content: center; */
+    /* overflow-x: auto; */
     /* Allow horizontal scrolling for long lists */
     overflow-y: hidden;
     /* Hide vertical scrollbar, as it will be handled by wordList */
-    width: 343px;
+    /* width: 343px; */
     height: 170px;
     background: rgba(19, 21, 23, 0.8);
     border-radius: 16px 16px 16px 16px;
     opacity: 1;
+    /* width: 100%; */
+    margin-left: 17px;
+    margin-right: 17px;
+    /* padding-right: 100px; */
+    right: right;
 }
 
 .wordList {
-    margin-right: 20px;
+    /* margin-right: 20px; */
     max-height: 200px;
     /* Set a maximum height for each list */
     overflow-y: auto;
@@ -53,7 +59,6 @@ h1 {
     background: rgba(20, 20, 20, 0.3);
     border-radius: 8px 8px 8px 8px;
     opacity: 1;
-
     font-size: 14px;
     /* font-family: Poppins-Medium, Poppins; */
     font-weight: 500;
@@ -178,13 +183,15 @@ button {
     /* justify-content: center; */
     /* align-items: center; */
     /* flex-direction: column; */
-    width: 343px;
+    /* width: 343px; */
     /* height: 200px; */
     /* background: rgba(19, 21, 23, 0.8); */
     border-radius: 16px 16px 16px 16px;
     font-size: 14px;
     font-weight: 500;
     color: #FFFFFF;
+    padding-left: 20px;
+    padding-right: 10px;
 }
 
 
@@ -229,15 +236,21 @@ button {
     /* flex-wrap: wrap; */
     /* flex-direction: column; */
     position: relative;
-    /* display: inline-block; */
+    /* display: flex; */
     display: none;
+    justify-content: center;
+    width: 100%;
 }
 
 .result-sentence img {
     max-width: 343px;
     height: auto;
 }
-
+.class_sentce_bgimg {
+        display: block;
+    margin: 0 auto; /* 水平居中 */
+    text-align: center; /* 竖直居中 */
+}
 .result-sentence p {
     margin: 10px;
     text-align: center;
@@ -531,9 +544,11 @@ button {
 .class_functionContainer {
     /* padding-top: 30px; */
     /* padding-left: 35px; */
-    padding-left: 5px;
+    padding-right: 10px;
     display: flex;
     font-size: 25px;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .class_function {
