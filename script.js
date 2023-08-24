@@ -14,6 +14,11 @@ var CurrentSentence = "";
 var ForwardSentence = "";
 let WordsLenHis = null;
 var WordsLenHisLines = "";
+let Collections = null;
+
+const collecContainer_bg = document.getElementById('collecContainer_bg');
+const collection_container = document.getElementById('id_collection_container');
+const collectionContent = document.getElementById('id_clec_body_container');
 
 window.addEventListener('load', async () => {
     try {
@@ -24,10 +29,17 @@ window.addEventListener('load', async () => {
             console.log(`${data.msg}`);
             accessToken = data.msg;
         } else {
-            console.log('No data or msg found in the response');
+            console.log('No data or msg found in the tokenAPI response');
         }
     } catch (error) {
-        console.log('Error fetching data from the API');
+        console.log('Error fetching token from the API');
+    }
+
+    try {
+        Collections = await getCollectionsFromVBServer();
+        renderCollections(Collections, collectionContent);
+    } catch (error) {
+        console.error('error while fetching collections from VBS');
     }
 
 });
@@ -166,7 +178,8 @@ function displayResultWithCats(results) {
 }
 
 const recordbtn = document.getElementById("resultsentence");
-recordbtn.addEventListener("click", function () {
+recordbtn.addEventListener("click", async () => {
+    var RecordFlag = 0;
     // const commentContent = commentInput.value;
     if (theRandomSentence) {
         console.log(theRandomSentence);
@@ -190,9 +203,22 @@ recordbtn.addEventListener("click", function () {
                     // inputContainer.style.display = "none";
                     successMessage.style.display = "flex";
                     successMessage.style.justifyContent = "center";
+                    RecordFlag = 1;
                 }
             })
             .catch(error => console.error(error));
+
+        if (RecordFlag) {
+
+            try {
+                Collections = await getCollectionsFromVBServer();
+                // Collections = getCollectionsFromVBServer();
+                renderCollections(Collections, collectionContent);
+            } catch (error) {
+                console.error('error while fetching collections from VBS');
+            }
+        }
+
     }
 });
 
@@ -229,37 +255,37 @@ chatContainer.addEventListener('click', (event) => {
     const rect = chatContainer.getBoundingClientRect();
     const clickX = event.clientX - rect.left; // 相对于 div 左边的距离
     const divWidth = rect.width;
-  
-    if (clickX <= divWidth / 2) {
-      console.log('点了左边');
-      if(CanBack){
-        console.log('可以后退');
-        sentenceBack();
-      }
-      else console.log('无法后退');
-    } else {
-      console.log('点了右边');
-      if(CanForward){
-        console.log('可以前进');
-        sentenceForward();
-      }
-      else console.log('无法前进');
-    }
-  });
 
-function sentenceBack(){
+    if (clickX <= divWidth / 2) {
+        console.log('点了左边');
+        if (CanBack) {
+            console.log('可以后退');
+            sentenceBack();
+        }
+        else console.log('无法后退');
+    } else {
+        console.log('点了右边');
+        if (CanForward) {
+            console.log('可以前进');
+            sentenceForward();
+        }
+        else console.log('无法前进');
+    }
+});
+
+function sentenceBack() {
     ForwardSentence = CurrentSentence;
     CurrentSentence = BackwordSentence;
     BackwordSentence = "";
-    displayResultWithCats(CurrentSentence); 
+    displayResultWithCats(CurrentSentence);
     CanBack = false;
     CanForward = true;
 }
 
-function sentenceForward(){
+function sentenceForward() {
     BackwordSentence = CurrentSentence;
     CurrentSentence = ForwardSentence;
-    displayResultWithCats(CurrentSentence); 
+    displayResultWithCats(CurrentSentence);
     CanBack = true;
     CanForward = false;
 }
@@ -463,8 +489,10 @@ setTimeout(() => {
 }, 16000); // 10000 毫秒 = 10 秒
 
 const recordbtncalender = document.getElementById("record_btn_calander");
-recordbtncalender.addEventListener("click", function () {
+// recordbtncalender.addEventListener("click", function () {
+recordbtncalender.addEventListener("click", async () => {
     // const commentContent = commentInput.value;
+    var RecordFlag = 0;
     if (theCalenderSentence) {
         console.log(theCalenderSentence);
         const commentData = {
@@ -485,9 +513,22 @@ recordbtncalender.addEventListener("click", function () {
                     // inputContainer.style.display = "none";
                     successMessageCalendar.style.display = "flex";
                     successMessageCalendar.style.justifyContent = "center";
+                    RecordFlag = 1;
                 }
             })
             .catch(error => console.error(error));
+
+        if (RecordFlag) {
+
+            try {
+                Collections = await getCollectionsFromVBServer();
+                // Collections = getCollectionsFromVBServer();
+                renderCollections(Collections, collectionContent);
+            } catch (error) {
+                console.error('error while fetching collections from VBS');
+            }
+        }
+
     }
 });
 
@@ -554,31 +595,45 @@ async function getCollectionsFromVBServer() {
         return '';
     }
 }
-
-
-const collecContainer_bg = document.getElementById('collecContainer_bg');
-const collection_container = document.getElementById('id_collection_container');
-const collectionContent = document.getElementById('id_clec_body_container');
 document.getElementById('CollectionDiv').addEventListener('click', async () => {
 
+    // try {
+    //     const comments = await getCollectionsFromVBServer();
+    //     renderCollections(comments, collectionContent);
+    // } catch (error) {
+    //     console.error(error);
+    // }
+
+    if (Collections) {
+        collection_container.style.display = 'flex';
+        collecContainer_bg.style.display = 'flex';
+    } else console.log('collections is null');
+});
+
+// document.getElementById('id_clec_goback_candle').addEventListener('click', function () {
+document.getElementById('id_clec_goback_candle').addEventListener('click', async () => {
+    collection_container.style.display = 'none';
+    collecContainer_bg.style.display = 'none';
     try {
-        const comments = await getCollectionsFromVBServer();
-        renderCollections(comments, collectionContent);
+        Collections = await getCollectionsFromVBServer();
+        renderCollections(Collections, collectionContent);
     } catch (error) {
-        console.error(error);
+        console.error('error while fetching collections from VBS');
+    }
+});
+
+// document.getElementById('id_clec_goback_arrow').addEventListener('click', function () {
+document.getElementById('id_clec_goback_arrow').addEventListener('click', async () => {
+    collection_container.style.display = 'none';
+    collecContainer_bg.style.display = 'none';
+
+    try {
+        Collections = await getCollectionsFromVBServer();
+        renderCollections(Collections, collectionContent);
+    } catch (error) {
+        console.error('error while fetching collections from VBS');
     }
 
-    collection_container.style.display = 'flex';
-    collecContainer_bg.style.display = 'flex';
-});
-document.getElementById('id_clec_goback_candle').addEventListener('click', function () {
-    collection_container.style.display = 'none';
-    collecContainer_bg.style.display = 'none';
-});
-
-document.getElementById('id_clec_goback_arrow').addEventListener('click', function () {
-    collection_container.style.display = 'none';
-    collecContainer_bg.style.display = 'none';
 });
 
 
@@ -590,7 +645,6 @@ function DayAheadDate(date) {
     return `${Weekday}, ${day}/${month}/${year}`;
 }
 
-
 function renderCollections(comments, container) {
     console.log(comments);
     container.innerHTML = ''; // 清空之前的内容
@@ -601,7 +655,7 @@ function renderCollections(comments, container) {
 
     comments.forEach(comment => {
         const commentDiv = document.createElement('div');
-        commentDiv.setAttribute("class","class_each_clec_date");
+        commentDiv.setAttribute("class", "class_each_clec_date");
         // const dateTimeString = comment.created_at;
         // const datePart = dateTimeString.split("T")[0];
         const datePart = new Date(comment.created_at).toLocaleString();
@@ -609,8 +663,8 @@ function renderCollections(comments, container) {
         const showDate = DayAheadDate(new Date(datePart));
         const DotSelect = DotColorSelectedbyWeedDay(new Date(datePart));
 
-        if(CurrentDate !== DateCom){
-         commentDiv.innerHTML = `
+        if (CurrentDate !== DateCom) {
+            commentDiv.innerHTML = `
           <div class="class_clec_betweenDate_space"></div>
           <div class="class_clec_DateContent">${showDate}</div>
           <div class="class_clec_stce_container">
@@ -621,10 +675,10 @@ function renderCollections(comments, container) {
             <div class="deleteBtn">✖︎</div>
           </div>
         `;
-        DateCom = CurrentDate;
+            DateCom = CurrentDate;
         }
-        else{
-         commentDiv.innerHTML = `
+        else {
+            commentDiv.innerHTML = `
           <div class="class_clec_stce_container">
             <div class="class_dot_${DotSelect}_big"></div>
             <div class="class_clec_stce">
