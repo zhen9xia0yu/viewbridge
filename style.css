@@ -98,7 +98,8 @@ button {
     background: rgba(0, 0, 0, 0.12);
     -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
-.fixed_container_header{
+
+.fixed_container_header {
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -255,11 +256,15 @@ button {
     max-width: 343px;
     height: auto;
 }
+
 .class_sentce_bgimg {
-        display: block;
-    margin: 0 auto; /* 水平居中 */
-    text-align: center; /* 竖直居中 */
+    display: block;
+    margin: 0 auto;
+    /* 水平居中 */
+    text-align: center;
+    /* 竖直居中 */
 }
+
 .result-sentence p {
     margin: 10px;
     text-align: center;
@@ -481,7 +486,8 @@ button {
     transform: rotate(90deg);
     width: 100%;
 }
-.class_ellipse_space{
+
+.class_ellipse_space {
     width: 100px;
     background-color: #0C0C0C;
 }
@@ -613,7 +619,7 @@ button {
     background: #0C0C0C;
 }
 
-.class_clec_title{
+.class_clec_title {
     position: fixed;
     display: flex;
     justify-content: center;
@@ -643,7 +649,7 @@ button {
     height: 24px;
 }
 
-.class_clec_arrow{
+.class_clec_arrow {
     position: fixed;
     display: flex;
     justify-content: flex-start;
@@ -663,7 +669,7 @@ button {
     display: flex;
     justify-content: center;
     position: fixed;
-    bottom: 0;
+    bottom: -0.5px;
     left: 0;
     width: 100%;
     background: #121212;
@@ -724,6 +730,7 @@ button {
     border-radius: 50%;
     flex-shrink: 0;
 }
+
 .class_dot_yellow_big {
     margin: 23px 12px 0;
     /* Add margin-top to position at the top */
@@ -733,6 +740,7 @@ button {
     border-radius: 50%;
     flex-shrink: 0;
 }
+
 .class_dot_green_big {
     margin: 23px 12px 0;
     /* Add margin-top to position at the top */
@@ -742,6 +750,7 @@ button {
     border-radius: 50%;
     flex-shrink: 0;
 }
+
 .class_dot_qing_big {
     margin: 23px 12px 0;
     /* Add margin-top to position at the top */
@@ -800,17 +809,19 @@ button {
     /* left: 50%; */
     /* transform: translateX(-50%);  */
 }
-.class_each_clec_date{
+
+.class_each_clec_date {
     padding-bottom: 14px;
 }
-.class_clec_DateContent{
+
+.class_clec_DateContent {
     font-size: 16px;
     font-weight: 500;
     padding-left: 5px;
     padding-bottom: 10px;
 }
 
-.class_clec_betweenDate_space{
+.class_clec_betweenDate_space {
     height: 15px;
 
 }
