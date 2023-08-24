@@ -235,7 +235,8 @@ button {
     align-items: center; */
     /* flex-wrap: wrap; */
     /* flex-direction: column; */
-    position: relative;
+    /* position: relative; */
+    position: fixed;
     /* display: flex; */
     display: none;
     justify-content: center;
