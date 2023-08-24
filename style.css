@@ -470,6 +470,7 @@ button {
     z-index: -1;
     /*     display:flex; */
     transform: rotate(90deg);
+    width: 100%;
 }
 .class_ellipse_space{
     width: 100px;
@@ -544,7 +545,7 @@ button {
 .class_functionContainer {
     /* padding-top: 30px; */
     /* padding-left: 35px; */
-    padding-right: 10px;
+    padding-right: 15px;
     display: flex;
     font-size: 25px;
     justify-content: flex-end;
