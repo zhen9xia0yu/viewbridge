@@ -621,6 +621,7 @@ button {
     position: absolute;
     z-index: 9999;
     background: #0C0C0C;
+    height: 100%;
 }
 
 .class_clec_title {
@@ -702,6 +703,8 @@ button {
     /* width: 100%; */
     padding-right: 16px;
     padding-left: 16px;
+    height: 100%;
+    height: auto;
 }
 
 .class_clec_stce_container {
