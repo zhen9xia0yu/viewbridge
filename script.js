@@ -44,6 +44,15 @@ window.addEventListener('load', async () => {
 
 });
 
+async function LoadCollections() {
+    try {
+        Collections = await getCollectionsFromVBServer();
+        renderCollections(Collections, collectionContent);
+    } catch (error) {
+        console.error('error while fetching collections from VBS');
+    }
+}
+
 const LuckyNumber = 102;
 // Global array to store the combined data from three files
 // Function to fetch the data from a file
@@ -178,8 +187,9 @@ function displayResultWithCats(results) {
 }
 
 const recordbtn = document.getElementById("resultsentence");
-recordbtn.addEventListener("click", async () => {
-    var RecordFlag = 0;
+// recordbtn.addEventListener("click", function () {
+recordbtn.addEventListener("click", async ()=> {
+    // var RecordFlag = 0;
     // const commentContent = commentInput.value;
     if (theRandomSentence) {
         console.log(theRandomSentence);
@@ -203,23 +213,17 @@ recordbtn.addEventListener("click", async () => {
                     // inputContainer.style.display = "none";
                     successMessage.style.display = "flex";
                     successMessage.style.justifyContent = "center";
-                    RecordFlag = 1;
+                    // LoadCollections();
                 }
             })
             .catch(error => console.error(error));
 
-        if (RecordFlag) {
-
-            try {
-                Collections = await getCollectionsFromVBServer();
-                // Collections = getCollectionsFromVBServer();
-                renderCollections(Collections, collectionContent);
-            } catch (error) {
-                console.error('error while fetching collections from VBS');
-            }
-        }
-
+        // if (RecordFlag) LoadCollections();
+        //  LoadCollections();
     }
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await LoadCollections();
 });
 
 
@@ -492,7 +496,7 @@ const recordbtncalender = document.getElementById("record_btn_calander");
 // recordbtncalender.addEventListener("click", function () {
 recordbtncalender.addEventListener("click", async () => {
     // const commentContent = commentInput.value;
-    var RecordFlag = 0;
+    // var RecordFlag = 0;
     if (theCalenderSentence) {
         console.log(theCalenderSentence);
         const commentData = {
@@ -513,23 +517,16 @@ recordbtncalender.addEventListener("click", async () => {
                     // inputContainer.style.display = "none";
                     successMessageCalendar.style.display = "flex";
                     successMessageCalendar.style.justifyContent = "center";
-                    RecordFlag = 1;
+                    // RecordFlag = 1;
+                    // LoadCollections();
                 }
             })
             .catch(error => console.error(error));
 
-        if (RecordFlag) {
-
-            try {
-                Collections = await getCollectionsFromVBServer();
-                // Collections = getCollectionsFromVBServer();
-                renderCollections(Collections, collectionContent);
-            } catch (error) {
-                console.error('error while fetching collections from VBS');
-            }
-        }
-
+            // if (RecordFlag) LoadCollections();
     }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    await LoadCollections();
 });
 
 function renderComments(comments, container) {
@@ -604,36 +601,26 @@ document.getElementById('CollectionDiv').addEventListener('click', async () => {
     //     console.error(error);
     // }
 
-    if (Collections) {
-        collection_container.style.display = 'flex';
-        collecContainer_bg.style.display = 'flex';
-    } else console.log('collections is null');
+    while (!Collections) {
+        console.log('collections is null');
+        await LoadCollections();
+    } 
+    collection_container.style.display = 'flex';
+    collecContainer_bg.style.display = 'flex';
 });
 
 // document.getElementById('id_clec_goback_candle').addEventListener('click', function () {
 document.getElementById('id_clec_goback_candle').addEventListener('click', async () => {
     collection_container.style.display = 'none';
     collecContainer_bg.style.display = 'none';
-    try {
-        Collections = await getCollectionsFromVBServer();
-        renderCollections(Collections, collectionContent);
-    } catch (error) {
-        console.error('error while fetching collections from VBS');
-    }
+    await LoadCollections();
 });
 
 // document.getElementById('id_clec_goback_arrow').addEventListener('click', function () {
 document.getElementById('id_clec_goback_arrow').addEventListener('click', async () => {
     collection_container.style.display = 'none';
     collecContainer_bg.style.display = 'none';
-
-    try {
-        Collections = await getCollectionsFromVBServer();
-        renderCollections(Collections, collectionContent);
-    } catch (error) {
-        console.error('error while fetching collections from VBS');
-    }
-
+    await LoadCollections();
 });
 
 
