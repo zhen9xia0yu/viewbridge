@@ -166,7 +166,7 @@ finalSentence.setAttribute("class", "rlt-sentce-text");
 function displayResultWithCats(results) {
     const resultContainer = document.getElementById("resultchat");
     const sentenceContainer = document.getElementById("resultsentence");
-    // const recordbtnContainer = document.getElementById("recordbtnContainer");
+    const recordbtnContainer = document.getElementById("recordbtnContainer");
     const successMessage = document.getElementById("successMessage");
     // let resultHtml = "<ul>";
     let resultHtml = "<div>";
@@ -190,7 +190,7 @@ function displayResultWithCats(results) {
     // console.log(sentenceContainer.innerHTML);
     sentenceContainer.appendChild(finalSentence);
     // console.log(sentenceContainer.innerHTML);
-    // recordbtnContainer.style.display = "flex";
+    recordbtnContainer.style.display = "flex";
     sentenceContainer.style.display = "inline-block";
     successMessage.style.display = "none";
 }
