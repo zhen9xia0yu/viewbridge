@@ -175,9 +175,9 @@ function displayResultWithCats(results) {
     finalSentence.innerHTML = "";
     for (const result of results) {
         if (result.who === 0)
-            resultHtml += `<div class="chat-cat1"><p>${result.word}。</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
+            resultHtml += `<div class="chat-cat1"><p><img src="src/Vector_8@2x.png" class="cat1_wavelines">${result.word}。</p><img src="src/cat1@2x.png" style="width:48px;height:48px;"></div>`;
         else
-            resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"><p> ${result.word}</p></div>`;
+            resultHtml += `<div class="chat-cat2"><img src="src/cat2@2x.png" style="width:24px;height:29px24px;height:29px;"><p> ${result.word}<img src="src/Vector_10@2x.png" class="cat2_wavelines"></p></div>`;
         finalSentence.innerHTML += `${result.word}`;
         theRandomSentence += `${result.word}`;
     }
