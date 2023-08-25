@@ -21,6 +21,9 @@ const collection_container = document.getElementById('id_collection_container');
 const collectionContent = document.getElementById('id_clec_body_container');
 
 window.addEventListener('load', async () => {
+
+    processFiles();
+    
     try {
         const response = await fetch('https://api.viewbridge.top/api/token');
         const data = await response.json();
@@ -116,7 +119,6 @@ async function processFiles() {
     createOrderedList(wordLists[2], div3);
 }
 
-processFiles();
 
 async function readFile(fileUrl) {
     try {
