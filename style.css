@@ -109,9 +109,9 @@ button {
 .welcomepart {
     padding-top: 20px;
     display: flex;
-    /* justify-content: center; */
-    align-items: flex-start;
-    /* margin-bottom: 20px; */
+    justify-content: center;
+    /* align-items: flex-start; */
+    margin-bottom: 20px;
 }
 
 .welcomepart-pic img {
@@ -125,6 +125,7 @@ button {
     flex-direction: column;
     align-items: flex-start;
     padding-top: 10px;
+    padding-left: 22px;
 }
 
 .welcomepart-sentence p {
@@ -576,16 +577,23 @@ button {
 .class_functionContainer {
     /* padding-top: 30px; */
     /* padding-left: 35px; */
-    padding-right: 15px;
+    padding-right: 5px;
     display: flex;
     font-size: 25px;
     justify-content: flex-end;
     width: 100%;
+    /* height: 100%; */
+    align-content: center;
+    align-items: center;
+    flex-direction: row;
 }
 
 .class_function {
     /* padding-right: 15px; */
-    padding-right: 10px;
+    padding-right: 15px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 .class_BackForward_Container {
@@ -857,4 +865,15 @@ button {
     width: 34px;
     height: 15px;
     padding-left: 25px;
+}
+
+.img_calendar{
+    width: 34px;
+    height: 36px;
+    /* padding-right: 10px; */
+}
+.img_collection{
+    width: 45px;
+    height: 32px;
+    /* padding-right: 10px; */
 }
