@@ -1,4 +1,4 @@
-// const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
+const issueURL = "https://api.github.com/repos/zhen9xia0yu/viewbridge/issues/4/comments";
 // const chinaTimeZone = "Asia/Shanghai"; // 中国时区
 const VBServerGetColecUrl = "https://api.viewbridge.top/api/getCollections";
 const VBServerProxyPostUrl = "https://api.viewbridge.top/api/proxyPost";
@@ -47,7 +47,30 @@ window.addEventListener('load', async () => {
 
 });
 
-async function LoadCollections() {
+async function getAllComments() {
+    let allComments = [];
+    let page = 1;
+
+    while (true) {
+        const comments = await getComments(page);
+        if (comments.length === 0) {
+            break; // 没有更多评论了，退出循环
+        }
+        allComments = allComments.concat(comments);
+        page++;
+    }
+
+    return allComments;
+}
+
+async function getComments(page) {
+    const response = await fetch(`${issueURL}?page=${page}`);
+    const comments = await response.json();
+    return comments;
+}
+
+
+async function LoadCollectionsFromVBSOnly() {
     console.log('into LoadCollecions');
     try {
         Collections = await getCollectionsFromVBServer();
@@ -56,6 +79,21 @@ async function LoadCollections() {
         console.error('error while fetching collections from VBS');
     }
 }
+
+async function LoadCollections() {
+    console.log('into LoadCollecions');
+    try {
+        Collections = await getAllComments();
+        console.log('succ fetching from Github');
+        // const comments = await getCollectionsFromVBServer();
+        renderCollections(Collections,collectionContent);
+    } catch (error) {
+        console.error('error while fetching collections from GithubAPI');
+        Collections = await getCollectionsFromVBServer();
+        renderCollections(Collections, collectionContent);
+    }
+}
+
 
 const LuckyNumber = 102;
 // Global array to store the combined data from three files
