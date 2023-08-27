@@ -97,15 +97,15 @@
             </div>
             <div class="lists-container" id="wordListsContainer">
                 <div class="list-column">
-                    <img src="src/collection@2x.png">
+                    <img src="src/collection@2x.png" id="whoBtn">
                     <div class="wordList" id="wordList1"></div>
                 </div>
                 <div class="list-column">
-                    <img src="src/ghost@2x.png">
+                    <img src="src/ghost@2x.png" id="whereBtn">
                     <div class="wordList" id="wordList2"></div>
                 </div>
                 <div class="list-column">
-                    <img src="src/WitchBroom@2x.png">
+                    <img src="src/WitchBroom@2x.png" id="whatBtn">
                     <div class="wordList" id="wordList3"></div>
                 </div>
             </div>
@@ -113,6 +113,21 @@
                 <img src="src/Halloweenpumpkin@2x.png" class="button-image" id="generateBtn">
             </div>
         </div>
+
+        <div id="wordsInputModal" class="modal">
+            <div class="modal-content">
+              <!-- <label>Who:</label> -->
+              <input type="radio" name="choice" value="0" checked>至三点
+              <input type="radio" name="choice" value="1">关日宝
+              <br>
+              <!-- <label>Enter text:</label> -->
+              <textarea id="textInput" rows="4"></textarea>
+              <br>
+              <button class="addwordBtn" id="confirmBtn">Confirm</button>
+            </div>
+          </div>
+
+
         <!-- <div class="class_BackForward_Container">
             <div class="class_SentenceBackBtn" id="SentenceBackBtn">☜</div>
             <div class="class_SentenceForwardBtn" id="SentenceForwardBtn">☞</div>

@@ -760,3 +760,79 @@ function renderCollections(comments, container) {
         container.appendChild(commentDiv);
     });
 }
+
+const whoBtn = document.getElementById("whoBtn");
+const whereBtn = document.getElementById("whereBtn");
+const whatBtn = document.getElementById("whatBtn");
+const wordsInputModal = document.getElementById("wordsInputModal");
+const confirmBtn = document.getElementById("confirmBtn");
+const textInput = document.getElementById("textInput");
+
+whoBtn.addEventListener("click", () => openModal("who"));
+whereBtn.addEventListener("click", () => openModal("where"));
+whatBtn.addEventListener("click", () => openModal("what"));
+
+confirmBtn.addEventListener("click", () => {
+    const choice = document.querySelector('input[name="choice"]:checked').value;
+    const lines = textInput.value.split("\n");
+    const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+
+    const modalType = wordsInputModal.getAttribute("data-type");
+    const fileName = `${modalType}.txt`;
+    const url = `https://raw.githubusercontent.com/zhen9xia0yu/viewbridge/main/test/${fileName}`;
+
+    // fetch(url)
+    //   .then(response => response.text())
+    //   .then(data => {
+    //     const lineCount = data.trim().split("\n").length;
+    //     const currentDate = new Date().toISOString().split("T")[0];
+
+    //     const historyUrl = "https://raw.githubusercontent.com/zhen9xia0yu/viewbridge/main/test/WordsLenHistory.txt";
+    //     fetch(historyUrl)
+    //       .then(historyResponse => historyResponse.text())
+    //       .then(historyData => {
+    //         const historyLines = historyData.trim().split("\n");
+    //         const lastHistory = historyLines[historyLines.length - 1];
+    //         const lastDate = lastHistory.split(",")[0];
+
+    //         // if (lastDate !== currentDate) {
+    //         //   const newHistory = `${currentDate},${lineCount}`;
+    //         //   // fetch(historyUrl, { method: "POST", body: newHistory });
+    //         //   fetch(historyUrl, {
+    //         //     method: "POST",
+    //         //     headers: {
+    //         //         "Authorization": `Bearer ${accessToken}`,
+    //         //         "Content-Type": "application/json"
+    //         //     },
+    //         //     body: newHistory
+    //         // })
+    //         // }
+
+    //         // fetch(url, { method: "POST", body: formattedLines });
+    //         fetch(url, {
+    //           method: "POST",
+    //           headers: {
+    //             "Authorization": `Bearer ${accessToken}`,
+    //             "Content-Type": "application/json"
+    //           },
+    //           body: formattedLines
+    //         })
+    //           .catch(error => console.error(error));
+
+    //       });
+    //   });
+
+    closeModal();
+  });
+
+
+
+function openModal(type) {
+    wordsInputModal.setAttribute("data-type", type);
+    wordsInputModal.style.display = "block";
+  }
+
+  function closeModal() {
+    wordsInputModal.style.display = "none";
+    textInput.value = "";
+  }
