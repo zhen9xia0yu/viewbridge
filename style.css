@@ -645,13 +645,13 @@ button {
 }
 
 .class_clec_title {
-    position: fixed;
+    /* position: fixed; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     z-index: 10000;
     align-items: center;
-    width: 100%;
-    padding-top: 13px;
+    /* width: 100%; */
+    /* padding-top: 13px; */
 }
 
 .class_clec_header_container {
@@ -660,12 +660,12 @@ button {
     left: 0;
     width: 100%;
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
     background: #0C0C0C;
     height: 52px;
     border-bottom: 0.5px solid #272727;
     align-items: center;
-
+    /* z-index: 10001; */
 }
 
 .class_clec_arrow img {
@@ -675,14 +675,29 @@ button {
 }
 
 .class_clec_arrow {
-    position: fixed;
+    /* position: fixed; */
     display: flex;
     justify-content: flex-start;
     /* justify-content: center; */
-    z-index: 10001;
+    /* z-index: 10001; */
     /* align-items: center; */
-    width: 100%;
+    /* width: 100%; */
     padding-top: 5px;
+}
+
+.class_clec_refresh{
+    /* position: fixed; */
+    display: flex;
+    justify-content: flex-end;
+    /* z-index:10001; */
+    /* width: 100%; */
+    padding-top: 5px;
+}
+
+.class_clec_refresh img{
+    padding: 9px;
+    width: 19px;
+    height: 19px;
 }
 
 .class_clec_header_container p {
