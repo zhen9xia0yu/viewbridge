@@ -23,7 +23,7 @@ const collectionContent = document.getElementById('id_clec_body_container');
 window.addEventListener('load', async () => {
 
     processFiles();
-    
+
     try {
         const response = await fetch('https://api.viewbridge.top/api/token');
         const data = await response.json();
@@ -48,6 +48,7 @@ window.addEventListener('load', async () => {
 });
 
 async function LoadCollections() {
+    console.log('into LoadCollecions');
     try {
         Collections = await getCollectionsFromVBServer();
         renderCollections(Collections, collectionContent);
@@ -199,7 +200,7 @@ function displayResultWithCats(results) {
 
 const recordbtn = document.getElementById("resultsentence");
 // recordbtn.addEventListener("click", function () {
-recordbtn.addEventListener("click", async ()=> {
+recordbtn.addEventListener("click", async () => {
     // var RecordFlag = 0;
     // const commentContent = commentInput.value;
     if (theRandomSentence) {
@@ -534,7 +535,7 @@ recordbtncalender.addEventListener("click", async () => {
             })
             .catch(error => console.error(error));
 
-            // if (RecordFlag) LoadCollections();
+        // if (RecordFlag) LoadCollections();
     }
     await new Promise(resolve => setTimeout(resolve, 2000));
     await LoadCollections();
@@ -615,7 +616,7 @@ document.getElementById('CollectionDiv').addEventListener('click', async () => {
     while (!Collections) {
         console.log('collections is null');
         await LoadCollections();
-    } 
+    }
     collection_container.style.display = 'flex';
     collecContainer_bg.style.display = 'flex';
 });
@@ -634,6 +635,10 @@ document.getElementById('id_clec_goback_arrow').addEventListener('click', async 
     await LoadCollections();
 });
 
+document.getElementById('id_clec_refresh').addEventListener('click', async () => {
+    console.log('click refresh');
+    await LoadCollections();
+})
 
 function DayAheadDate(date) {
     const year = date.getFullYear();
