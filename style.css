@@ -920,4 +920,7 @@ button {
   .addwordBtn{
     width: 100%;
   }
-  
+  textarea {
+    height: 70px; /* 设置一个合适的高度 */
+    overflow: auto; /* 显示滚动条 */
+  } 

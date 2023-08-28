@@ -86,7 +86,7 @@ async function LoadCollections() {
         Collections = await getAllComments();
         console.log('succ fetching from Github');
         // const comments = await getCollectionsFromVBServer();
-        renderCollections(Collections,collectionContent);
+        renderCollections(Collections, collectionContent);
     } catch (error) {
         console.error('error while fetching collections from GithubAPI');
         Collections = await getCollectionsFromVBServer();
@@ -105,9 +105,7 @@ async function fetchData(file) {
     return await response.text();
 }
 
-// Function to process the fetched data and create an array of objects
-async function processFile(file) {
-    const data = await fetchData(file);
+function splitWordListLine(data){
     const lines = data.split('\n');
     const dataArray = lines.map((line) => {
         if (line.trim() === '') return null;
@@ -116,7 +114,22 @@ async function processFile(file) {
         return { who: Number(who), word };
     });
 
-    return dataArray.filter(Boolean);
+    return dataArray.filter(Boolean); 
+}
+
+// Function to process the fetched data and create an array of objects
+async function processFile(file) {
+    const data = await fetchData(file);
+    // const lines = data.split('\n');
+    // const dataArray = lines.map((line) => {
+    //     if (line.trim() === '') return null;
+
+    //     const [who, word] = line.split(',');
+    //     return { who: Number(who), word };
+    // });
+
+    // return dataArray.filter(Boolean);
+    return splitWordListLine(data);
 }
 
 async function processFiles() {
@@ -138,24 +151,24 @@ async function processFiles() {
     const div2 = document.getElementById('wordList2');
     const div3 = document.getElementById('wordList3');
 
-    // Function to create an ordered list for the given data array and append it to the specified div
-    function createOrderedList(dataArray, targetDiv) {
-        const ol = document.createElement('ol');
-        // ol.start = 0;
-
-        for (const item of dataArray) {
-            const li = document.createElement('li');
-            li.textContent = item.word;
-            ol.appendChild(li);
-        }
-
-        targetDiv.appendChild(ol);
-    }
-
     // Create ordered lists for each subarray and append them to the corresponding divs
     createOrderedList(wordLists[0], div1);
     createOrderedList(wordLists[1], div2);
     createOrderedList(wordLists[2], div3);
+}
+
+// Function to create an ordered list for the given data array and append it to the specified div
+function createOrderedList(dataArray, targetDiv) {
+    targetDiv.innerHTML='';
+    const ol = document.createElement('ol');
+    // ol.start = 0;
+
+    for (const item of dataArray) {
+        const li = document.createElement('li');
+        li.textContent = item.word;
+        ol.appendChild(li);
+    }
+    targetDiv.appendChild(ol);
 }
 
 
@@ -768,18 +781,46 @@ const wordsInputModal = document.getElementById("wordsInputModal");
 const confirmBtn = document.getElementById("confirmBtn");
 const textInput = document.getElementById("textInput");
 
-whoBtn.addEventListener("click", () => openModal("who"));
-whereBtn.addEventListener("click", () => openModal("where"));
-whatBtn.addEventListener("click", () => openModal("what"));
+whoBtn.addEventListener("click", () => openModal("0"));
+whereBtn.addEventListener("click", () => openModal("1"));
+whatBtn.addEventListener("click", () => openModal("2"));
 
 confirmBtn.addEventListener("click", () => {
     const choice = document.querySelector('input[name="choice"]:checked').value;
+    // const choice = document.querySelector('select[name="choice"]').value;
     const lines = textInput.value.split("\n");
-    const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+    // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+    const nonEmptyLines = lines.filter(line => line.trim() !== ""); // Remove empty lines
+    const formattedLines = nonEmptyLines.map(line => `${choice},${line}`).join("\n");
 
-    const modalType = wordsInputModal.getAttribute("data-type");
-    const fileName = `${modalType}.txt`;
-    const url = `https://raw.githubusercontent.com/zhen9xia0yu/viewbridge/main/test/${fileName}`;
+    // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+    const wordListformatedData = splitWordListLine(formattedLines);
+
+    const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
+    // wordLists[modalType].push(wordListformatedData);
+    for (const singleline of wordListformatedData){
+        wordLists[modalType].push(singleline);
+    }
+
+    console.log(wordLists);
+    // Get the div elements where we will display the lists
+    const div1 = document.getElementById('wordList1');
+    const div2 = document.getElementById('wordList2');
+    const div3 = document.getElementById('wordList3');
+
+    // Create ordered lists for each subarray and append them to the corresponding divs
+    createOrderedList(wordLists[0], div1);
+    createOrderedList(wordLists[1], div2);
+    createOrderedList(wordLists[2], div3);
+
+
+    // const choice = document.querySelector('input[name="choice"]:checked').value;
+    // const lines = textInput.value.split("\n");
+    // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+
+    // const modalType = wordsInputModal.getAttribute("data-type");
+    // const fileName = `${modalType}.txt`;
+    // const url = `https://raw.githubusercontent.com/zhen9xia0yu/viewbridge/main/test/${fileName}`;
 
     // fetch(url)
     //   .then(response => response.text())
@@ -823,16 +864,16 @@ confirmBtn.addEventListener("click", () => {
     //   });
 
     closeModal();
-  });
+});
 
 
 
 function openModal(type) {
     wordsInputModal.setAttribute("data-type", type);
     wordsInputModal.style.display = "block";
-  }
+}
 
-  function closeModal() {
+function closeModal() {
     wordsInputModal.style.display = "none";
     textInput.value = "";
-  }
+}
