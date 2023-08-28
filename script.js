@@ -870,6 +870,11 @@ confirmBtn.addEventListener("click", () => {
 
 function openModal(type) {
     wordsInputModal.setAttribute("data-type", type);
+    switch(type){
+        case "0": document.getElementById('modal_title').innerHTML = "请输入新名词";break;
+        case "1": document.getElementById('modal_title').innerHTML = "请输入新介词";break;
+        case "2": document.getElementById('modal_title').innerHTML = "请输入新动词";break;
+    }
     wordsInputModal.style.display = "block";
 }
 
