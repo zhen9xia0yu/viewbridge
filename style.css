@@ -52,7 +52,7 @@ h1 {
     max-height: 200px;
     /* Set a maximum height for each list */
     overflow-y: auto;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     /* Enable vertical scrolling for long lists */
     width: 90px;
     height: 216px;
