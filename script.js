@@ -15,6 +15,10 @@ var ForwardSentence = "";
 let WordsLenHis = null;
 var WordsLenHisLines = "";
 let Collections = null;
+var FilesContent_who = null;
+var FilesContent_where = null;
+var FilesContent_what = null;
+var FilesContent_WordsLenHistrory = null;
 
 const collecContainer_bg = document.getElementById('collecContainer_bg');
 const collection_container = document.getElementById('id_collection_container');
@@ -105,7 +109,7 @@ async function fetchData(file) {
     return await response.text();
 }
 
-function splitWordListLine(data){
+function splitWordListLine(data) {
     const lines = data.split('\n');
     const dataArray = lines.map((line) => {
         if (line.trim() === '') return null;
@@ -114,12 +118,18 @@ function splitWordListLine(data){
         return { who: Number(who), word };
     });
 
-    return dataArray.filter(Boolean); 
+    return dataArray.filter(Boolean);
 }
 
 // Function to process the fetched data and create an array of objects
 async function processFile(file) {
     const data = await fetchData(file);
+    switch (file) {
+        case 'words/who.txt': FilesContent_who = data; break;
+        case 'words/where.txt': FilesContent_where = data; break;
+        case 'words/what.txt': FilesContent_what = data; break;
+        default: break;
+    }
     // const lines = data.split('\n');
     // const dataArray = lines.map((line) => {
     //     if (line.trim() === '') return null;
@@ -134,15 +144,27 @@ async function processFile(file) {
 
 async function processFiles() {
     const fileContent = await loadFileData('words/WordsLenHistory.txt');
-    console.log(fileContent);
+    FilesContent_WordsLenHistrory = fileContent;
+    // console.log(fileContent);
+    console.log('lenhisContent:' + FilesContent_WordsLenHistrory);
     WordsLenHisLines = fileContent.trim().split('\n');
     console.log(WordsLenHisLines);
 
     const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
+    // let loopCount = 0; // 初始化计数器
     for (const file of files) {
+        // loopCount++;
         const dataArray = await processFile(file);
+        // switch(loopCount){
+        //     case 1: FilesContent_who = dataArray;break;
+        //     case 2: FilesContent_where = dataArray;break;
+        //     case 3: FilesContent_what = dataArray;break;
+        // }
         wordLists.push(dataArray);
     }
+    console.log('whoContent:' + FilesContent_who);
+    console.log('whereContent:' + FilesContent_where);
+    console.log('whatContent:' + FilesContent_what);
 
     // Now, wordLists contains three separate subarrays, each from a different file
     console.log(wordLists);
@@ -159,7 +181,7 @@ async function processFiles() {
 
 // Function to create an ordered list for the given data array and append it to the specified div
 function createOrderedList(dataArray, targetDiv) {
-    targetDiv.innerHTML='';
+    targetDiv.innerHTML = '';
     const ol = document.createElement('ol');
     // ol.start = 0;
 
@@ -797,8 +819,26 @@ confirmBtn.addEventListener("click", () => {
     const wordListformatedData = splitWordListLine(formattedLines);
 
     const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
+    if (formattedLines !== "") {
+        switch (modalType) {
+            case 0: FilesContent_who += "\n";FilesContent_who += formattedLines; break;
+            case 1: FilesContent_where += "\n";FilesContent_where += formattedLines; break;
+            case 2: FilesContent_what += "\n";FilesContent_what += formattedLines; break;
+            default: break;
+        }
+    }
+
+    console.log('whoContent updated:' + FilesContent_who);
+    console.log('whereContent updated:' + FilesContent_where);
+    console.log('whatContent updated:' + FilesContent_what);
+
+    // const fileType = parseInt(wordsInputModal.getAttribute("fiile-type"));
+    // var globalVariable = window[fileType];
+    // globalVariable.push(formattedLines);
+    // globalVariable += formattedLines; 
+    // console.log(modalType+"update:"+fileType);
     // wordLists[modalType].push(wordListformatedData);
-    for (const singleline of wordListformatedData){
+    for (const singleline of wordListformatedData) {
         wordLists[modalType].push(singleline);
     }
 
@@ -820,10 +860,12 @@ confirmBtn.addEventListener("click", () => {
 
 function openModal(type) {
     wordsInputModal.setAttribute("data-type", type);
-    switch(type){
-        case "0": document.getElementById('modal_title').innerHTML = "请输入新名词";break;
-        case "1": document.getElementById('modal_title').innerHTML = "请输入新介词";break;
-        case "2": document.getElementById('modal_title').innerHTML = "请输入新动词";break;
+    // wordsInputModal.setAttribute("file-type", file);
+    switch (type) {
+        case "0": document.getElementById('modal_title').innerHTML = "请输入新名词"; break;
+        case "1": document.getElementById('modal_title').innerHTML = "请输入新介词"; break;
+        case "2": document.getElementById('modal_title').innerHTML = "请输入新动词"; break;
+        default: break;
     }
     wordsInputModal.style.display = "block";
 }
