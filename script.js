@@ -19,6 +19,7 @@ var FilesContent_who = null;
 var FilesContent_where = null;
 var FilesContent_what = null;
 var FilesContent_WordsLenHistrory = null;
+var LastLineofWordsLenhis = null;
 
 const collecContainer_bg = document.getElementById('collecContainer_bg');
 const collection_container = document.getElementById('id_collection_container');
@@ -149,6 +150,8 @@ async function processFiles() {
     console.log('lenhisContent:' + FilesContent_WordsLenHistrory);
     WordsLenHisLines = fileContent.trim().split('\n');
     console.log(WordsLenHisLines);
+    LastLineofWordsLenhis = ((WordsLenHisLines[WordsLenHisLines.length - 1]).split(','))[0];
+    console.log("the last update Date:"+LastLineofWordsLenhis);
 
     const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
     // let loopCount = 0; // 初始化计数器
