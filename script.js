@@ -8,18 +8,20 @@ var theRandomSentence = "";
 var theCalenderSentence = "";
 // const accessToken = process.env.MY_ACCESS_TOKEN;
 var accessToken = "";
-// console.log(accessToken); // 这里将打印出您的 Token
 var BackwordSentence = "";
 var CurrentSentence = "";
 var ForwardSentence = "";
-let WordsLenHis = null;
-var WordsLenHisLines = "";
-let Collections = null;
-var FilesContent_who = null;
-var FilesContent_where = null;
-var FilesContent_what = null;
-var FilesContent_WordsLenHistrory = null;
-var LastLineofWordsLenhis = null;
+// let WordsLenHis = null;//words.WordsLenhistory.txt
+var WordsLenHisLines = "";//识别回车，分行的wordslenhistory.txt
+let Collections = null;//收藏的句子
+var FilesContent_who = null; //words.who.txt
+var FilesContent_where = null;//words.where.txt
+var FilesContent_what = null;//words.what.txt
+var FilesContent_WordsLenHistrory = null;//WordsLenHistory.txt
+var LastLineofWordsLenhis = null; //Last update Date
+var CurrentLenOfWho = null;//innitial lenth of who
+var CurrentLenOfWhere = null;//innitial lenth of where
+var CurrentLenOfWhat = null;//inni....what
 
 const collecContainer_bg = document.getElementById('collecContainer_bg');
 const collection_container = document.getElementById('id_collection_container');
@@ -204,10 +206,10 @@ async function readFile(fileUrl) {
 }
 
 async function loadFileData(fileUrl) {
-    if (!WordsLenHis) {
-        WordsLenHis = await readFile(fileUrl);
-    }
-    return WordsLenHis;
+    // if (!WordsLenHis) {
+    const  data = await readFile(fileUrl);
+    // }
+    return data;
 }
 
 function formatDate(date) {
