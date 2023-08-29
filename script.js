@@ -151,18 +151,13 @@ async function processFiles() {
     WordsLenHisLines = fileContent.trim().split('\n');
     console.log(WordsLenHisLines);
     LastLineofWordsLenhis = ((WordsLenHisLines[WordsLenHisLines.length - 1]).split(','))[0];
-    console.log("the last update Date:"+LastLineofWordsLenhis);
+    console.log("the last update Date:" + LastLineofWordsLenhis);
 
     const files = ['words/who.txt', 'words/where.txt', 'words/what.txt'];
     // let loopCount = 0; // 初始化计数器
     for (const file of files) {
         // loopCount++;
         const dataArray = await processFile(file);
-        // switch(loopCount){
-        //     case 1: FilesContent_who = dataArray;break;
-        //     case 2: FilesContent_where = dataArray;break;
-        //     case 3: FilesContent_what = dataArray;break;
-        // }
         wordLists.push(dataArray);
     }
     console.log('whoContent:' + FilesContent_who);
@@ -817,48 +812,54 @@ confirmBtn.addEventListener("click", () => {
     // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
     const nonEmptyLines = lines.filter(line => line.trim() !== ""); // Remove empty lines
     const formattedLines = nonEmptyLines.map(line => `${choice},${line}`).join("\n");
-
-    // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
-    const wordListformatedData = splitWordListLine(formattedLines);
-
-    const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
-    if (formattedLines !== "") {
-        switch (modalType) {
-            case 0: FilesContent_who += "\n";FilesContent_who += formattedLines; break;
-            case 1: FilesContent_where += "\n";FilesContent_where += formattedLines; break;
-            case 2: FilesContent_what += "\n";FilesContent_what += formattedLines; break;
-            default: break;
+    // const formattedLines = nonEmptyLines.map(line => `${choice},${line}`);
+    const showLines = nonEmptyLines.map(line => `${line}`).join("\n");
+    if (nonEmptyLines != "") {
+        const confirmContent = confirm(`你是${document.querySelector('input[name="choice"]:checked').value}\n你确认要添加这些词语吗？\n"${showLines}"`);
+        if (confirmContent) {
+            console.log("confirm.");
+            // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
+            const wordListformatedData = splitWordListLine(formattedLines);
+            const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
+            if (formattedLines !== "") {
+                switch (modalType) {
+                    case 0:
+                        FilesContent_who += "\n";
+                        FilesContent_who += formattedLines;
+                        console.log('whoContent updated:' + FilesContent_who);
+                        break;
+                    case 1:
+                        FilesContent_where += "\n";
+                        FilesContent_where += formattedLines;
+                        console.log('whereContent updated:' + FilesContent_where);
+                        break;
+                    case 2:
+                        FilesContent_what += "\n";
+                        FilesContent_what += formattedLines;
+                        console.log('whatContent updated:' + FilesContent_what);
+                        break;
+                    default: break;
+                }
+            }
+            for (const singleline of wordListformatedData) {
+                wordLists[modalType].push(singleline);
+            }
+            console.log(wordLists);
+            const wordlistDiv = document.getElementById(`wordList${modalType + 1}`)
+            createOrderedList(wordLists[modalType], wordlistDiv);
+            
+            closeModal();
         }
+        else console.log("cancel");
     }
 
-    console.log('whoContent updated:' + FilesContent_who);
-    console.log('whereContent updated:' + FilesContent_where);
-    console.log('whatContent updated:' + FilesContent_what);
-
-    // const fileType = parseInt(wordsInputModal.getAttribute("fiile-type"));
-    // var globalVariable = window[fileType];
-    // globalVariable.push(formattedLines);
-    // globalVariable += formattedLines; 
-    // console.log(modalType+"update:"+fileType);
-    // wordLists[modalType].push(wordListformatedData);
-    for (const singleline of wordListformatedData) {
-        wordLists[modalType].push(singleline);
-    }
-
-    console.log(wordLists);
-    // Get the div elements where we will display the lists
-    const div1 = document.getElementById('wordList1');
-    const div2 = document.getElementById('wordList2');
-    const div3 = document.getElementById('wordList3');
-
-    // Create ordered lists for each subarray and append them to the corresponding divs
-    createOrderedList(wordLists[0], div1);
-    createOrderedList(wordLists[1], div2);
-    createOrderedList(wordLists[2], div3);
-
-    closeModal();
+    // closeModal();
 });
 
+
+document.getElementById("addwordCancel").addEventListener("click", () => {
+    closeModal();
+});
 
 
 function openModal(type) {
