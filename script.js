@@ -111,7 +111,7 @@ async function LoadCollections() {
     console.log('into LoadCollecions');
     try {
         Collections = await getAllComments();
-        if (Collections.response !== 200) {
+        if (Collections == []) {
             console.log('error fetching from Github');
             Collections = await getCollectionsFromVBServer();
         }
