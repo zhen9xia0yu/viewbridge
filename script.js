@@ -59,23 +59,42 @@ async function getAllComments() {
     let allComments = [];
     let page = 1;
 
-    while (true) {
-        const comments = await getComments(page);
-        if (comments.length === 0) {
-            break; // 没有更多评论了，退出循环
-        }
-        allComments = allComments.concat(comments);
-        page++;
-    }
+    // while (true) {
+    //     const comments = await getComments(page);
+    //     if (comments.length === 0) {
+    //         break; // 没有更多评论了，退出循环
+    //     }
+    //     allComments = allComments.concat(comments);
+    //     page++;
+    // }
+
+    while (true) {  
+        try {  
+            const response = await fetch(`${issueURL}?page=${page}`);  
+            if (response.status !== 200) {  
+                break; // 请求出错，退出循环  
+            }  
+            const comments = await response.json();  
+            if (comments.length === 0) {  
+                break; // 没有更多评论了，退出循环  
+            }  
+            allComments = allComments.concat(comments);  
+            page++;  
+        } catch (error) {  
+            console.error('Error occurred:', error);  
+            break; // 发生错误，退出循环  
+        }  
+    }  
+
 
     return allComments;
 }
 
-async function getComments(page) {
-    const response = await fetch(`${issueURL}?page=${page}`);
-    const comments = await response.json();
-    return comments;
-}
+// async function getComments(page) {
+//     const response = await fetch(`${issueURL}?page=${page}`);
+//     const comments = await response.json();
+//     return comments;
+// }
 
 
 async function LoadCollectionsFromVBSOnly() {
