@@ -261,9 +261,6 @@ function displayResultWithCats(results) {
     resultHtml += "</div>";
     // finalSentence += "</div>";
     resultContainer.innerHTML = resultHtml;
-    // sentenceContainer.innerHTML = finalSentence;
-    // console.log(finalSentence.innerHTML);
-    // console.log(sentenceContainer.innerHTML);
     sentenceContainer.appendChild(finalSentence);
     // console.log(sentenceContainer.innerHTML);
     recordbtnContainer.style.display = "flex";
