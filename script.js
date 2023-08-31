@@ -45,12 +45,13 @@ window.addEventListener('load', async () => {
         console.log('Error fetching token from the API');
     }
 
-    try {
-        Collections = await getCollectionsFromVBServer();
-        renderCollections(Collections, collectionContent);
-    } catch (error) {
-        console.error('error while fetching collections from VBS');
-    }
+    await LoadCollections();
+    // try {
+    //     Collections = await getCollectionsFromVBServer();
+    //     renderCollections(Collections, collectionContent);
+    // } catch (error) {
+    //     console.error('error while fetching collections from VBS');
+    // }
 
 });
 
