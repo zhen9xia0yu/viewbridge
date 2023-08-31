@@ -68,23 +68,23 @@ async function getAllComments() {
     //     page++;
     // }
 
-    while (true) {  
-        try {  
-            const response = await fetch(`${issueURL}?page=${page}`);  
-            if (response.status !== 200) {  
+    while (true) {
+        try {
+            const response = await fetch(`${issueURL}?page=${page}`);
+            if (response.status !== 200) {
                 break; // 请求出错，退出循环  
-            }  
-            const comments = await response.json();  
-            if (comments.length === 0) {  
+            }
+            const comments = await response.json();
+            if (comments.length === 0) {
                 break; // 没有更多评论了，退出循环  
-            }  
-            allComments = allComments.concat(comments);  
-            page++;  
-        } catch (error) {  
-            console.error('Error occurred:', error);  
+            }
+            allComments = allComments.concat(comments);
+            page++;
+        } catch (error) {
+            console.error('Error occurred:', error);
             break; // 发生错误，退出循环  
-        }  
-    }  
+        }
+    }
 
 
     return allComments;
@@ -111,7 +111,11 @@ async function LoadCollections() {
     console.log('into LoadCollecions');
     try {
         Collections = await getAllComments();
-        console.log('succ fetching from Github');
+        if (Collections.response !== 200) {
+            console.log('error fetching from Github');
+            Collections = await getCollectionsFromVBServer();
+        }
+        // console.log('succ fetching from Github');
         // const comments = await getCollectionsFromVBServer();
         renderCollections(Collections, collectionContent);
     } catch (error) {
@@ -227,7 +231,7 @@ async function readFile(fileUrl) {
 
 async function loadFileData(fileUrl) {
     // if (!WordsLenHis) {
-    const  data = await readFile(fileUrl);
+    const data = await readFile(fileUrl);
     // }
     return data;
 }
@@ -866,7 +870,7 @@ confirmBtn.addEventListener("click", () => {
             console.log(wordLists);
             const wordlistDiv = document.getElementById(`wordList${modalType + 1}`)
             createOrderedList(wordLists[modalType], wordlistDiv);
-            
+
             closeModal();
         }
         else console.log("cancel");
