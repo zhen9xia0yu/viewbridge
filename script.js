@@ -23,6 +23,13 @@ var CurrentLenOfWho = null;//innitial lenth of who
 var CurrentLenOfWhere = null;//innitial lenth of where
 var CurrentLenOfWhat = null;//inni....what
 
+const owner = 'zhen9xia0yu';
+const repo = 'viewbridge';
+const branch = 'main';
+// const filePath = 'test/who.txt';
+// const content = 'New content to update';
+
+
 const collecContainer_bg = document.getElementById('collecContainer_bg');
 const collection_container = document.getElementById('id_collection_container');
 const collectionContent = document.getElementById('id_clec_body_container');
@@ -54,6 +61,88 @@ window.addEventListener('load', async () => {
     // }
 
 });
+
+async function updateFileContent(message, content, filePath) {
+    try {
+
+        // Get the current file data
+        const fileResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+
+        const currentFile = await fileResponse.json();
+
+        // Convert content to Latin1-encoded Uint8Array
+        const textEncoder = new TextEncoder();
+        const contentBytes = textEncoder.encode(content);
+
+        // Encode the content bytes as base64 using btoa
+        const base64Content = btoa(String.fromCharCode.apply(null, contentBytes));
+        const updatedFile = {
+            message: message,
+            content: base64Content, // Encode the new content as base64 using btoa
+            sha: currentFile.sha,
+            branch: branch
+        };
+
+        const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedFile)
+        });
+
+        if (response.status === 200) {
+            console.log('File content updated successfully.');
+        } else {
+            console.error('Failed to update file content.');
+        }
+        return response;
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
+
+
+async function updateFileContentWithRetry(message, content, filePath, retryCount = 3, delay = 1000) {
+    while (retryCount > 0) {
+        try {
+            try {
+                const response = await updateFileContent(message, content, filePath);
+                if (response && response.status === 200) {
+                    console.log('File content updated successfully.');
+                    return response.status;
+                } else if (response && response.status === 409) {
+                    console.log('Conflict occurred. Retrying...');
+                    await delayAsync(delay);
+                    retryCount--;
+                } else {
+                    console.error('Failed to update file content.');
+                    return response.status;
+                }
+            } catch (error) {
+                console.error('An error occurred in updateFileContent:', error);
+                throw error; // Rethrow the error to be caught by outer catch
+            }
+        } catch (error) {
+            console.error('An error occurred in updateFileContentWithRetry:', error);
+            return "5xx";
+        }
+    }
+    console.error('Exceeded maximum retries. Could not update file content.');
+}
+
+
+async function delayAsync(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 
 // async function getAllComments() {
 //     let allComments = [];
@@ -239,9 +328,14 @@ async function processFiles() {
         const dataArray = await processFile(file);
         wordLists.push(dataArray);
     }
+
+    CurrentLenOfWho = wordLists[0].length;
+    CurrentLenOfWhere = wordLists[1].length;
+    CurrentLenOfWhat = wordLists[2].length;
     console.log('whoContent:' + FilesContent_who);
-    console.log('whereContent:' + FilesContent_where);
-    console.log('whatContent:' + FilesContent_what);
+    console.log('wholen:' + CurrentLenOfWho);
+    console.log('wherelen:' + CurrentLenOfWhere);
+    console.log('whatlen:' + CurrentLenOfWhat);
 
     // Now, wordLists contains three separate subarrays, each from a different file
     console.log(wordLists);
@@ -881,8 +975,16 @@ whoBtn.addEventListener("click", () => openModal("0"));
 whereBtn.addEventListener("click", () => openModal("1"));
 whatBtn.addEventListener("click", () => openModal("2"));
 
-confirmBtn.addEventListener("click", () => {
+const todayDate = formatDate(new Date());
+
+confirmBtn.addEventListener("click", async () => {
     const choice = document.querySelector('input[name="choice"]:checked').value;
+    var who = "nobody";
+    switch (choice) {
+        case "0": who = "至三点"; break;
+        case "1": who = "关日宝"; break;
+        default: break;
+    }
     // const choice = document.querySelector('select[name="choice"]').value;
     const lines = textInput.value.split("\n");
     // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
@@ -891,30 +993,61 @@ confirmBtn.addEventListener("click", () => {
     // const formattedLines = nonEmptyLines.map(line => `${choice},${line}`);
     const showLines = nonEmptyLines.map(line => `${line}`).join("\n");
     if (nonEmptyLines != "") {
-        const confirmContent = confirm(`你是${document.querySelector('input[name="choice"]:checked').value}\n你确认要添加这些词语吗？\n"${showLines}"`);
+        const confirmContent = confirm(`${who}，你确认要添加这些词语吗？\n"${showLines}"`);
         if (confirmContent) {
             console.log("confirm.");
             // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
             const wordListformatedData = splitWordListLine(formattedLines);
             const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
             if (formattedLines !== "") {
+                if (todayDate > LastLineofWordsLenhis) {
+                    LastLineofWordsLenhis = todayDate;
+                    console.log(`${todayDate}第一次加词`);
+                    FilesContent_WordsLenHistrory += "\n";
+                    FilesContent_WordsLenHistrory += `${todayDate},${CurrentLenOfWho},${CurrentLenOfWhere},${CurrentLenOfWhat}`;
+                    WordsLenHisLines = FilesContent_WordsLenHistrory.trim().split('\n');
+                    console.log('wordsLenhis updated:' + FilesContent_WordsLenHistrory);
+                    // updateFileContent(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_WordsLenHistrory, 'test/WordsLenHistory.txt');
+                    // const response = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_WordsLenHistrory, 'test/WordsLenHistory.txt');
+                    const response = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_WordsLenHistrory, 'words/WordsLenHistory.txt');
+                    var responseWords;
+                    if (response === 200) {
+                        alert('这是今天第一次添加词语，将更新单向历算式。\n更新成功!!!');
+                    } else {
+                        alert('这是今天第一次添加词语，将更新单向历算式。\n更新失败...');
+                    }
+                }
                 switch (modalType) {
                     case 0:
                         FilesContent_who += "\n";
                         FilesContent_who += formattedLines;
                         console.log('whoContent updated:' + FilesContent_who);
+                        // updateFileContent(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_who, 'test/who.txt');
+                        // responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_who, 'test/who.txt');
+                        responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_who, 'words/who.txt');
                         break;
                     case 1:
                         FilesContent_where += "\n";
                         FilesContent_where += formattedLines;
                         console.log('whereContent updated:' + FilesContent_where);
+                        // updateFileContent(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_where, 'test/where.txt');
+                        // responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_where, 'test/where.txt');
+                        responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_where, 'words/where.txt');
                         break;
                     case 2:
                         FilesContent_what += "\n";
                         FilesContent_what += formattedLines;
                         console.log('whatContent updated:' + FilesContent_what);
+                        // updateFileContent(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_what, 'test/what.txt');
+                        // responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_what, 'test/what.txt');
+                        responseWords = await updateFileContentWithRetry(`${who}添加了新词语:${nonEmptyLines}`, FilesContent_what, 'words/what.txt');
                         break;
                     default: break;
+                }
+                if (responseWords === 200) {
+                    alert('词语添加成功!!!');
+                } else {
+                    alert('词语添加失败...');
                 }
             }
             for (const singleline of wordListformatedData) {
