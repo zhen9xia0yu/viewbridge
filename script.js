@@ -55,46 +55,64 @@ window.addEventListener('load', async () => {
 
 });
 
+// async function getAllComments() {
+//     let allComments = [];
+//     let page = 1;
+
+//     while (true) {
+//         try {
+//             const response = await fetch(`${issueURL}?page=${page}`);
+//             if (response.status !== 200) {
+//                 break; // 请求出错，退出循环  
+//             }
+//             const comments = await response.json();
+//             if (comments.length === 0) {
+//                 break; // 没有更多评论了，退出循环  
+//             }
+//             allComments = allComments.concat(comments);
+//             page++;
+//         } catch (error) {
+//             console.error('Error occurred:', error);
+//             break; // 发生错误，退出循环  
+//         }
+//     }
+//     return allComments;
+// }
+
 async function getAllComments() {
     let allComments = [];
     let page = 1;
 
-    // while (true) {
-    //     const comments = await getComments(page);
-    //     if (comments.length === 0) {
-    //         break; // 没有更多评论了，退出循环
-    //     }
-    //     allComments = allComments.concat(comments);
-    //     page++;
-    // }
-
     while (true) {
         try {
-            const response = await fetch(`${issueURL}?page=${page}`);
+            const fetchPromise = fetch(`${issueURL}?page=${page}`);
+            const timeoutPromise = new Promise((_, reject) => {
+                const timeoutDuration = 3000; // 设置超时时间，以毫秒为单位
+                const timeout = setTimeout(() => {
+                    clearTimeout(timeout); // 清除定时器
+                    reject(new Error('Request timed out'));
+                }, timeoutDuration);
+            });
+
+            const response = await Promise.race([fetchPromise, timeoutPromise]);
+
             if (response.status !== 200) {
-                break; // 请求出错，退出循环  
+                break;
             }
             const comments = await response.json();
             if (comments.length === 0) {
-                break; // 没有更多评论了，退出循环  
+                break;
             }
             allComments = allComments.concat(comments);
             page++;
         } catch (error) {
             console.error('Error occurred:', error);
-            break; // 发生错误，退出循环  
+            break;
         }
     }
 
-
     return allComments;
 }
-
-// async function getComments(page) {
-//     const response = await fetch(`${issueURL}?page=${page}`);
-//     const comments = await response.json();
-//     return comments;
-// }
 
 
 async function LoadCollectionsFromVBSOnly() {
@@ -107,11 +125,46 @@ async function LoadCollectionsFromVBSOnly() {
     }
 }
 
+async function getAllCommentsWithTimeout(timeout) {
+    let allComments = [];
+    let page = 1;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+        controller.abort(); // 触发请求中止
+    }, timeout);
+
+    try {
+        while (true) {
+            const response = await fetch(`${issueURL}?page=${page}`, {
+                signal: controller.signal
+            });
+            if (response.status !== 200) {
+                break;
+            }
+            const comments = await response.json();
+            if (comments.length === 0) {
+                break;
+            }
+            allComments = allComments.concat(comments);
+            page++;
+        }
+    } catch (error) {
+        console.error('Error occurred:', error);
+    } finally {
+        clearTimeout(timeoutId); // 清除超时计时器
+    }
+
+    return allComments;
+}
+
+
 async function LoadCollections() {
     console.log('into LoadCollecions');
     try {
         Collections = await getAllComments();
-        if (Collections == []) {
+        // Collections = await getAllCommentsWithTimeout(3000);
+        if (Collections.length === 0) {
             console.log('error fetching from Github');
             Collections = await getCollectionsFromVBServer();
         }
