@@ -115,9 +115,6 @@
 1,电视机里的雪花
 1,小狗最爱的饼干
 0,意外落入院子的皮球
-1,testa
-1,testb
-1,testc
-1,testa
-1,testb
-1,testc
+0,x
+0,y
+0,z
