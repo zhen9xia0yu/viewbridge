@@ -918,7 +918,7 @@ button {
     /* flex-direction: column; */
     color: #FFFFFF;
     /* width: 343px; */
-    width: 303px;
+    width: 295px;
     /* height: 359px; */
     background: #191B1E;
     box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
@@ -994,9 +994,17 @@ textarea {
     background:#191B1E;
     color: #4C4AEF;
     box-shadow: none;
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .addwordBtn_confirm{
+    display: flex;
     width: 143px;
     height: 48px;
     background: #4C4AEF;
@@ -1004,6 +1012,10 @@ textarea {
     opacity: 1;
     color: #EDEDFD;
     box-shadow: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .class_btn_content_addwords{
