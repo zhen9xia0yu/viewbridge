@@ -22,6 +22,9 @@ var LastLineofWordsLenhis = null; //Last update Date
 var CurrentLenOfWho = null;//innitial lenth of who
 var CurrentLenOfWhere = null;//innitial lenth of where
 var CurrentLenOfWhat = null;//inni....what
+const whoImgHTML = `<img src="src/collection@2x.png">`
+const whereImgHTML = `<img src="src/ghost@2x.png">`
+const whatImgHTML = `<img src="src/WitchBroom@2x.png">`
 
 const owner = 'zhen9xia0yu';
 const repo = 'viewbridge';
@@ -1075,9 +1078,12 @@ function openModal(type) {
     wordsInputModal.setAttribute("data-type", type);
     // wordsInputModal.setAttribute("file-type", file);
     switch (type) {
-        case "0": document.getElementById('modal_title').innerHTML = "请输入新名词"; break;
-        case "1": document.getElementById('modal_title').innerHTML = "请输入新介词"; break;
-        case "2": document.getElementById('modal_title').innerHTML = "请输入新动词"; break;
+        // case "0": document.getElementById('modal_title').innerHTML = "请输入新名词"; break;
+        case "0": document.getElementById('modal_title').innerHTML = whoImgHTML; break;
+        // case "1": document.getElementById('modal_title').innerHTML = "请输入新介词"; break;
+        case "1": document.getElementById('modal_title').innerHTML = whereImgHTML; break;
+        // case "2": document.getElementById('modal_title').innerHTML = "请输入新动词"; break;
+        case "2": document.getElementById('modal_title').innerHTML = whatImgHTML; break;
         default: break;
     }
     wordsInputModal.style.display = "block";

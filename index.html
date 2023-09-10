@@ -120,15 +120,32 @@
 
             <div class="modal-content">
                 <!-- <label>Who:</label> -->
-                <button class="addwordBtn" id="addwordCancel">Cancel</button>
-                <div class="class_modal_title" id="modal_title"></div>
-                <input type="radio" name="choice" value="0" checked>至三点
-                <input type="radio" name="choice" value="1">关日宝
-                <br>
-                <!-- <label>Enter text:</label> -->
-                <textarea id="textInput" rows="4"></textarea>
-                <br>
-                <button class="addwordBtn" id="confirmBtn">Confirm</button>
+
+                <!-- <div class="class_modal_title" id="modal_title"></div> -->
+                <div class="class_addwords_who">
+                    <!-- <input type="radio" name="choice" value="0" checked>至三点 -->
+                    <div class="class_who_choice">
+                        <input type="radio" name="choice" value="0" checked><img src="src/cat1@2x.png"
+                            style="width:48px;height:48px;">
+                    </div>
+                    <div class="class_who_choice">
+                        <!-- <input type="radio" name="choice" value="1">关日宝 -->
+                        <input type="radio" name="choice" value="1"><img src="src/cat2@2x.png"
+                            style="width:24px;height:29px24px;height:29px;padding-left: 5px;">
+                    </div>
+                    <div class="class_modal_title" id="modal_title"></div>
+                </div>
+                <!-- <div class="class_welcome_addwords">种下你的豆子</div> -->
+                <!-- <br> -->
+                <div class="class_addwords_input">
+                    <label>种下你的豆子</label>
+                    <textarea class="class_textarea" id="textInput" rows="4"></textarea>
+                </div>
+                <!-- <br> -->
+                <div class="class_btn_content_addwords">
+                    <button class="addwordBtn" id="addwordCancel">Cancel</button>
+                    <button class="addwordBtn" id="confirmBtn">Confirm</button>
+                </div>
             </div>
         </div>
 

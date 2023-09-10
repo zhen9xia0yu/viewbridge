@@ -685,7 +685,7 @@ button {
     padding-top: 5px;
 }
 
-.class_clec_refresh{
+.class_clec_refresh {
     /* position: fixed; */
     display: flex;
     justify-content: flex-end;
@@ -694,7 +694,7 @@ button {
     padding-top: 5px;
 }
 
-.class_clec_refresh img{
+.class_clec_refresh img {
     padding: 9px;
     width: 19px;
     height: 19px;
@@ -882,12 +882,13 @@ button {
     padding-left: 25px;
 }
 
-.img_calendar{
+.img_calendar {
     width: 34px;
     height: 36px;
     /* padding-right: 10px; */
 }
-.img_collection{
+
+.img_collection {
     width: 45px;
     height: 32px;
     /* padding-right: 10px; */
@@ -901,9 +902,9 @@ button {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: white;
     /* width: 300px; */
     padding: 20px;
@@ -912,15 +913,74 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: yellowgreen;
+    /* color: yellowgreen; */
     /* display: flex; */
     /* flex-direction: column; */
-  }
+    color: #FFFFFF;
 
-  .addwordBtn{
+
+    /* width: 343px; */
+    width: 303px;
+    /* height: 359px; */
+    background: #191B1E;
+    box-shadow: 5px 4px 13px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 8px 8px 8px 8px;
+    opacity: 1;
+}
+
+.addwordBtn {
     width: 100%;
-  }
-  textarea {
-    height: 70px; /* 设置一个合适的高度 */
-    overflow: auto; /* 显示滚动条 */
-  } 
+}
+
+textarea {
+    height: 70px;
+    /* 设置一个合适的高度 */
+    overflow: auto;
+    /* 显示滚动条 */
+}
+.class_btn_content_addwords{
+    display: flex;
+    flex-direction: row;
+}
+
+.class_modal_title{
+    display: flex;
+    align-items: center;
+    justify-content:flex-end;
+    width:100%;
+}
+
+.class_modal_title img{
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.class_addwords_who,.class_who_choice{
+    /* padding: 24px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.class_welcome_addwords{
+    padding: 24px;
+}
+
+.class_textarea{
+    padding: 24px;
+}
+
+.class_addwords_input{
+    display: flex;
+    flex-direction: column;
+}
+
+.class_who_choice{
+    padding-right: 50px;
+}
+
