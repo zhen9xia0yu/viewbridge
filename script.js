@@ -967,6 +967,10 @@ function renderCollections(comments, container) {
     });
 }
 
+function isStringInWordProperty(targetString, dataArray) {
+    return dataArray.some(entry => entry.word === targetString);
+}
+
 const whoBtn = document.getElementById("whoBtn");
 const whereBtn = document.getElementById("whereBtn");
 const whatBtn = document.getElementById("whatBtn");
@@ -995,13 +999,22 @@ confirmBtn.addEventListener("click", async () => {
     const formattedLines = nonEmptyLines.map(line => `${choice},${line}`).join("\n");
     // const formattedLines = nonEmptyLines.map(line => `${choice},${line}`);
     const showLines = nonEmptyLines.map(line => `${line}`).join("\n");
-    if (nonEmptyLines != "") {
+    const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
+    var IsExist = 0;
+    const wordsToCheck = nonEmptyLines.map(line => line.trim()); // 取出每个词语并去掉首尾空白
+    wordsToCheck.forEach(word => {
+        console.log("word is"+word);
+        if (isStringInWordProperty(word, wordLists[modalType])) {
+            alert(`"${word}" 已经存在!!!`);
+            IsExist =1;
+        }
+    });
+    if (nonEmptyLines != "" && !IsExist) {
         const confirmContent = confirm(`${who}，你确认要添加这些词语吗？\n"${showLines}"`);
         if (confirmContent) {
             console.log("confirm.");
             // const formattedLines = lines.map(line => `${choice},${line}`).join("\n");
             const wordListformatedData = splitWordListLine(formattedLines);
-            const modalType = parseInt(wordsInputModal.getAttribute("data-type"));
             if (formattedLines !== "") {
                 if (todayDate > LastLineofWordsLenhis) {
                     LastLineofWordsLenhis = todayDate;
